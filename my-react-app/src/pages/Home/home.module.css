@@ -1,0 +1,247 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding-right: 20px;
+}
+
+.imageTextContainer {
+  display: flex;
+  flex-direction: row;
+  padding: 50px;
+  margin-left: 50px;
+}
+
+.topSection {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.imageContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: inset 0 0 1em, 0 0 1em #152540;
+}
+
+.content {
+  flex: 1;
+  padding: 20px 30px;
+  text-align: center;
+}
+
+.containerText {
+  color: #152540;
+  font-size: 3.7rem;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.button {
+  border: none;
+  background-color: #3d61ff;
+  padding: 20px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.5rem;
+  display: block;
+  margin-top: 60px;
+  margin-left: 32%;
+  width: 200px;
+}
+
+.button:hover {
+  background-color: #2c4d85;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.divider {
+  width: 100%;
+  margin: 40px 0;
+  border: 1px solid #ccc;
+}
+
+.emphasis {
+  font-size: 2.5rem;
+  color: #152540;
+  margin-bottom: 50px;
+}
+
+.dogHighlights {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+  width: 95%;
+  cursor: pointer;
+}
+
+.dogCard {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  text-decoration: none;
+}
+
+.dogImage {
+  width: 280px;
+  height: 180px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.dogImage:hover {
+  transform: rotate(-2deg);
+}
+
+.dogName {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.dogDetails {
+  font-size: 14px;
+  color: #555;
+}
+
+.dogBreed {
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.dogGender {
+  font-size: 20px;
+  color: #777;
+}
+
+.learnMore {
+  width: 100%;
+  background-color: #CFDFFB;
+  padding: 20px;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.learnMoreText {
+  font-size: 1.5rem;
+  color: #333;
+  margin-right: 40%;
+}
+
+.learnMoreButton {
+  border: none;
+  background-color: #3d61ff;
+  padding: 15px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.5rem;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.learnMoreButton:hover {
+  background-color: #2c4d85;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  .imageTextContainer {
+    flex-direction: column;
+    padding: 30px;
+    margin: 0;
+  }
+
+  .content {
+    padding: 10px;
+  }
+
+  .containerText {
+    font-size: 2.5rem;
+  }
+
+  .button {
+    margin: 20px auto;
+    width: auto;
+  }
+
+  .dogHighlights {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media (max-width: 768px) {
+  .imageTextContainer {
+    padding: 20px;
+  }
+
+  .containerText {
+    font-size: 2rem;
+  }
+
+  .button {
+    padding: 15px 25px;
+    font-size: 1.2rem;
+  }
+
+  .dogHighlights {
+    grid-template-columns: 1fr;
+  }
+
+  .dogImage {
+    width: 100%;
+    height: auto;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .containerText {
+    font-size: 1.5rem;
+  }
+
+  .button {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+
+  .learnMoreText {
+    margin-right: 0;
+    font-size: 1rem;
+  }
+
+  .learnMoreButton {
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin-top: 15px;
+  }
+
+  .dogName {
+    font-size: 1.2rem;
+  }
+
+  .dogDetails, .dogBreed, .dogGender {
+    font-size: 0.9rem;
+  }
+}
