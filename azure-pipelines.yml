@@ -13,23 +13,14 @@ variables:
 
 jobs:
   - job: BuildAndTest
-
+      
     steps:
       - task: NodeTool@0
         inputs:
           versionSpec: '20.x'
       - task: CmdLine@2
         inputs:
-          script: 'cd my-react-app'
-      - task: CmdLine@2
-        inputs:
-          script: 'cd my-react-app'
-      - task: CmdLine@2
-      - script: |
-          pwd
-          ls -la
-          npm install
-        displayName: 'Verify directory and Install npm packages'
+          script: 'npm install'
       - task: CmdLine@2
         inputs:
           script: 'npm run build'
