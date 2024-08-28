@@ -20,6 +20,9 @@ jobs:
           versionSpec: '20.x'
       - task: CmdLine@2
         inputs:
+          script: 'cd my-react-app'
+      - task: CmdLine@2
+        inputs:
           script: 'npm install'
       - task: CmdLine@2
         inputs:
