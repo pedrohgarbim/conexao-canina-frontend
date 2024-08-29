@@ -25,8 +25,6 @@ O Conexão Canina tem como objetivo proporcionar um processo seguro de comunica�
 #### O Filtro de Cães é extremamente importante para que o usuário procure o cachorro específico de seu desejo para poder cruzar com o seu próprio, de acordo com as suas necessidades.
 
 ## Executando o projeto pelo terminal
-> cd my-react-app
-> 
 > npm i
 > 
 > npm run dev
