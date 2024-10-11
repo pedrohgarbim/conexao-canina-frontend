@@ -55,7 +55,6 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 # 🛠️ Conexão Canina - Frontend
 
 ### 🚨 **Atenção:** 
-- Não apagar a branch `dev construção dominio` 🛑
 - A Wiki está em construção 📝
 
 ---
@@ -118,74 +117,69 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 
 
 
-## ✅ **Tasks Feitas:**q
-##  Criação de Perfil de Cachorro
+## ✅ **Tasks Feitas:**
 
-### Criação Básica de Perfil (frontend) -> A fazer
-### Inclusão de Fotos no Perfil (frontend) -> A fazer
-### Atualização e Edição de Perfil (frontend) -> A fazer
-### Interface e Usabilidade (frontend) -> A fazer
-### Segurança e Privacidade (frontend) -> A fazer
+### 🐕 **Criação de Perfil de Cachorro**
+- 🟢 Criação Básica de Perfil (frontend) -> A fazer
+- 🟢 Inclusão de Fotos no Perfil (frontend) -> A fazer
+- 🟢 Atualização e Edição de Perfil (frontend) -> A fazer
+- 🟢 Interface e Usabilidade (frontend) -> A fazer
+- 🟢 Segurança e Privacidade (frontend) -> A fazer
+
+### 🗑️ **Exclusão de Perfil de Cachorro**
+- 🟢 Implementar Funcionalidade de Exclusão do Perfil (frontend) -> A fazer
+- 🟢 Enviar Notificação de Exclusão (frontend) -> A fazer
+- 🟢 Informar sobre a Política de Exclusão (frontend) -> A fazer
+
+### 👀 **Visualização de Perfis de Cachorro**
+- 🟢 Visualização Básica do Perfil (frontend) -> A fazer
+- 🟢 Visualização de Fotos (frontend) -> A fazer
+- 🟢 Visualização de Histórico de Saúde (frontend) -> A fazer
+- 🟢 Interface e Usabilidade (frontend) -> A fazer
+- 🟢 Segurança e Privacidade (frontend) -> A fazer
+
+### 🛠️ **Gerenciamento de Perfil**
+- 🟢 Atualização de Informações Básicas (frontend) -> A fazer
+- 🟢 Adição ou Remoção de Fotos (frontend) -> A fazer
+- 🟢 Atualização de Histórico de Saúde (frontend) -> A fazer
+- 🟢 Interface e Usabilidade (frontend) -> A fazer
+- 🟢 Segurança e Privacidade (frontend) -> A fazer
+
+### 📸 **Criação de Álbum de Fotos**
+- 🟢 Desenvolver Funcionalidade para Criar Álbum de Fotos (Backend)
+- 🟢 Adicionar Funcionalidades de Gerenciamento do Álbum (Backend)
+- 🟢 Configuração de Privacidade do Álbum de Fotos (Backend)
+
+### 💌 **Envio de Solicitações de Cruzamento**
+- 🟢 Implementar a Funcionalidade de Envio de Solicitação de Cruzamento (frontend) -> A fazer
+- 🟢 Implementar Notificação ao Dono do Cachorro (frontend) -> A fazer)
+
+### 📋 **Gerenciamento de Solicitações de Cruzamento e Perfis de Usuários**
+- 🟢 Implementar Notificação para Moderação de Perfis de Cães (frontend) -> A fazer
+
+### ✅ **Aceitar ou Rejeitar Solicitações de Cruzamento**
+- 🟢 Implementar Aceitação de Solicitação de Cruzamento (frontend) -> A fazer
+- 🟢 Implementar Rejeição de Solicitação de Cruzamento (frontend) -> A fazer  
+
+### 📑 **Requisitos Específicos de Cruzamento**
+- 🟢 Definir Requisitos Específicos para o Cruzamento (frontend) -> A fazer
+- 🟢 Notificação de Solicitações Rejeitadas (frontend) -> A fazer
+- 🟢 Filtragem Automática de Solicitações com Base nos Requisitos (frontend) -> A fazer 
+- 🟢 Interface de Usuário e Usabilidade (frontend) -> A fazer
+- 🟢 Persistência e Atualização (frontend) -> A fazer
+
+### 💡 **Sugestões de Melhorias**
+- 🟢 Acesso ao Formulário de Sugestões (frontend) -> A fazer
+- 🟢 Acompanhamento das Sugestões Enviadas (frontend) -> A fazer
+- 🟢 Feedback dos Administradores sobre Sugestões (frontend) -> A fazer
+- 🟢 Interface e Usabilidade (frontend) -> A fazer
+- 🟢 Notificações (frontend) -> A fazer
+
+### ❤️ **Dar Like em Perfis de Cães**
+- 🟢 Implementar Funcionalidade de Dar Like (frontend) -> A fazer
+- 🟢 Atualizar Modelos de Dados e Notificações (frontend) -> A fazer
 
 ---
-## Exclusão de Perfil de Cachorro
-
-### Implementar Funcionalidade de Exclusão do Perfil (frontend) -> A fazer
-### Enviar Notificação de Exclusão (frontend) -> A fazer
-### Informar sobre a Política de Exclusão (frontend) -> A fazer
-
----
-## Visualização de Perfis de Cachorro
-
-### Visualização Básica do Perfil (frontend) -> A fazer
-### Visualização de Fotos (frontend) -> A fazer
-### Visualização de Histórico de Saúde (frontend) -> A fazer
-### Interface e Usabilidade (frontend) -> A fazer
-### Segurança e Privacidade (frontend) -> A fazer
-
----
-## Gerenciamento de Perfil
-
-### Atualização de Informações Básicas (frontend) -> A fazer
-### Adição ou Remoção de Fotos (frontend) -> A fazer
-### Atualização de Histórico de Saúde (backend) 
-###  Interface e Usabilidade (frontend) -> A fazer
-###  Segurança e Privacidade (frontend) -> A fazer 
-
----
-## Criação de Álbum de Fotos 
-### Desenvolver Funcionalidade para Criar Álbum de Fotos (frontend) -> A fazer 
-### Adicionar Funcionalidades de Gerenciamento do Álbum (frontend) -> A fazer
-### Configuração de Privacidade do Álbum de Fotos (frontend) -> A fazer
-
----
-## Envio de Solicitações de Cruzamento
-### Implementar a Funcionalidade de Envio de Solicitação de Cruzamento (frontend) -> A fazer
-### Implementar Notificação ao Dono do Cachorro (frontend) -> A fazer
-
----
-## Gerenciamento de Solicitações de Cruzamento e Perfis de Usuários
-###  Implementar Notificação para Moderação de Perfis de Cães (frontend) -> A fazer
----
-## Aceitar ou Rejeitar Solicitações de Cruzamento
-### Implementar Aceitação de Solicitação de Cruzamento (frontend) -> A fazer
-### Implementar Rejeição de Solicitação de Cruzamento (frontend) -> A fazer
----
-## Requisitos Específicos de Cruzamento
-### Definir Requisitos Específicos para o Cruzamento (frontend) -> A fazer
-### Notificação de Solicitações Rejeitadas (frontend) -> A fazer
-### Filtragem Automática de Solicitações com Base nos Requisitos (frontend) -> A fazer
-### Interface de Usuário e Usabilidade (frontend) -> A fazer
-### Persistência e Atualização (frontend) -> A fazer
-
----
-
-## Sugestões de Melhorias
-### Acesso ao Formulário de Sugestões (frontend) -> A fazer
-### Acompanhamento das Sugestões Enviadas (frontend) -> A fazer
-### Feedback dos Administradores sobre Sugestões (frontend) -> A fazer
-### Interface e Usabilidade (frontend) -> A fazer
-### Notificações (frontend) -> A fazer
 
 ---
 ## Dar Like em Perfis de Cães
