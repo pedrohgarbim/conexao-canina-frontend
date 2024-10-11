@@ -180,8 +180,3 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Atualizar Modelos de Dados e Notificações (frontend) -> A fazer
 
 ---
-
----
-## Dar Like em Perfis de Cães
-### Implementar Funcionalidade de Dar Like (frontend) -> A fazer
-### Atualizar Modelos de Dados e Notificações (frontend) -> A fazer
