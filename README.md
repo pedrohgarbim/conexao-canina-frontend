@@ -51,7 +51,8 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 
 #  🏅  Supremo Deus Imperador PHG 🏅
 ![image](https://github.com/user-attachments/assets/0ec15b10-9627-4c01-b1e4-2c00d451ed3a)
-
+# 🐾 Conexão Canina - Backend 
+[Link do Projeto](https://github.com/conexao-canina/conexao-canina-backend)
 # 🛠️ Conexão Canina - Frontend
 
 ### 🚨 **Atenção:** 
