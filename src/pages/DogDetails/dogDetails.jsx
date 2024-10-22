@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './dogDetails.module.css';
 import trasition from '../../components/Transition/transition'
+import { FaExclamationTriangle } from 'react-icons/fa';
+
 
 // Importar as imagens dos ícones
 import pawIcon from '../../assets/patacachorro.png';
@@ -447,11 +449,43 @@ const Modal = ({ onClose, owner }) => (
   </div>
 );
 
+const ReportModal = ({ onClose, onSubmit }) => {
+  const [reason, setReason] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(reason);
+    onClose();
+  };
+
+  return (
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalContent}>
+        <h2>Denunciar Perfil</h2>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Motivo da denúncia:
+            <select className={styles.selectBox} value={reason} onChange={(e) => setReason(e.target.value)} required>
+              <option value="">Selecione um motivo</option>
+              <option value="Perfil Falso">Perfil Falso</option>
+              <option value="Conteúdo Inapropriado">Conteúdo Inapropriado</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </label>
+          <button type="submit" className={styles.submitButton}>Enviar Denúncia</button>
+        </form>
+        <button onClick={onClose} className={styles.closeButton}>Fechar</button>
+      </div>
+    </div>
+  );
+};
+
 const DogDetails = () => {
   const { name } = useParams();
   const navigate = useNavigate();
   const dog = dogData[name];
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [reviewData, setReviewData] = useState({ rating: 0, comment: '' });
   const [reviews, setReviews] = useState([]);
   const [success, setSuccess] = useState(false);
@@ -519,6 +553,41 @@ const DogDetails = () => {
     setIsModalOpen(false);
   };
 
+  const handleOpenReportModal = () => {
+    setIsReportModalOpen(true);
+  };
+
+  const handleCloseReportModal = () => {
+    setIsReportModalOpen(false);
+  };
+
+  const handleReportSubmit = async (reason) => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (!user) {
+      setError('Você precisa estar autenticado para enviar uma denúncia.');
+      return;
+    }
+
+    // Enviar a denúncia para o backend
+    const newReport = {
+      dogId: name,
+      userId: user.uid,
+      reason,
+      timestamp: serverTimestamp(),
+    };
+
+    try {
+      await addDoc(collection(db, 'dogReports'), newReport);
+      setSuccess(true);
+      setError('');
+    } catch (error) {
+      console.error("Error adding report: ", error);
+      setError('Erro ao enviar a denúncia. Por favor, tente novamente.');
+    }
+  };
+
   const currentUrl = window.location.href;
   const shareText = "Confira este cachorrinho!";
 
@@ -530,6 +599,9 @@ const DogDetails = () => {
       <div className={styles.content}>
         <h1 className={styles.dogName}>
           {dog.name}, <span className={styles.dogBreed}>{dog.breed}</span>
+          <div className={styles.reportIcon} onClick={handleOpenReportModal} title="Denunciar este cão">
+          <FaExclamationTriangle className={styles.reportIconStyle} />
+        </div>
         </h1>
         <div className={styles.details}>
           <p className={styles.detailItemPaw}>
@@ -548,55 +620,16 @@ const DogDetails = () => {
         <button className={styles.contactButton} onClick={handleContactClick}>
           Contato
         </button>
+
         <button className={styles.backButton} onClick={() => navigate(-1)}>
           Voltar
         </button>
         <ShareButtons url={currentUrl} text={shareText} />
       </div>
       {isModalOpen && <Modal onClose={handleCloseModal} owner={dog.owner} />}
-
-      {/* <div className={styles.avaliacoesDogs}>
-        <div className={styles.reviewsSection}>
-          <h3 className={styles.sectionTitle}>Avaliações</h3>
-          {reviews.map((review, index) => (
-            <div key={index} className={styles.review}>
-              <p>Nota: {review.rating}</p>
-              <p>{review.comment}</p>
-            </div>
-          ))}
-        </div>
-        <div className={styles.reviewForm}>
-          <h3 className={styles.sectionTitle}>Deixe sua Avaliação</h3>
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label>Nota:</label>
-              <input
-                type="number"
-                name="rating"
-                value={reviewData.rating}
-                onChange={handleChange}
-                min="1"
-                max="5"
-                required
-              />
-            </div>
-            <div>
-              <label>Comentário:</label>
-              <textarea
-                name="comment"
-                value={reviewData.comment}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <button type="submit" className={styles.submitButton}>Enviar Avaliação</button>
-          </form>
-          {success && <p>Avaliação enviada com sucesso!</p>}
-          {error && <p>{error}</p>}
-        </div>
-      </div>*/}
-    </div> 
+      {isReportModalOpen && <ReportModal onClose={handleCloseReportModal} onSubmit={handleReportSubmit} />}
+    </div>
   );
 };
 
-export default trasition(DogDetails);
+export default DogDetails;
