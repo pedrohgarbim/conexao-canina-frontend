@@ -57,7 +57,7 @@
 
 /* Adicionado espaço entre o nome e o ícone de denúncia */
 .reportIcon {
-  margin-left: 10px;
+  margin-left: 12px;
   cursor: pointer;
   color: #ff4d4d;
 }
@@ -83,6 +83,7 @@
 
 .contactButton {
   background-color: #3d61ff;
+  
 }
 
 .contactButton:hover {
