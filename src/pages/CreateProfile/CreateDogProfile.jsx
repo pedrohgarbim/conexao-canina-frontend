@@ -1,8 +1,8 @@
 import DogProfileForm from '../../components/DogProfileForm/DogProfileForm';
 import trasition from '../../components/Transition/transition';
-import './CreateProfile.module.css';
+import './CreateDogProfile.module.css';
 
-function CreateProfile() {
+function CreateDogProfile() {
   return (
     <div className="create-profile-page">
       <DogProfileForm />
@@ -10,4 +10,4 @@ function CreateProfile() {
   );
 }
 
-export default trasition(CreateProfile);
+export default trasition(CreateDogProfile);

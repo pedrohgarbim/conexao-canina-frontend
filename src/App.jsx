@@ -20,8 +20,8 @@ import RecoverPassword from "./pages/RecoverPassword/recoverPassword";
 import CommentsPage from './pages/CommentsPage/commentsPage';
 import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
-import CreateProfile from './pages/CreateProfile/CreateProfile';
-import ProfileForm from './components/DogProfileForm/DogProfileForm';
+import CreateDogProfile from './pages/CreateProfile/CreateDogProfile';
+import DogProfileForm from './components/DogProfileForm/DogProfileForm';
 
 
 function App() {
@@ -59,7 +59,7 @@ function App() {
                         <Route path="/cadastro" element={<Register />} />
                         <Route path="/recuperarSenha" element={<RecoverPassword />} />
                         <Route path="/comentarios" element={<CommentsPage />} />
-                        <Route path="/create-profile" element={<ProfileForm />} />
+                        <Route path="/create-profile" element={<CreateDogProfile />} />
                     </Routes>
                 </AnimatePresence>
                 <Footer />
