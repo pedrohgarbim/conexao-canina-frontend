@@ -469,6 +469,8 @@ const ReportModal = ({ onClose, onSubmit }) => {
               <option value="">Selecione um motivo</option>
               <option value="Perfil Falso">Perfil Falso</option>
               <option value="Conteúdo Inapropriado">Conteúdo Inapropriado</option>
+              <option value="Venda ou Adoção Ilegal">Venda ou Adoção Ilegal</option>
+              <option value="Uso Indevido de Imagens">Uso Indevido de Imagens</option>
               <option value="Outro">Outro</option>
             </select>
           </label>
@@ -487,64 +489,11 @@ const DogDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [reviewData, setReviewData] = useState({ rating: 0, comment: '' });
-  const [reviews, setReviews] = useState([]);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState('');
 
   if (!dog) {
     return <div>Cachorro não encontrado!</div>;
   }
-
-  const fetchReviews = async () => {
-    const q = query(collection(db, 'dogReviews'), where('dogId', '==', name));
-    const querySnapshot = await getDocs(q);
-    const reviewsList = [];
-    querySnapshot.forEach((doc) => {
-      reviewsList.push(doc.data());
-    });
-    setReviews(reviewsList);
-  };
-
-  useEffect(() => {
-    fetchReviews();
-  }, [name]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setReviewData({ ...reviewData, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const auth = getAuth();
-    const user = auth.currentUser;
-
-    if (!user) {
-      setError('Você precisa estar autenticado para enviar uma avaliação.');
-      return;
-    }
-
-    const newReview = {
-      dogId: name,
-      userId: user.uid,
-      rating: reviewData.rating,
-      comment: reviewData.comment,
-      timestamp: serverTimestamp(),
-    };
-
-    try {
-      await addDoc(collection(db, 'dogReviews'), newReview);
-      setSuccess(true);
-      setError('');
-      setReviewData({ rating: 0, comment: '' });
-      fetchReviews(); // Buscar as avaliações novamente para atualizar a lista
-    } catch (error) {
-      console.error("Error adding document: ", error);
-      setError('Erro ao enviar a avaliação. Por favor, tente novamente.');
-    }
-  };
-
+  
   const handleContactClick = () => {
     setIsModalOpen(true);
   };

@@ -18,11 +18,11 @@ const ShareButtons = ({ url, text }) => {
     <div>
       <button onClick={shareOnTwitter} className="button twitter">
         <FaTwitter />
-        Compartilhar no Twitter
+        Compartilhar no Twitter.
       </button>
       <button onClick={shareOnFacebook} className="button facebook">
         <FaFacebook />
-        Compartilhar no Facebook
+        Compartilhar no Facebook.
       </button>
     </div>
   );

@@ -39,6 +39,7 @@
 .content {
   flex: 1;
   padding: 20px;
+  margin-top: 70px;
 }
 
 .dogName {
@@ -57,7 +58,7 @@
 
 /* Adicionado espaço entre o nome e o ícone de denúncia */
 .reportIcon {
-  margin-left: 10px;
+  margin-left: 12px;
   cursor: pointer;
   color: #ff4d4d;
 }
@@ -79,10 +80,12 @@
   font-size: 1rem;
   cursor: pointer;
   margin-right: 10px; /* Espaçamento entre os botões */
+  margin-left: 14px;
 }
 
 .contactButton {
   background-color: #3d61ff;
+  
 }
 
 .contactButton:hover {
