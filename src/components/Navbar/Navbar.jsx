@@ -82,7 +82,7 @@ const Navbar = () => {
                         <li className={styles.links}>
                             <div className={styles.profileMenu}>
                                 <NavLink to="/usuario" className={styles.usuario}>
-                                    <img src={userPic} alt="Usuário" />
+                                    
                                     <p>{user.displayName || 'Usuário'}</p>
                                 </NavLink>
                                 <div className={styles.drawerToggle} onClick={() => setDrawerOpen(!drawerOpen)}>
