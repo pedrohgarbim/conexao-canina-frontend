@@ -39,6 +39,7 @@
 .content {
   flex: 1;
   padding: 20px;
+  margin-top: 70px;
 }
 
 .dogName {
@@ -79,6 +80,7 @@
   font-size: 1rem;
   cursor: pointer;
   margin-right: 10px; /* Espaçamento entre os botões */
+  margin-left: 14px;
 }
 
 .contactButton {
