@@ -22,7 +22,7 @@ import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
 import CreateProfile from './pages/CreateProfile/CreateProfile';
 import ProfileForm from './components/DogProfileForm/DogProfileForm';
-import { DogProvider } from './components/DogContext/DogContext'; // Importa o DogProvider
+
 
 function App() {
     const location = useLocation();
@@ -45,7 +45,6 @@ function App() {
 
     return (
         <AuthProvider value={{ user }}>
-            <DogProvider> {/* Envolve a aplicação com o DogProvider */}
                 <Navbar />
                 <AnimatePresence mode='wait'>
                     <Routes location={location} key={location.pathname}>
@@ -64,7 +63,6 @@ function App() {
                     </Routes>
                 </AnimatePresence>
                 <Footer />
-            </DogProvider>
         </AuthProvider>
     );
 }
