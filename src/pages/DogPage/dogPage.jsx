@@ -267,7 +267,7 @@ function DogPage() {
               </NavLink>
               {/* Botão de like com alternância de coração vazio e cheio */}
               <button className={styles.likeButton} onClick={() => handleLikeToggle(dog.name)}>
-                <img src={likedDogs.includes(dog.name) ? heartFull : heartEmpty} alt="Like" className={styles.likeIcon} />
+                <img src={likedDogs.includes(dog.name) ? heartFull : heartEmpty} alt="Botão de Like" className={styles.likeIcon} />
               </button>
             </div>
           ))
