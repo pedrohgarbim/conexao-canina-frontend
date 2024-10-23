@@ -484,24 +484,33 @@ const ReportModal = ({ onClose, onSubmit }) => {
 
 const EditDogModal = ({ onClose, dog, onSubmit }) => {
   const [formData, setFormData] = useState(dog);
-  const [isLoading, setIsLoading] = useState(false); // Estado para controle de carregamento
-  const [feedbackMessage, setFeedbackMessage] = useState(''); // Estado para mensagem de feedback
+  const [isLoading, setIsLoading] = useState(false);
+  const [feedbackMessage, setFeedbackMessage] = useState('');
+  const [image, setImage] = useState(null); // Estado para armazenar a imagem selecionada
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0]; // Pega o arquivo selecionado
+    if (file) {
+      setImage(file); // Armazena o arquivo de imagem no estado
+      setFormData({ ...formData, photo: file }); // Adiciona o arquivo de imagem ao formData
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true); // Iniciar animação de carregamento
-    setFeedbackMessage(''); // Limpar mensagens anteriores
+    setIsLoading(true);
+    setFeedbackMessage('');
 
     // Simulação de atualização (substitua pela lógica real)
     await onSubmit(formData);
 
-    setIsLoading(false); // Parar animação de carregamento
-    setFeedbackMessage('Dados atualizados com sucesso!'); // Mensagem de sucesso
+    setIsLoading(false);
+    setFeedbackMessage('Dados atualizados com sucesso!');
   };
 
   return (
@@ -574,10 +583,20 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
               className={styles.inputField}
             />
           </label>
+          <label>
+            Foto do Cachorro:
+            <input
+              type="file"
+              accept="image/*" // Aceitar apenas arquivos de imagem
+              onChange={handleImageChange}
+              className={styles.inputField}
+            />
+          </label>
+          {image && <p>Arquivo selecionado: {image.name}</p>} {/* Exibir nome do arquivo selecionado */}
           <button type="submit" className={styles.submitButton}>
             {isLoading ? 'Salvando...' : 'Salvar Alterações'}
           </button>
-          {feedbackMessage && <p className={styles.feedbackMessage}>{feedbackMessage}</p>} {/* Exibir mensagem de feedback */}
+          {feedbackMessage && <p className={styles.feedbackMessage}>{feedbackMessage}</p>}
         </form>
         <button onClick={onClose} className={styles.closeButton}>Fechar</button>
       </div>
@@ -592,6 +611,7 @@ const DogDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  
 
   if (!dog) {
     return <div>Cachorro não encontrado!</div>;
