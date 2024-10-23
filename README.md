@@ -117,7 +117,7 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 ## ✅ **Tasks Feitas:**
 
 ### 🐕 **Criação de Perfil de Cachorro**
-- 🟢 Criação Básica de Perfil (frontend) -> A fazer
+- 🟢 Criação Básica de Perfil (frontend)
 - 🟢 Inclusão de Fotos no Perfil (frontend) -> A fazer
 - 🟢 Atualização e Edição de Perfil (frontend) -> A fazer
 - 🟢 Interface e Usabilidade (frontend) -> A fazer
@@ -173,7 +173,7 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Notificações (frontend) -> A fazer
 
 ### ❤️ **Dar Like em Perfis de Cães**
-- 🟢 Implementar Funcionalidade de Dar Like (frontend) -> A fazer
+- 🟢 Implementar Funcionalidade de Dar Like (frontend)
 - 🟢 Atualizar Modelos de Dados e Notificações (frontend) -> A fazer
 
 ---
