@@ -119,7 +119,7 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 ### 🐕 **Criação de Perfil de Cachorro**
 - 🟢 Criação Básica de Perfil (frontend)
 - 🟢 Inclusão de Fotos no Perfil (frontend) -> A fazer
-- 🟢 Atualização e Edição de Perfil (frontend) -> A fazer
+- 🟢 Atualização e Edição de Perfil (frontend)
 - 🟢 Interface e Usabilidade (frontend) -> A fazer
 - 🟢 Segurança e Privacidade (frontend) -> A fazer
 
