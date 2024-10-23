@@ -129,14 +129,14 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Informar sobre a Política de Exclusão (frontend) -> A fazer
 
 ### 👀 **Visualização de Perfis de Cachorro**
-- 🟢 Visualização Básica do Perfil (frontend) -> A fazer
+- 🟢 Visualização Básica do Perfil (frontend)
 - 🟢 Visualização de Fotos (frontend) -> A fazer
 - 🟢 Visualização de Histórico de Saúde (frontend) -> A fazer
 - 🟢 Interface e Usabilidade (frontend) -> A fazer
 - 🟢 Segurança e Privacidade (frontend) -> A fazer
 
 ### 🛠️ **Gerenciamento de Perfil**
-- 🟢 Atualização de Informações Básicas (frontend) -> A fazer
+- 🟢 Atualização de Informações Básicas (frontend)
 - 🟢 Adição ou Remoção de Fotos (frontend) -> A fazer
 - 🟢 Atualização de Histórico de Saúde (frontend) -> A fazer
 - 🟢 Interface e Usabilidade (frontend) -> A fazer
