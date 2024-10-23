@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './dogDetails.module.css';
 import trasition from '../../components/Transition/transition'
-import { FaExclamationTriangle } from 'react-icons/fa';
+import { FaExclamationTriangle, FaPencilAlt  } from 'react-icons/fa';
 
 
 // Importar as imagens dos ícones
@@ -482,18 +482,121 @@ const ReportModal = ({ onClose, onSubmit }) => {
   );
 };
 
+const EditDogModal = ({ onClose, dog, onSubmit }) => {
+  const [formData, setFormData] = useState(dog);
+  const [isLoading, setIsLoading] = useState(false); // Estado para controle de carregamento
+  const [feedbackMessage, setFeedbackMessage] = useState(''); // Estado para mensagem de feedback
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true); // Iniciar animação de carregamento
+    setFeedbackMessage(''); // Limpar mensagens anteriores
+
+    // Simulação de atualização (substitua pela lógica real)
+    await onSubmit(formData);
+
+    setIsLoading(false); // Parar animação de carregamento
+    setFeedbackMessage('Dados atualizados com sucesso!'); // Mensagem de sucesso
+  };
+
+  return (
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalContentEdit}>
+        <h2>Editar Dados do Cachorro</h2>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Nome:
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className={styles.inputField}
+            />
+          </label>
+          <label>
+            Raça:
+            <input
+              type="text"
+              name="breed"
+              value={formData.breed}
+              onChange={handleChange}
+              required
+              className={styles.inputField}
+            />
+          </label>
+          <label>
+            Gênero:
+            <input
+              type="text"
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
+              required
+              className={styles.inputField}
+            />
+          </label>
+          <label>
+            Tamanho:
+            <input
+              type="text"
+              name="size"
+              value={formData.size}
+              onChange={handleChange}
+              required
+              className={styles.inputField}
+            />
+          </label>
+          <label>
+            Idade:
+            <input
+              type="text"
+              name="age"
+              value={formData.age}
+              onChange={handleChange}
+              required
+              className={styles.inputField}
+            />
+          </label>
+          <label>
+            Descrição:
+            <textarea
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              required
+              className={styles.inputField}
+            />
+          </label>
+          <button type="submit" className={styles.submitButton}>
+            {isLoading ? 'Salvando...' : 'Salvar Alterações'}
+          </button>
+          {feedbackMessage && <p className={styles.feedbackMessage}>{feedbackMessage}</p>} {/* Exibir mensagem de feedback */}
+        </form>
+        <button onClick={onClose} className={styles.closeButton}>Fechar</button>
+      </div>
+    </div>
+  );
+};
+
 const DogDetails = () => {
   const { name } = useParams();
   const navigate = useNavigate();
   const dog = dogData[name];
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
-  const [reviewData, setReviewData] = useState({ rating: 0, comment: '' });
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   if (!dog) {
     return <div>Cachorro não encontrado!</div>;
   }
-  
+
   const handleContactClick = () => {
     setIsModalOpen(true);
   };
@@ -510,16 +613,23 @@ const DogDetails = () => {
     setIsReportModalOpen(false);
   };
 
+  const handleOpenEditModal = () => {
+    setIsEditModalOpen(true);
+  };
+
+  const handleCloseEditModal = () => {
+    setIsEditModalOpen(false);
+  };
+
   const handleReportSubmit = async (reason) => {
     const auth = getAuth();
     const user = auth.currentUser;
 
     if (!user) {
-      setError('Você precisa estar autenticado para enviar uma denúncia.');
+      console.error('Você precisa estar autenticado para enviar uma denúncia.');
       return;
     }
 
-    // Enviar a denúncia para o backend
     const newReport = {
       dogId: name,
       userId: user.uid,
@@ -529,12 +639,17 @@ const DogDetails = () => {
 
     try {
       await addDoc(collection(db, 'dogReports'), newReport);
-      setSuccess(true);
-      setError('');
+      console.log('Denúncia enviada com sucesso!');
     } catch (error) {
       console.error("Error adding report: ", error);
-      setError('Erro ao enviar a denúncia. Por favor, tente novamente.');
+      console.error('Erro ao enviar a denúncia. Por favor, tente novamente.');
     }
+  };
+
+  const handleEditSubmit = async (updatedDogData) => {
+    // Aqui você deve fazer a atualização no banco de dados
+    console.log('Dados atualizados:', updatedDogData);
+    // Adicione a lógica para atualizar os dados do cachorro no seu banco de dados
   };
 
   const currentUrl = window.location.href;
@@ -548,10 +663,15 @@ const DogDetails = () => {
       <div className={styles.content}>
         <h1 className={styles.dogName}>
           {dog.name}, <span className={styles.dogBreed}>{dog.breed}</span>
+          {/* Ícones para edição e denúncia */}
           <div className={styles.reportIcon} onClick={handleOpenReportModal} title="Denunciar este cão">
-          <FaExclamationTriangle className={styles.reportIconStyle} />
-        </div>
+            <FaExclamationTriangle className={styles.reportIconStyle} />
+          </div>
+          <div className={styles.editIcon} onClick={handleOpenEditModal} title="Editar este cão">
+            <FaPencilAlt className={styles.editIconStyle} />
+          </div>
         </h1>
+        {/* Detalhes do cachorro */}
         <div className={styles.details}>
           <p className={styles.detailItemPaw}>
             <img src={pawIcon} alt="Paw icon" className={styles.iconPaw} />
@@ -569,16 +689,18 @@ const DogDetails = () => {
         <button className={styles.contactButton} onClick={handleContactClick}>
           Contato
         </button>
-
         <button className={styles.backButton} onClick={() => navigate(-1)}>
           Voltar
         </button>
         <ShareButtons url={currentUrl} text={shareText} />
       </div>
+      {/* Modais */}
       {isModalOpen && <Modal onClose={handleCloseModal} owner={dog.owner} />}
       {isReportModalOpen && <ReportModal onClose={handleCloseReportModal} onSubmit={handleReportSubmit} />}
+      {isEditModalOpen && <EditDogModal onClose={handleCloseEditModal} dog={dog} onSubmit={handleEditSubmit} />}
     </div>
   );
 };
+
 
 export default DogDetails;
