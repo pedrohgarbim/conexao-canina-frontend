@@ -131,7 +131,7 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 ### 👀 **Visualização de Perfis de Cachorro**
 - 🟢 Visualização Básica do Perfil (frontend)
 - 🟢 Visualização de Fotos (frontend) -> A fazer
-- 🟢 Visualização de Histórico de Saúde (frontend) -> A fazer
+- 🟢 Visualização de Histórico de Saúde (frontend)
 - 🟢 Interface e Usabilidade (frontend) -> A fazer
 - 🟢 Segurança e Privacidade (frontend) -> A fazer
 
