@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './dogDetails.module.css';
 import trasition from '../../components/Transition/transition'
-import { FaExclamationTriangle, FaPencilAlt  } from 'react-icons/fa';
+import { FaExclamationTriangle, FaPencilAlt, FaClipboard } from 'react-icons/fa';
 
 
 // Importar as imagens dos ícones
@@ -57,6 +57,44 @@ const dogData = {
       name: 'Carlos Silva',
       email: 'carlos.silva@example.com',
       phone: '(11) 98765-4321',
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-03-15',
+          result: 'Normal',
+          veterinarian: 'Dr. João Mendes'
+        },
+        {
+          type: 'Exame de urina',
+          date: '2023-11-10',
+          result: 'Sem anomalias',
+          veterinarian: 'Dra. Ana Costa'
+        }
+      ],
+      vaccines: [
+        {
+          name: 'Vacina antirrábica',
+          date: '2023-08-20',
+          nextDose: '2024-08-20',
+          veterinarian: 'Dra. Ana Costa'
+        },
+        {
+          name: 'Vacina polivalente (V8)',
+          date: '2023-09-15',
+          nextDose: '2024-09-15',
+          veterinarian: 'Dr. João Mendes'
+        }
+      ],
+      conditions: [
+        {
+          name: 'Alergia alimentar',
+          diagnosisDate: '2022-06-01',
+          notes: 'Controlada com ração hipoalergênica',
+          veterinarian: 'Dra. Ana Costa'
+        }
+      ]
     }
   },
   Bella: {
@@ -73,9 +111,48 @@ const dogData = {
       name: 'Ana Souza',
       email: 'ana.souza@example.com',
       phone: '(21) 98765-4321',
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-02-10',
+          result: 'Normal',
+          veterinarian: 'Dr. Paulo Almeida'
+        },
+        {
+          type: 'Exame de urina',
+          date: '2023-12-05',
+          result: 'Sem anomalias',
+          veterinarian: 'Dra. Carla Nascimento'
+        }
+      ],
+      vaccines: [
+        {
+          name: 'Vacina antirrábica',
+          date: '2023-07-18',
+          nextDose: '2024-07-18',
+          veterinarian: 'Dra. Carla Nascimento'
+        },
+        {
+          name: 'Vacina polivalente (V8)',
+          date: '2023-08-25',
+          nextDose: '2024-08-25',
+          veterinarian: 'Dr. Paulo Almeida'
+        }
+      ],
+      conditions: [
+        {
+          name: 'Sem condições conhecidas',
+          diagnosisDate: null,
+          notes: 'Saudável e ativa.',
+          veterinarian: null
+        }
+      ]
     }
   },
-  Thor: {
+
+Thor: {
     name: 'Thor',
     breed: 'Pinscher',
     city: 'Belo Horizonte',
@@ -89,8 +166,47 @@ const dogData = {
       name: 'Bruno Santos',
       email: 'bruno.santos@example.com',
       phone: '(31) 98765-4321',
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-01-25',
+          result: 'Normal',
+          veterinarian: 'Dr. Luiz Ferreira'
+        },
+        {
+          type: 'Exame de urina',
+          date: '2023-11-15',
+          result: 'Leve desidratação',
+          veterinarian: 'Dra. Júlia Almeida'
+        }
+      ],
+      vaccines: [
+        {
+          name: 'Vacina antirrábica',
+          date: '2023-09-10',
+          nextDose: '2024-09-10',
+          veterinarian: 'Dra. Júlia Almeida'
+        },
+        {
+          name: 'Vacina polivalente (V8)',
+          date: '2023-10-05',
+          nextDose: '2024-10-05',
+          veterinarian: 'Dr. Luiz Ferreira'
+        }
+      ],
+      conditions: [
+        {
+          name: 'Sem condições conhecidas',
+          diagnosisDate: null,
+          notes: 'Saudável e ativo.',
+          veterinarian: null
+        }
+      ]
     }
   },
+
   Pintado: {
     name: 'Pintado',
     breed: 'Dálmata',
@@ -105,9 +221,48 @@ const dogData = {
       name: 'Mariana Ferreira',
       email: 'mariana.ferreira@example.com',
       phone: '(41) 98765-4321',
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-04-20',
+          result: 'Normal',
+          veterinarian: 'Dr. Pedro Oliveira'
+        },
+        {
+          type: 'Exame de urina',
+          date: '2023-12-15',
+          result: 'Sem anomalias',
+          veterinarian: 'Dra. Sofia Martins'
+        }
+      ],
+      vaccines: [
+        {
+          name: 'Vacina antirrábica',
+          date: '2023-09-30',
+          nextDose: '2024-09-30',
+          veterinarian: 'Dra. Sofia Martins'
+        },
+        {
+          name: 'Vacina polivalente (V10)',
+          date: '2023-10-15',
+          nextDose: '2024-10-15',
+          veterinarian: 'Dr. Pedro Oliveira'
+        }
+      ],
+      conditions: [
+        {
+          name: 'Sensibilidade a calor',
+          diagnosisDate: '2022-08-01',
+          notes: 'Evitar exposição prolongada ao sol.',
+          veterinarian: 'Dra. Sofia Martins'
+        }
+      ]
     }
   },
-  Cesar: {
+
+Cesar: {
     name: 'Cesar',
     breed: 'Labrador Retriever',
     city: 'Porto Alegre',
@@ -121,9 +276,48 @@ const dogData = {
       name: 'Roberto Costa',
       email: 'roberto.costa@example.com',
       phone: '(51) 98765-4321',
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-01-30',
+          result: 'Normal',
+          veterinarian: 'Dr. Felipe Andrade'
+        },
+        {
+          type: 'Exame de urina',
+          date: '2023-11-20',
+          result: 'Leve infecção',
+          veterinarian: 'Dra. Laura Silva'
+        }
+      ],
+      vaccines: [
+        {
+          name: 'Vacina antirrábica',
+          date: '2023-06-05',
+          nextDose: '2024-06-05',
+          veterinarian: 'Dra. Laura Silva'
+        },
+        {
+          name: 'Vacina polivalente (V8)',
+          date: '2023-07-10',
+          nextDose: '2024-07-10',
+          veterinarian: 'Dr. Felipe Andrade'
+        }
+      ],
+      conditions: [
+        {
+          name: 'Sem condições conhecidas',
+          diagnosisDate: null,
+          notes: 'Saudável e ativo.',
+          veterinarian: null
+        }
+      ]
     }
   },
-  Dorinha: {
+
+Dorinha: {
     name: 'Dorinha',
     breed: 'Chihuahua',
     city: 'Fortaleza',
@@ -137,8 +331,47 @@ const dogData = {
       name: 'Luciana Almeida',
       email: 'luciana.almeida@example.com',
       phone: '(85) 98765-4321',
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-03-12',
+          result: 'Normal',
+          veterinarian: 'Dra. Fernanda Lima'
+        },
+        {
+          type: 'Exame de urina',
+          date: '2023-11-05',
+          result: 'Normal',
+          veterinarian: 'Dr. Carlos Almeida'
+        }
+      ],
+      vaccines: [
+        {
+          name: 'Vacina antirrábica',
+          date: '2023-05-15',
+          nextDose: '2024-05-15',
+          veterinarian: 'Dr. Carlos Almeida'
+        },
+        {
+          name: 'Vacina polivalente (V8)',
+          date: '2023-06-20',
+          nextDose: '2024-06-20',
+          veterinarian: 'Dra. Fernanda Lima'
+        }
+      ],
+      conditions: [
+        {
+          name: 'Sem condições conhecidas',
+          diagnosisDate: null,
+          notes: 'Saudável e feliz.',
+          veterinarian: null
+        }
+      ]
     }
   },
+
   Chanel: {
     name: 'Chanel',
     breed: 'Pinscher',
@@ -153,9 +386,48 @@ const dogData = {
       name: 'Fernanda Oliveira',
       email: 'fernanda.oliveira@example.com',
       phone: '(71) 98765-4321',
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-02-05',
+          result: 'Normal',
+          veterinarian: 'Dra. Clara Lima'
+        },
+        {
+          type: 'Exame de fezes',
+          date: '2023-11-12',
+          result: 'Sem parasitas',
+          veterinarian: 'Dr. Lucas Almeida'
+        }
+      ],
+      vaccines: [
+        {
+          name: 'Vacina antirrábica',
+          date: '2023-08-10',
+          nextDose: '2024-08-10',
+          veterinarian: 'Dr. Lucas Almeida'
+        },
+        {
+          name: 'Vacina polivalente (V8)',
+          date: '2023-09-15',
+          nextDose: '2024-09-15',
+          veterinarian: 'Dra. Clara Lima'
+        }
+      ],
+      conditions: [
+        {
+          name: 'Sem condições conhecidas',
+          diagnosisDate: null,
+          notes: 'Saudável e ativa.',
+          veterinarian: null
+        }
+      ]
     }
   },
-  Birulinha: {
+
+Birulinha: {
     name: 'Birulinha',
     breed: 'Chihuahua',
     city: 'Recife',
@@ -169,9 +441,48 @@ const dogData = {
       name: 'Paulo Mendes',
       email: 'paulo.mendes@example.com',
       phone: '(81) 98765-4321',
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-03-01',
+          result: 'Leve anemia',
+          veterinarian: 'Dra. Ana Beatriz'
+        },
+        {
+          type: 'Exame dermatológico',
+          date: '2023-12-05',
+          result: 'Sem dermatites',
+          veterinarian: 'Dr. Rafael Costa'
+        }
+      ],
+      vaccines: [
+        {
+          name: 'Vacina antirrábica',
+          date: '2023-06-20',
+          nextDose: '2024-06-20',
+          veterinarian: 'Dr. Rafael Costa'
+        },
+        {
+          name: 'Vacina polivalente (V10)',
+          date: '2023-07-15',
+          nextDose: '2024-07-15',
+          veterinarian: 'Dra. Ana Beatriz'
+        }
+      ],
+      conditions: [
+        {
+          name: 'Hipertensão leve',
+          diagnosisDate: '2022-11-10',
+          notes: 'Monitorar pressão regularmente.',
+          veterinarian: 'Dra. Ana Beatriz'
+        }
+      ]
     }
   },
-  Max: {
+
+Max: {
     name: 'Max',
     breed: 'Golden Retriever',
     city: 'Brasília',
@@ -185,8 +496,47 @@ const dogData = {
       name: 'Gustavo Moreira',
       email: 'gustavo.moreira@example.com',
       phone: '(61) 98765-4321',
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-01-15',
+          result: 'Normal',
+          veterinarian: 'Dra. Fernanda Lopes'
+        },
+        {
+          type: 'Exame radiográfico',
+          date: '2023-11-25',
+          result: 'Sem fraturas',
+          veterinarian: 'Dr. Felipe Ribeiro'
+        }
+      ],
+      vaccines: [
+        {
+          name: 'Vacina antirrábica',
+          date: '2023-05-10',
+          nextDose: '2024-05-10',
+          veterinarian: 'Dr. Felipe Ribeiro'
+        },
+        {
+          name: 'Vacina polivalente (V8)',
+          date: '2023-06-15',
+          nextDose: '2024-06-15',
+          veterinarian: 'Dra. Fernanda Lopes'
+        }
+      ],
+      conditions: [
+        {
+          name: 'Alergia a grama',
+          diagnosisDate: '2022-05-05',
+          notes: 'Uso de medicação antialérgica em épocas de alergia.',
+          veterinarian: 'Dra. Fernanda Lopes'
+        }
+      ]
     }
   },
+
   Luna: {
     name: 'Luna',
     breed: 'Poodle',
@@ -201,9 +551,48 @@ const dogData = {
       name: 'Juliana Rocha',
       email: 'juliana.rocha@example.com',
       phone: '(92) 98765-4321',
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-02-10',
+          result: 'Normal',
+          veterinarian: 'Dra. Fernanda Silva'
+        },
+        {
+          type: 'Exame de urina',
+          date: '2023-11-15',
+          result: 'Sem anormalidades',
+          veterinarian: 'Dr. Tiago Almeida'
+        }
+      ],
+      vaccines: [
+        {
+          name: 'Vacina contra cinomose',
+          date: '2023-09-05',
+          nextDose: '2024-09-05',
+          veterinarian: 'Dra. Fernanda Silva'
+        },
+        {
+          name: 'Vacina contra parvovirose',
+          date: '2023-10-10',
+          nextDose: '2024-10-10',
+          veterinarian: 'Dr. Tiago Almeida'
+        }
+      ],
+      conditions: [
+        {
+          name: 'Sem condições conhecidas',
+          diagnosisDate: null,
+          notes: 'Saudável e enérgica.',
+          veterinarian: null
+        }
+      ]
     }
   },
-  Buddy: {
+
+Buddy: {
     name: 'Buddy',
     breed: 'Labrador Retriever',
     city: 'Belém',
@@ -217,9 +606,48 @@ const dogData = {
       name: 'Ricardo Lima',
       email: 'ricardo.lima@example.com',
       phone: '(91) 98765-4321',
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-03-03',
+          result: 'Normal',
+          veterinarian: 'Dr. Roberto Ferreira'
+        },
+        {
+          type: 'Exame cardíaco',
+          date: '2023-12-20',
+          result: 'Saudável',
+          veterinarian: 'Dra. Carla Santos'
+        }
+      ],
+      vaccines: [
+        {
+          name: 'Vacina contra hepatite',
+          date: '2023-06-18',
+          nextDose: '2024-06-18',
+          veterinarian: 'Dr. Roberto Ferreira'
+        },
+        {
+          name: 'Vacina contra leptospirose',
+          date: '2023-07-15',
+          nextDose: '2024-07-15',
+          veterinarian: 'Dra. Carla Santos'
+        }
+      ],
+      conditions: [
+        {
+          name: 'Sem condições conhecidas',
+          diagnosisDate: null,
+          notes: 'Saudável e ativo.',
+          veterinarian: null
+        }
+      ]
     }
   },
-  Molly: {
+
+Molly: {
     name: 'Molly',
     breed: 'Bulldog Francês',
     city: 'Natal',
@@ -233,9 +661,48 @@ const dogData = {
       name: 'Patrícia Barbosa',
       email: 'patricia.barbosa@example.com',
       phone: '(84) 98765-4321',
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-01-20',
+          result: 'Normal',
+          veterinarian: 'Dr. Lucas Costa'
+        },
+        {
+          type: 'Exame dermatológico',
+          date: '2023-11-05',
+          result: 'Sem dermatites',
+          veterinarian: 'Dra. Ana Clara'
+        }
+      ],
+      vaccines: [
+        {
+          name: 'Vacina contra raiva',
+          date: '2023-04-25',
+          nextDose: '2024-04-25',
+          veterinarian: 'Dr. Lucas Costa'
+        },
+        {
+          name: 'Vacina polivalente (V10)',
+          date: '2023-05-15',
+          nextDose: '2024-05-15',
+          veterinarian: 'Dra. Ana Clara'
+        }
+      ],
+      conditions: [
+        {
+          name: 'Sem condições conhecidas',
+          diagnosisDate: null,
+          notes: 'Saudável e brincalhona.',
+          veterinarian: null
+        }
+      ]
     }
   },
-  Rocky: {
+
+Rocky: {
     name: 'Rocky',
     breed: 'Boxer',
     city: 'Florianópolis',
@@ -249,8 +716,47 @@ const dogData = {
       name: 'Fábio Carvalho',
       email: 'fabio.carvalho@example.com',
       phone: '(48) 98765-4321',
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-01-05',
+          result: 'Leve inflamação',
+          veterinarian: 'Dra. Fernanda Almeida'
+        },
+        {
+          type: 'Exame ortopédico',
+          date: '2023-12-15',
+          result: 'Saudável',
+          veterinarian: 'Dr. Paulo Ricardo'
+        }
+      ],
+      vaccines: [
+        {
+          name: 'Vacina contra parvovirose',
+          date: '2023-03-10',
+          nextDose: '2024-03-10',
+          veterinarian: 'Dra. Fernanda Almeida'
+        },
+        {
+          name: 'Vacina contra giárdia',
+          date: '2023-04-15',
+          nextDose: '2024-04-15',
+          veterinarian: 'Dr. Paulo Ricardo'
+        }
+      ],
+      conditions: [
+        {
+          name: 'Sem condições conhecidas',
+          diagnosisDate: null,
+          notes: 'Saudável e ativo.',
+          veterinarian: null
+        }
+      ]
     }
   },
+
   Daisy: {
     name: 'Daisy',
     breed: 'Cocker Spaniel',
@@ -265,9 +771,48 @@ const dogData = {
       name: 'Marina Costa',
       email: 'marina.costa@example.com',
       phone: '(83) 98765-4321',
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-02-15',
+          result: 'Normal',
+          veterinarian: 'Dra. Mariana Ribeiro'
+        },
+        {
+          type: 'Exame de fezes',
+          date: '2023-11-20',
+          result: 'Sem parasitas',
+          veterinarian: 'Dr. Felipe Souza'
+        }
+      ],
+      vaccines: [
+        {
+          name: 'Vacina contra cinomose',
+          date: '2023-09-10',
+          nextDose: '2024-09-10',
+          veterinarian: 'Dra. Mariana Ribeiro'
+        },
+        {
+          name: 'Vacina contra leptospirose',
+          date: '2023-10-05',
+          nextDose: '2024-10-05',
+          veterinarian: 'Dr. Felipe Souza'
+        }
+      ],
+      conditions: [
+        {
+          name: 'Sem condições conhecidas',
+          diagnosisDate: null,
+          notes: 'Saudável e afetuosa.',
+          veterinarian: null
+        }
+      ]
     }
   },
-  Zeus: {
+
+Zeus: {
     name: 'Zeus',
     breed: 'Doberman',
     city: 'Teresina',
@@ -281,9 +826,48 @@ const dogData = {
       name: 'Daniel Martins',
       email: 'daniel.martins@example.com',
       phone: '(86) 98765-4321',
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-01-10',
+          result: 'Normal',
+          veterinarian: 'Dr. Jorge Lima'
+        },
+        {
+          type: 'Exame cardíaco',
+          date: '2023-12-15',
+          result: 'Saudável',
+          veterinarian: 'Dra. Carla Santos'
+        }
+      ],
+      vaccines: [
+        {
+          name: 'Vacina contra hepatite',
+          date: '2023-06-20',
+          nextDose: '2024-06-20',
+          veterinarian: 'Dr. Jorge Lima'
+        },
+        {
+          name: 'Vacina contra raiva',
+          date: '2023-07-15',
+          nextDose: '2024-07-15',
+          veterinarian: 'Dra. Carla Santos'
+        }
+      ],
+      conditions: [
+        {
+          name: 'Sem condições conhecidas',
+          diagnosisDate: null,
+          notes: 'Saudável e ativo.',
+          veterinarian: null
+        }
+      ]
     }
   },
-  Lola: {
+
+Lola: {
     name: 'Lola',
     breed: 'Shih Tzu',
     city: 'Maceió',
@@ -297,9 +881,48 @@ const dogData = {
       name: 'Camila Azevedo',
       email: 'camila.azevedo@example.com',
       phone: '(82) 98765-4321',
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-03-05',
+          result: 'Normal',
+          veterinarian: 'Dra. Ana Clara'
+        },
+        {
+          type: 'Exame dermatológico',
+          date: '2023-11-10',
+          result: 'Sem dermatites',
+          veterinarian: 'Dr. Lucas Costa'
+        }
+      ],
+      vaccines: [
+        {
+          name: 'Vacina polivalente (V10)',
+          date: '2023-05-30',
+          nextDose: '2024-05-30',
+          veterinarian: 'Dra. Ana Clara'
+        },
+        {
+          name: 'Vacina contra giárdia',
+          date: '2023-06-25',
+          nextDose: '2024-06-25',
+          veterinarian: 'Dr. Lucas Costa'
+        }
+      ],
+      conditions: [
+        {
+          name: 'Sem condições conhecidas',
+          diagnosisDate: null,
+          notes: 'Saudável e brincalhona.',
+          veterinarian: null
+        }
+      ]
     }
   },
-  Toby: {
+
+Toby: {
     name: 'Toby',
     breed: 'Yorkshire Terrier',
     city: 'Aracaju',
@@ -313,9 +936,48 @@ const dogData = {
       name: 'Rafael Souza',
       email: 'rafael.souza@example.com',
       phone: '(79) 98765-4321',
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-02-20',
+          result: 'Normal',
+          veterinarian: 'Dr. Carlos Almeida'
+        },
+        {
+          type: 'Exame dental',
+          date: '2023-12-30',
+          result: 'Saudável',
+          veterinarian: 'Dra. Rita Mendes'
+        }
+      ],
+      vaccines: [
+        {
+          name: 'Vacina contra parvovirose',
+          date: '2023-04-10',
+          nextDose: '2024-04-10',
+          veterinarian: 'Dr. Carlos Almeida'
+        },
+        {
+          name: 'Vacina contra raiva',
+          date: '2023-05-15',
+          nextDose: '2024-05-15',
+          veterinarian: 'Dra. Rita Mendes'
+        }
+      ],
+      conditions: [
+        {
+          name: 'Sem condições conhecidas',
+          diagnosisDate: null,
+          notes: 'Saudável e ativo.',
+          veterinarian: null
+        }
+      ]
     }
   },
-  Bailey: {
+
+Bailey: {
     name: 'Bailey',
     breed: 'Rottweiler',
     city: 'Campo Grande',
@@ -329,8 +991,47 @@ const dogData = {
       name: 'Fernando Oliveira',
       email: 'fernando.oliveira@example.com',
       phone: '(67) 98765-4321',
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-01-25',
+          result: 'Normal',
+          veterinarian: 'Dr. Felipe Nunes'
+        },
+        {
+          type: 'Exame ortopédico',
+          date: '2023-12-10',
+          result: 'Saudável',
+          veterinarian: 'Dra. Mariana Lima'
+        }
+      ],
+      vaccines: [
+        {
+          name: 'Vacina contra cinomose',
+          date: '2023-03-15',
+          nextDose: '2024-03-15',
+          veterinarian: 'Dr. Felipe Nunes'
+        },
+        {
+          name: 'Vacina contra leptospirose',
+          date: '2023-04-20',
+          nextDose: '2024-04-20',
+          veterinarian: 'Dra. Mariana Lima'
+        }
+      ],
+      conditions: [
+        {
+          name: 'Sem condições conhecidas',
+          diagnosisDate: null,
+          notes: 'Saudável e brincalhão.',
+          veterinarian: null
+        }
+      ]
     }
   },
+
 
   Charlie: {
     name: 'Charlie',
@@ -341,12 +1042,50 @@ const dogData = {
     gender: 'Macho',
     age: '4 anos',
     description: 'Charlie é um cachorro dócil e muito amigável com crianças.',
-    image: Charlie,
+    image: Charlie, // Certifique-se de que 'Charlie' seja uma referência de imagem válida
     owner: {
       name: 'Mariana Costa',
       email: 'mariana.costa@example.com',
       phone: '(51) 98765-4321',
-    }
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-02-10',
+          result: 'Normal',
+          veterinarian: 'Dr. Lucas Almeida',
+        },
+        {
+          type: 'Exame dermatológico',
+          date: '2023-11-05',
+          result: 'Sem alterações',
+          veterinarian: 'Dra. Ana Beatriz',
+        },
+      ],
+      vaccines: [
+        {
+          name: 'Vacina contra raiva',
+          date: '2023-07-15',
+          nextDose: '2024-07-15',
+          veterinarian: 'Dr. Lucas Almeida',
+        },
+        {
+          name: 'Vacina polivalente',
+          date: '2023-08-20',
+          nextDose: '2024-08-20',
+          veterinarian: 'Dra. Ana Beatriz',
+        },
+      ],
+      conditions: [
+        {
+          name: 'Sem condições conhecidas',
+          diagnosisDate: null,
+          notes: 'Dócil e bem ajustado.',
+          veterinarian: null,
+        },
+      ],
+    },
   },
 
   Rosie: {
@@ -358,13 +1097,52 @@ const dogData = {
     gender: 'Fêmea',
     age: '2 anos',
     description: 'Rosie é uma cadela alegre e brincalhona, adora estar cercada de pessoas.',
-    image: Rosie,
+    image: Rosie, // Certifique-se de que 'Rosie' seja uma referência de imagem válida
     owner: {
       name: 'Paula Lima',
       email: 'paula.lima@example.com',
       phone: '(48) 98765-4321',
-    }
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-03-12',
+          result: 'Normal',
+          veterinarian: 'Dr. Felipe Nunes',
+        },
+        {
+          type: 'Exame oftalmológico',
+          date: '2023-12-15',
+          result: 'Sem problemas',
+          veterinarian: 'Dra. Mariana Lima',
+        },
+      ],
+      vaccines: [
+        {
+          name: 'Vacina contra cinomose',
+          date: '2023-09-10',
+          nextDose: '2024-09-10',
+          veterinarian: 'Dr. Felipe Nunes',
+        },
+        {
+          name: 'Vacina contra parvovirose',
+          date: '2023-10-05',
+          nextDose: '2024-10-05',
+          veterinarian: 'Dra. Mariana Lima',
+        },
+      ],
+      conditions: [
+        {
+          name: 'Sem condições conhecidas',
+          diagnosisDate: null,
+          notes: 'Alegria constante e muito sociável.',
+          veterinarian: null,
+        },
+      ],
+    },
   },
+
 
   Jack: {
     name: 'Jack',
@@ -375,12 +1153,50 @@ const dogData = {
     gender: 'Macho',
     age: '5 anos',
     description: 'Jack é um labrador energético e inteligente, adora brincar de pegar a bola.',
-    image: Jack,
+    image: Jack, // Certifique-se de que 'Jack' seja uma referência de imagem válida
     owner: {
       name: 'Ricardo Santos',
       email: 'ricardo.santos@example.com',
       phone: '(11) 98765-4321',
-    }
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-01-15',
+          result: 'Normal',
+          veterinarian: 'Dr. André Silva',
+        },
+        {
+          type: 'Exame cardíaco',
+          date: '2023-11-20',
+          result: 'Sem anormalidades',
+          veterinarian: 'Dra. Sofia Martins',
+        },
+      ],
+      vaccines: [
+        {
+          name: 'Vacina contra raiva',
+          date: '2023-06-05',
+          nextDose: '2024-06-05',
+          veterinarian: 'Dr. André Silva',
+        },
+        {
+          name: 'Vacina polivalente',
+          date: '2023-07-10',
+          nextDose: '2024-07-10',
+          veterinarian: 'Dra. Sofia Martins',
+        },
+      ],
+      conditions: [
+        {
+          name: 'Sem condições conhecidas',
+          diagnosisDate: null,
+          notes: 'Ativo e saudável.',
+          veterinarian: null,
+        },
+      ],
+    },
   },
 
   Lucy: {
@@ -392,12 +1208,50 @@ const dogData = {
     gender: 'Fêmea',
     age: '3 anos',
     description: 'Lucy é uma golden retriever dócil e amorosa, adora fazer novos amigos.',
-    image: Lucy,
+    image: Lucy, // Certifique-se de que 'Lucy' seja uma referência de imagem válida
     owner: {
       name: 'Camila Oliveira',
       email: 'camila.oliveira@example.com',
       phone: '(21) 98765-4321',
-    }
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-02-15',
+          result: 'Normal',
+          veterinarian: 'Dr. Pedro Gomes',
+        },
+        {
+          type: 'Exame oftalmológico',
+          date: '2023-12-10',
+          result: 'Sem problemas',
+          veterinarian: 'Dra. Juliana Almeida',
+        },
+      ],
+      vaccines: [
+        {
+          name: 'Vacina contra cinomose',
+          date: '2023-08-30',
+          nextDose: '2024-08-30',
+          veterinarian: 'Dr. Pedro Gomes',
+        },
+        {
+          name: 'Vacina contra parvovirose',
+          date: '2023-09-15',
+          nextDose: '2024-09-15',
+          veterinarian: 'Dra. Juliana Almeida',
+        },
+      ],
+      conditions: [
+        {
+          name: 'Sem condições conhecidas',
+          diagnosisDate: null,
+          notes: 'Amigável e bem ajustada.',
+          veterinarian: null,
+        },
+      ],
+    },
   },
 
   Duke: {
@@ -409,12 +1263,50 @@ const dogData = {
     gender: 'Macho',
     age: '4 anos',
     description: 'Duke é um boxer brincalhão e cheio de energia, sempre pronto para se divertir.',
-    image: Duke,
+    image: Duke, // Certifique-se de que 'Duke' seja uma referência de imagem válida
     owner: {
       name: 'Roberto Silva',
       email: 'roberto.silva@example.com',
       phone: '(31) 98765-4321',
-    }
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-03-05',
+          result: 'Normal',
+          veterinarian: 'Dr. Lucas Almeida',
+        },
+        {
+          type: 'Exame ortopédico',
+          date: '2023-12-05',
+          result: 'Saudável',
+          veterinarian: 'Dra. Fernanda Costa',
+        },
+      ],
+      vaccines: [
+        {
+          name: 'Vacina contra raiva',
+          date: '2023-07-20',
+          nextDose: '2024-07-20',
+          veterinarian: 'Dr. Lucas Almeida',
+        },
+        {
+          name: 'Vacina polivalente',
+          date: '2023-08-25',
+          nextDose: '2024-08-25',
+          veterinarian: 'Dra. Fernanda Costa',
+        },
+      ],
+      conditions: [
+        {
+          name: 'Sem condições conhecidas',
+          diagnosisDate: null,
+          notes: 'Brincalhão e saudável.',
+          veterinarian: null,
+        },
+      ],
+    },
   },
 
   Maggie: {
@@ -426,12 +1318,50 @@ const dogData = {
     gender: 'Fêmea',
     age: '2 anos',
     description: 'Maggie é uma shih tzu adorável e muito companheira, gosta de carinho e colo.',
-    image: Maggie,
+    image: Maggie, // Certifique-se de que 'Maggie' seja uma referência de imagem válida
     owner: {
       name: 'Carla Martins',
       email: 'carla.martins@example.com',
       phone: '(41) 98765-4321',
-    }
+    },
+    healthHistory: {
+      exams: [
+        {
+          type: 'Exame de sangue',
+          date: '2024-04-10',
+          result: 'Normal',
+          veterinarian: 'Dr. Rafael Mendes',
+        },
+        {
+          type: 'Exame dermatológico',
+          date: '2023-11-15',
+          result: 'Sem alterações',
+          veterinarian: 'Dra. Gabriela Pinto',
+        },
+      ],
+      vaccines: [
+        {
+          name: 'Vacina contra cinomose',
+          date: '2023-10-01',
+          nextDose: '2024-10-01',
+          veterinarian: 'Dr. Rafael Mendes',
+        },
+        {
+          name: 'Vacina contra parvovirose',
+          date: '2023-10-20',
+          nextDose: '2024-10-20',
+          veterinarian: 'Dra. Gabriela Pinto',
+        },
+      ],
+      conditions: [
+        {
+          name: 'Sem condições conhecidas',
+          diagnosisDate: null,
+          notes: 'Muito afetuosa e saudável.',
+          veterinarian: null,
+        },
+      ],
+    },
   },
 }
 
@@ -661,11 +1591,21 @@ const DogDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  
+  const [isHealthModalOpen, setIsHealthModalOpen] = useState(false);
+
 
   if (!dog) {
     return <div>Cachorro não encontrado!</div>;
   }
+
+  const handleOpenHealthModal = () => {
+    setIsHealthModalOpen(true);
+  };
+
+  // Função para fechar o modal de histórico de saúde
+  const handleCloseHealthModal = () => {
+    setIsHealthModalOpen(false);
+  };
 
   const handleContactClick = () => {
     setIsModalOpen(true);
@@ -733,7 +1673,6 @@ const DogDetails = () => {
       <div className={styles.content}>
         <h1 className={styles.dogName}>
           {dog.name}, <span className={styles.dogBreed}>{dog.breed}</span>
-          {/* Ícones para edição e denúncia */}
           <div className={styles.reportIcon} onClick={handleOpenReportModal} title="Denunciar este cão">
             <FaExclamationTriangle className={styles.reportIconStyle} />
           </div>
@@ -741,7 +1680,6 @@ const DogDetails = () => {
             <FaPencilAlt className={styles.editIconStyle} />
           </div>
         </h1>
-        {/* Detalhes do cachorro */}
         <div className={styles.details}>
           <p className={styles.detailItemPaw}>
             <img src={pawIcon} alt="Paw icon" className={styles.iconPaw} />
@@ -755,7 +1693,22 @@ const DogDetails = () => {
             <img src={descriptionIcon} alt="Description icon" className={styles.iconDescription} />
             {dog.description}
           </p>
+          <div className={styles.healthHistory}>
+            <FaClipboard className={styles.clipboardIcon} onClick={handleOpenHealthModal} />
+            <span className={styles.healthHistoryText} onClick={handleOpenHealthModal}>
+              Histórico de Saúde
+            </span>
+          </div>
         </div>
+
+        {/* Modal de histórico de saúde */}
+        {isHealthModalOpen && (
+          <HealthHistoryModal
+            onClose={handleCloseHealthModal}
+            healthData={dog.healthHistory}
+          />
+        )}
+
         <button className={styles.contactButton} onClick={handleContactClick}>
           Contato
         </button>
@@ -768,6 +1721,48 @@ const DogDetails = () => {
       {isModalOpen && <Modal onClose={handleCloseModal} owner={dog.owner} />}
       {isReportModalOpen && <ReportModal onClose={handleCloseReportModal} onSubmit={handleReportSubmit} />}
       {isEditModalOpen && <EditDogModal onClose={handleCloseEditModal} dog={dog} onSubmit={handleEditSubmit} />}
+    </div>
+  );
+};
+
+// Componente para o modal de histórico de saúde
+const HealthHistoryModal = ({ onClose, healthData }) => {
+  return (
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalContent}>
+      <form>
+        <h2>Histórico de Saúde</h2>
+        <h3 className={styles.privateText}>Informações de saúde são privadas</h3>
+        
+        <h3 className={styles.examCategory}>Exames:</h3>
+        <ul>
+          {healthData.exams.map((exam, index) => (
+            <li key={index} className={styles.examText}>
+              {exam.type} - {exam.date} - {exam.result} (Veterinário: {exam.veterinarian})
+            </li>
+          ))}
+        </ul>
+
+        <h3 className={styles.examCategory}>Vacinas:</h3>
+        <ul>
+          {healthData.vaccines.map((vaccine, index) => (
+            <li key={index} className={styles.examText}>
+              {vaccine.name} - {vaccine.date} (Próxima dose: {vaccine.nextDose}, Veterinário: {vaccine.veterinarian})
+            </li>
+          ))}
+        </ul>
+
+        <h3 className={styles.examCategory}>Condições de Saúde:</h3>
+        <ul>
+          {healthData.conditions.map((condition, index) => (
+            <li key={index} className={styles.examText}>
+              {condition.name} - Diagnóstico: {condition.diagnosisDate} - {condition.notes} (Veterinário: {condition.veterinarian})
+            </li>
+          ))}
+        </ul>
+        <button onClick={onClose} className={styles.closeButton}>Fechar</button>
+      </form>
+      </div>
     </div>
   );
 };

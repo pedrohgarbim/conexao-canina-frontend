@@ -85,6 +85,24 @@
   margin-top: 20px;
 }
 
+.privateText {
+  font-size: 1.1rem;
+  color: #152540;
+}
+
+.examCategory {
+  color: #152540;
+  margin-bottom: 10px;
+}
+
+.examText {
+  font-size: 1.1em; /* Tamanho do texto */
+  line-height: 1.5; /* Altura da linha para melhor legibilidade */
+  margin-bottom: 10px; /* Espaço abaixo de cada item */
+  color: #555; /* Cor do texto */
+  list-style-type: none;
+}
+
 .contactButton,
 .backButton {
   border: none;
@@ -203,6 +221,27 @@
 }
 
 .iconDescription {
+  margin-right: 15px;
+  width: 30px;
+  height: 30px;
+}
+
+.healthHistory {
+  cursor: pointer;
+  display: flex;
+  margin: 25px 11px;
+  margin-top: 30px;
+  text-align: justify;
+}
+
+.healthHistoryText {
+  margin-top: 5px;
+  font-size: bold;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.clipboardIcon {
   margin-right: 15px;
   width: 30px;
   height: 30px;
