@@ -148,7 +148,7 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Configuração de Privacidade do Álbum de Fotos (Backend)
 
 ### 💌 **Envio de Solicitações de Cruzamento**
-- 🟢 Implementar a Funcionalidade de Envio de Solicitação de Cruzamento (frontend) -> A fazer
+- 🟢 Implementar a Funcionalidade de Envio de Solicitação de Cruzamento (frontend)
 - 🟢 Implementar Notificação ao Dono do Cachorro (frontend) -> A fazer)
 
 ### 📋 **Gerenciamento de Solicitações de Cruzamento e Perfis de Usuários**
