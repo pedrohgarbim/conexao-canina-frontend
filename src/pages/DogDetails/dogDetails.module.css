@@ -117,6 +117,29 @@
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
 }
 
+.infos {
+  font-size: 1.1rem;
+}
+
+.ownerContact {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.crossRequest h3{
+  color: #2c4d85;
+  margin-bottom: 15px;
+}
+
+.modalContentContact {
+  background: white;
+  padding: 50px;
+  border-radius: 5px;
+  text-align: center;
+  width: 300px;
+}
+
+
 /* Estilos para os botões de compartilhamento */
 .shareButtonContainer {
   display: flex;
