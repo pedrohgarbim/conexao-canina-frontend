@@ -435,19 +435,69 @@ const dogData = {
   },
 }
 
-const Modal = ({ onClose, owner }) => (
-  <div className={styles.modalOverlay}>
-    <div className={styles.modalContent}>
-      <div className={styles.infos}>
-        <h2 className={styles.ownerContact}>Contato do Dono</h2>
-        <p className={styles.ownerName}><strong>Nome:</strong> {owner.name}</p>
-        <p className={styles.ownerEmail}><strong>Email:</strong> {owner.email}</p>
-        <p className={styles.ownerPhone}><strong>Telefone:</strong> {owner.phone}</p>
+const Modal = ({ onClose, owner, dogId }) => {
+  const [message, setMessage] = useState("");
+  const [feedback, setFeedback] = useState(null);
+
+  // Função para lidar com o envio da solicitação
+  const handleSubmit = async () => {
+    try {
+      // Exemplo de uma requisição POST para enviar a solicitação
+      const response = await fetch("/api/send-request", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ownerId: owner.id,
+          dogId: dogId,
+          message: message,
+        }),
+      });
+
+      if (response.ok) {
+        setFeedback("Solicitação enviada com sucesso!");
+      } else {
+        setFeedback("Erro ao enviar a solicitação.");
+      }
+    } catch (error) {
+      console.error("Erro:", error);
+      setFeedback("Erro ao enviar a solicitação.");
+    }
+  };
+
+  return (
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalContentContact}>
+        <div className={styles.infos}>
+          <h2 className={styles.ownerContact}>Contato do Dono</h2>
+          <p className={styles.ownerName}><strong>Nome:</strong> {owner.name}</p>
+          <p className={styles.ownerEmail}><strong>Email:</strong> {owner.email}</p>
+          <p className={styles.ownerPhone}><strong>Telefone:</strong> {owner.phone}</p>
+        </div>
+
+        {/* Seção para enviar a solicitação de cruzamento */}
+        <div className={styles.crossRequest}>
+          <h3>Enviar Solicitação de Cruzamento</h3>
+          <textarea
+            placeholder="Adicione uma mensagem personalizada (opcional)"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            className={styles.messageField}
+          />
+          <button onClick={handleSubmit} className={styles.submitButton}>
+            Enviar Solicitação
+          </button>
+
+          {/* Exibir feedback ao usuário */}
+          {feedback && <p className={styles.feedback}>{feedback}</p>}
+        </div>
+
+        <button onClick={onClose} className={styles.closeButton}>Fechar</button>
       </div>
-      <button onClick={onClose} className={styles.closeButton}>Fechar</button>
     </div>
-  </div>
-);
+  );
+};
 
 const ReportModal = ({ onClose, onSubmit }) => {
   const [reason, setReason] = useState('');
