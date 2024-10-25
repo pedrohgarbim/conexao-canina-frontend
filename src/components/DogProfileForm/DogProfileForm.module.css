@@ -39,7 +39,7 @@
 .inputContainer textarea {
     padding: 8px;
     border: 1px solid #152540;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 15px;
     width: calc(100% - 16px); /* largura total menos o padding */
     box-sizing: border-box; /* Para garantir que o padding não afete a largura total */
