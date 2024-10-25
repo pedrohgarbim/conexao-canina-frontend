@@ -10,7 +10,8 @@
 .container {
   display: flex;
   flex-direction: row;
-  align-items: flex-start; /* Alinhamento do conteúdo */
+  align-items: flex-start;
+  /* Alinhamento do conteúdo */
   box-sizing: border-box;
   margin-left: 5%;
   flex-wrap: wrap;
@@ -47,8 +48,10 @@
   font-size: 3rem;
   margin-bottom: 30px;
   text-align: left;
-  display: flex; /* Alterado para flex */
-  align-items: center; /* Alinha verticalmente */
+  display: flex;
+  /* Alterado para flex */
+  align-items: center;
+  /* Alinha verticalmente */
 }
 
 .dogBreed {
@@ -91,10 +94,14 @@
 }
 
 /* Ajuste a largura máxima dos inputs */
-.modalContentHealth input[type="text"], input[type="date"] {
-  width: 100%; /* Faz com que o input ocupe toda a largura do container */
-  max-width: 400px; /* Define uma largura máxima para os campos */
-  box-sizing: border-box; /* Garante que o padding não ultrapasse a largura */
+.modalContentHealth input[type="text"],
+input[type="date"] {
+  width: 100%;
+  /* Faz com que o input ocupe toda a largura do container */
+  max-width: 400px;
+  /* Define uma largura máxima para os campos */
+  box-sizing: border-box;
+  /* Garante que o padding não ultrapasse a largura */
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -108,8 +115,10 @@
 
 /* Para o modal em si */
 .modalContentHealth {
-  max-height: 80vh; /* Define uma altura máxima */
-  overflow-y: auto; /* Adiciona rolagem vertical quando o conteúdo ultrapassa a altura */
+  max-height: 80vh;
+  /* Define uma altura máxima */
+  overflow-y: auto;
+  /* Adiciona rolagem vertical quando o conteúdo ultrapassa a altura */
   padding: 20px;
   background: white;
   padding: 20px;
@@ -119,10 +128,14 @@
 }
 
 .examText {
-  font-size: 1.1em; /* Tamanho do texto */
-  line-height: 1.5; /* Altura da linha para melhor legibilidade */
-  margin-bottom: 10px; /* Espaço abaixo de cada item */
-  color: #555; /* Cor do texto */
+  font-size: 1.1em;
+  /* Tamanho do texto */
+  line-height: 1.5;
+  /* Altura da linha para melhor legibilidade */
+  margin-bottom: 10px;
+  /* Espaço abaixo de cada item */
+  color: #555;
+  /* Cor do texto */
   list-style-type: none;
 }
 
@@ -140,13 +153,14 @@
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
-  margin-right: 10px; /* Espaçamento entre os botões */
+  margin-right: 10px;
+  /* Espaçamento entre os botões */
   margin-left: 14px;
 }
 
 .contactButton {
   background-color: #3d61ff;
-  
+
 }
 
 .contactButton:hover {
@@ -172,7 +186,7 @@
   margin-bottom: 15px;
 }
 
-.crossRequest h3{
+.crossRequest h3 {
   color: #2c4d85;
   margin-bottom: 15px;
 }
@@ -202,7 +216,8 @@
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
-  margin-right: 10px; /* Espaçamento entre os botões */
+  margin-right: 10px;
+  /* Espaçamento entre os botões */
 }
 
 .shareButton:hover {
@@ -299,78 +314,131 @@
 
 .modalContentEdit {
   background: white;
-  padding: 50px;
+  padding: 30px;
   border-radius: 5px;
   text-align: center;
   width: 300px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modalContentEdit h2 {
+  margin-bottom: 15px;
+}
+
+.modalContentEdit h3 {
+  margin-bottom: 8px;
+  color: #152540;
+}
+
+.feedbackMessage {
+  margin-top: 10px;
 }
 
 .modalContent h2 {
-  margin-bottom: 20px; /* Espaço abaixo do título */
-  color: #152540; /* Cor do título */
+  margin-bottom: 20px;
+  /* Espaço abaixo do título */
+  color: #152540;
+  /* Cor do título */
 }
 
 /* Estilos para o formulário */
 .form {
   display: flex;
-  flex-direction: column; /* Coloca os itens em coluna */
-  align-items: center; /* Alinha os itens ao centro */
-  width: 100%; /* Largura total */
+  flex-direction: column;
+  /* Coloca os itens em coluna */
+  align-items: center;
+  /* Alinha os itens ao centro */
+  width: 100%;
+  /* Largura total */
 }
 
 .form label {
-  margin-bottom: 10px; /* Espaçamento entre os rótulos e o select */
-  font-size: 1rem; /* Tamanho da fonte */
-  color: #333; /* Cor do texto */
-  text-align: left; /* Alinhamento do texto à esquerda */
-  width: 100%; /* Largura total */
+  margin-bottom: 10px;
+  /* Espaçamento entre os rótulos e o select */
+  font-size: 1rem;
+  /* Tamanho da fonte */
+  color: #333;
+  /* Cor do texto */
+  text-align: left;
+  /* Alinhamento do texto à esquerda */
+  width: 100%;
+  /* Largura total */
 }
 
 .form select {
-  width: 100%; /* Largura total */
-  padding: 10px; /* Espaçamento interno */
-  border: 1px solid #ccc; /* Borda do select */
-  border-radius: 5px; /* Bordas arredondadas */
-  font-size: 1rem; /* Tamanho da fonte */
-  margin-bottom: 20px; /* Espaçamento abaixo do select */
-  color: #333; /* Cor do texto */
+  width: 100%;
+  /* Largura total */
+  padding: 10px;
+  /* Espaçamento interno */
+  border: 1px solid #ccc;
+  /* Borda do select */
+  border-radius: 5px;
+  /* Bordas arredondadas */
+  font-size: 1rem;
+  /* Tamanho da fonte */
+  margin-bottom: 20px;
+  /* Espaçamento abaixo do select */
+  color: #333;
+  /* Cor do texto */
 }
 
 /* Estilo para o botão de enviar */
 .submitButton {
-  background-color: #3d61ff; /* Cor de fundo */
-  color: #fff; /* Cor do texto */
-  padding: 8px 10px; /* Espaçamento interno */
-  border: none; /* Sem borda */
-  border-radius: 5px; /* Bordas arredondadas */
-  font-size: 1rem; /* Tamanho da fonte */
-  cursor: pointer; /* Cursor de ponteiro */
+  background-color: #3d61ff;
+  /* Cor de fundo */
+  color: #fff;
+  /* Cor do texto */
+  padding: 8px 10px;
+  /* Espaçamento interno */
+  border: none;
+  /* Sem borda */
+  border-radius: 5px;
+  /* Bordas arredondadas */
+  font-size: 1rem;
+  /* Tamanho da fonte */
+  cursor: pointer;
+  /* Cursor de ponteiro */
   margin-right: 10px;
+  margin-top: 5px;
 }
 
 .selectBox {
-  color: #333; /* Cor do texto, mais escura para melhor legibilidade */
+  color: #333;
+  /* Cor do texto, mais escura para melhor legibilidade */
   margin-top: 10px;
   margin-bottom: 10px;
-  padding: 10px; /* Espaçamento interno */
-  border: 1px solid #ccc; /* Adicionando uma borda para distinguir melhor o select */
-  border-radius: 5px; /* Bordas arredondadas */
-  font-size: 1rem; /* Tamanho da fonte */
-  cursor: pointer; /* Cursor de ponteiro */
-  width: 100%; /* Largura total, se necessário */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Sombra sutil para destacar */
-  background-color: #fff; /* Cor de fundo */
+  padding: 10px;
+  /* Espaçamento interno */
+  border: 1px solid #ccc;
+  /* Adicionando uma borda para distinguir melhor o select */
+  border-radius: 5px;
+  /* Bordas arredondadas */
+  font-size: 1rem;
+  /* Tamanho da fonte */
+  cursor: pointer;
+  /* Cursor de ponteiro */
+  width: 100%;
+  /* Largura total, se necessário */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  /* Sombra sutil para destacar */
+  background-color: #fff;
+  /* Cor de fundo */
 }
 
 .selectBox:focus {
-  outline: none; /* Remove o contorno padrão ao focar */
-  border-color: #3d61ff; /* Cor da borda ao focar */
-  box-shadow: 0 0 5px rgba(61, 97, 255, 0.5); /* Sombra ao focar */
+  outline: none;
+  /* Remove o contorno padrão ao focar */
+  border-color: #3d61ff;
+  /* Cor da borda ao focar */
+  box-shadow: 0 0 5px rgba(61, 97, 255, 0.5);
+  /* Sombra ao focar */
 }
 
 
 .submitButton:hover {
-  background-color: #2c4d85; /* Cor ao passar o mouse */
+  background-color: #2c4d85;
+  /* Cor ao passar o mouse */
 }
 
 /* Estilo para o botão de fechar */
@@ -383,39 +451,56 @@
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
-  margin-top: 20px; /* Espaçamento acima do botão */
+  margin-top: 20px;
+  /* Espaçamento acima do botão */
 }
 
 .closeButton:hover {
-  background-color: #2c4d85; /* Cor ao passar o mouse */
+  background-color: #2c4d85;
+  /* Cor ao passar o mouse */
 }
 
 /* Estilos para os inputs e textarea */
 input[type="text"],
 textarea {
-  width: 100%; /* Largura total */
-  padding: 10px; /* Espaçamento interno */
-  border: 1px solid #ccc; /* Borda do campo */
-  border-radius: 5px; /* Bordas arredondadas */
-  font-size: 1rem; /* Tamanho da fonte */
-  margin-bottom: 20px; /* Espaçamento abaixo dos campos */
-  color: #333; /* Cor do texto */
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra interna */
-  transition: border-color 0.3s; /* Transição suave para a borda */
+  width: 100%;
+  /* Largura total */
+  padding: 10px;
+  /* Espaçamento interno */
+  border: 1px solid #ccc;
+  /* Borda do campo */
+  border-radius: 5px;
+  /* Bordas arredondadas */
+  font-size: 1rem;
+  /* Tamanho da fonte */
+  margin-bottom: 20px;
+  /* Espaçamento abaixo dos campos */
+  color: #333;
+  /* Cor do texto */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  /* Sombra interna */
+  transition: border-color 0.3s;
+  /* Transição suave para a borda */
 }
 
 input[type="text"]:focus,
 textarea:focus {
-  border-color: #3d61ff; /* Cor da borda ao focar */
-  outline: none; /* Remove o contorno padrão */
+  border-color: #3d61ff;
+  /* Cor da borda ao focar */
+  outline: none;
+  /* Remove o contorno padrão */
 }
 
 /* Estilos para os rótulos */
 label {
-  margin-bottom: 10px; /* Espaçamento entre o rótulo e o campo */
-  font-size: 1rem; /* Tamanho da fonte do rótulo */
-  color: #333; /* Cor do texto do rótulo */
-  display: block; /* Faz o rótulo ocupar toda a largura */
+  margin-bottom: 10px;
+  /* Espaçamento entre o rótulo e o campo */
+  font-size: 1rem;
+  /* Tamanho da fonte do rótulo */
+  color: #333;
+  /* Cor do texto do rótulo */
+  display: block;
+  /* Faz o rótulo ocupar toda a largura */
 }
 
 

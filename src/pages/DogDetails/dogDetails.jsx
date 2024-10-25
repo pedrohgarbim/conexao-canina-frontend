@@ -1498,8 +1498,8 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
       <div className={styles.modalContentEdit}>
         <h2>Editar Dados do Cachorro</h2>
         <form onSubmit={handleSubmit}>
-          <label>
-            Nome:
+          <label>          
+           <h3>Nome:</h3>
             <input
               type="text"
               name="name"
@@ -1510,7 +1510,7 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
             />
           </label>
           <label>
-            Raça:
+          <h3>Raça:</h3>
             <input
               type="text"
               name="breed"
@@ -1521,7 +1521,7 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
             />
           </label>
           <label>
-            Gênero:
+          <h3>Gênero:</h3>
             <input
               type="text"
               name="gender"
@@ -1532,7 +1532,7 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
             />
           </label>
           <label>
-            Tamanho:
+          <h3>Tamanho</h3>
             <input
               type="text"
               name="size"
@@ -1543,7 +1543,7 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
             />
           </label>
           <label>
-            Idade:
+          <h3>Idade:</h3>
             <input
               type="text"
               name="age"
@@ -1554,7 +1554,7 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
             />
           </label>
           <label>
-            Descrição:
+          <h3>Descrição:</h3>
             <textarea
               name="description"
               value={formData.description}
@@ -1564,7 +1564,7 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
             />
           </label>
           <label>
-            Foto do Cachorro:
+          <h3>Foto do Cachorro:</h3>
             <input
               type="file"
               accept="image/*" // Aceitar apenas arquivos de imagem
