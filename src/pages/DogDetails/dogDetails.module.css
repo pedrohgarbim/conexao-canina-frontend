@@ -90,9 +90,32 @@
   color: #152540;
 }
 
-.examCategory {
-  color: #152540;
-  margin-bottom: 10px;
+/* Ajuste a largura máxima dos inputs */
+.modalContentHealth input[type="text"], input[type="date"] {
+  width: 100%; /* Faz com que o input ocupe toda a largura do container */
+  max-width: 400px; /* Define uma largura máxima para os campos */
+  box-sizing: border-box; /* Garante que o padding não ultrapasse a largura */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 8px;
+  height: 40px;
+  border: 1px solid #152540;
+  border-radius: 15px;
+  margin-bottom: 16px;
+  font-size: 15px;
+}
+
+/* Para o modal em si */
+.modalContentHealth {
+  max-height: 80vh; /* Define uma altura máxima */
+  overflow-y: auto; /* Adiciona rolagem vertical quando o conteúdo ultrapassa a altura */
+  padding: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  width: 300px;
 }
 
 .examText {
@@ -101,6 +124,11 @@
   margin-bottom: 10px; /* Espaço abaixo de cada item */
   color: #555; /* Cor do texto */
   list-style-type: none;
+}
+
+.examCategory {
+  color: #152540;
+  margin-bottom: 10px;
 }
 
 .contactButton,
@@ -317,6 +345,7 @@
   border-radius: 5px; /* Bordas arredondadas */
   font-size: 1rem; /* Tamanho da fonte */
   cursor: pointer; /* Cursor de ponteiro */
+  margin-right: 10px;
 }
 
 .selectBox {
