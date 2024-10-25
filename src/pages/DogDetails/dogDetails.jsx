@@ -152,7 +152,7 @@ const dogData = {
     }
   },
 
-Thor: {
+  Thor: {
     name: 'Thor',
     breed: 'Pinscher',
     city: 'Belo Horizonte',
@@ -262,7 +262,7 @@ Thor: {
     }
   },
 
-Cesar: {
+  Cesar: {
     name: 'Cesar',
     breed: 'Labrador Retriever',
     city: 'Porto Alegre',
@@ -317,7 +317,7 @@ Cesar: {
     }
   },
 
-Dorinha: {
+  Dorinha: {
     name: 'Dorinha',
     breed: 'Chihuahua',
     city: 'Fortaleza',
@@ -427,7 +427,7 @@ Dorinha: {
     }
   },
 
-Birulinha: {
+  Birulinha: {
     name: 'Birulinha',
     breed: 'Chihuahua',
     city: 'Recife',
@@ -482,7 +482,7 @@ Birulinha: {
     }
   },
 
-Max: {
+  Max: {
     name: 'Max',
     breed: 'Golden Retriever',
     city: 'Brasília',
@@ -592,7 +592,7 @@ Max: {
     }
   },
 
-Buddy: {
+  Buddy: {
     name: 'Buddy',
     breed: 'Labrador Retriever',
     city: 'Belém',
@@ -647,7 +647,7 @@ Buddy: {
     }
   },
 
-Molly: {
+  Molly: {
     name: 'Molly',
     breed: 'Bulldog Francês',
     city: 'Natal',
@@ -702,7 +702,7 @@ Molly: {
     }
   },
 
-Rocky: {
+  Rocky: {
     name: 'Rocky',
     breed: 'Boxer',
     city: 'Florianópolis',
@@ -812,7 +812,7 @@ Rocky: {
     }
   },
 
-Zeus: {
+  Zeus: {
     name: 'Zeus',
     breed: 'Doberman',
     city: 'Teresina',
@@ -867,7 +867,7 @@ Zeus: {
     }
   },
 
-Lola: {
+  Lola: {
     name: 'Lola',
     breed: 'Shih Tzu',
     city: 'Maceió',
@@ -922,7 +922,7 @@ Lola: {
     }
   },
 
-Toby: {
+  Toby: {
     name: 'Toby',
     breed: 'Yorkshire Terrier',
     city: 'Aracaju',
@@ -977,7 +977,7 @@ Toby: {
     }
   },
 
-Bailey: {
+  Bailey: {
     name: 'Bailey',
     breed: 'Rottweiler',
     city: 'Campo Grande',
@@ -1592,7 +1592,9 @@ const DogDetails = () => {
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isHealthModalOpen, setIsHealthModalOpen] = useState(false);
+  const [isEditingHealth, setIsEditingHealth] = useState(false); // Estado para alternar entre visualização e edição
 
+  const [healthData, setHealthData] = useState(dog.healthHistory); // Para gerenciar o estado do histórico de saúde
 
   if (!dog) {
     return <div>Cachorro não encontrado!</div>;
@@ -1602,9 +1604,9 @@ const DogDetails = () => {
     setIsHealthModalOpen(true);
   };
 
-  // Função para fechar o modal de histórico de saúde
   const handleCloseHealthModal = () => {
     setIsHealthModalOpen(false);
+    setIsEditingHealth(false); // Sempre fechar o modo de edição quando o modal for fechado
   };
 
   const handleContactClick = () => {
@@ -1657,9 +1659,17 @@ const DogDetails = () => {
   };
 
   const handleEditSubmit = async (updatedDogData) => {
-    // Aqui você deve fazer a atualização no banco de dados
     console.log('Dados atualizados:', updatedDogData);
-    // Adicione a lógica para atualizar os dados do cachorro no seu banco de dados
+  };
+
+  const handleSaveHealthData = async (updatedHealthData) => {
+    // Função para salvar os dados de saúde editados
+    setHealthData(updatedHealthData); // Atualiza o estado local
+    setIsEditingHealth(false); // Volta para o modo de visualização após salvar
+  };
+
+  const handleEditHealthClick = () => {
+    setIsEditingHealth(true); // Ativa o modo de edição
   };
 
   const currentUrl = window.location.href;
@@ -1698,6 +1708,11 @@ const DogDetails = () => {
             <span className={styles.healthHistoryText} onClick={handleOpenHealthModal}>
               Histórico de Saúde
             </span>
+            <FaPencilAlt
+              className={styles.editIcon}
+              onClick={handleEditHealthClick} // Ativa a edição ao clicar no ícone
+              title="Editar Histórico de Saúde"
+            />
           </div>
         </div>
 
@@ -1705,7 +1720,9 @@ const DogDetails = () => {
         {isHealthModalOpen && (
           <HealthHistoryModal
             onClose={handleCloseHealthModal}
-            healthData={dog.healthHistory}
+            healthData={healthData}
+            isEditing={isEditingHealth} // Passa o estado de edição para o modal
+            onSave={handleSaveHealthData}
           />
         )}
 
@@ -1717,6 +1734,7 @@ const DogDetails = () => {
         </button>
         <ShareButtons url={currentUrl} text={shareText} />
       </div>
+
       {/* Modais */}
       {isModalOpen && <Modal onClose={handleCloseModal} owner={dog.owner} />}
       {isReportModalOpen && <ReportModal onClose={handleCloseReportModal} onSubmit={handleReportSubmit} />}
@@ -1725,47 +1743,151 @@ const DogDetails = () => {
   );
 };
 
-// Componente para o modal de histórico de saúde
-const HealthHistoryModal = ({ onClose, healthData }) => {
+// Componente para o modal de histórico de saúde com visualização/edição
+const HealthHistoryModal = ({ onClose, healthData, isEditing, onSave }) => {
+  const [editableHealthData, setEditableHealthData] = useState(healthData);
+
+  const handleChange = (e, section, index, field) => {
+    const updatedData = { ...editableHealthData };
+    updatedData[section][index][field] = e.target.value;
+    setEditableHealthData(updatedData);
+  };
+
+  const handleSave = () => {
+    onSave(editableHealthData);
+  };
+
   return (
     <div className={styles.modalOverlay}>
-      <div className={styles.modalContent}>
-      <form>
+      <div className={styles.modalContentHealth}>
         <h2>Histórico de Saúde</h2>
-        <h3 className={styles.privateText}>Informações de saúde são privadas</h3>
-        
-        <h3 className={styles.examCategory}>Exames:</h3>
-        <ul>
-          {healthData.exams.map((exam, index) => (
-            <li key={index} className={styles.examText}>
-              {exam.type} - {exam.date} - {exam.result} (Veterinário: {exam.veterinarian})
-            </li>
-          ))}
-        </ul>
 
-        <h3 className={styles.examCategory}>Vacinas:</h3>
-        <ul>
-          {healthData.vaccines.map((vaccine, index) => (
-            <li key={index} className={styles.examText}>
-              {vaccine.name} - {vaccine.date} (Próxima dose: {vaccine.nextDose}, Veterinário: {vaccine.veterinarian})
-            </li>
-          ))}
-        </ul>
+        {isEditing ? (
+          <>
+            <h3 className={styles.examCategory}>Exames:</h3>
+            <ul>
+              {editableHealthData.exams.map((exam, index) => (
+                <li key={index} className={styles.examText}>
+                  <input
+                    type="text"
+                    value={exam.type}
+                    onChange={(e) => handleChange(e, "exams", index, "type")}
+                  />{" "}
+                  <input
+                    type="date"
+                    value={exam.date}
+                    onChange={(e) => handleChange(e, "exams", index, "date")}
+                  />{" "}
+                  <input
+                    type="text"
+                    value={exam.result}
+                    onChange={(e) => handleChange(e, "exams", index, "result")}
+                  />
+                  <span>Veterinário: </span>
+                  <input
+                    type="text"
+                    value={exam.veterinarian}
+                    onChange={(e) => handleChange(e, "exams", index, "veterinarian")}
+                  />
+                </li>
+              ))}
+            </ul>
 
-        <h3 className={styles.examCategory}>Condições de Saúde:</h3>
-        <ul>
-          {healthData.conditions.map((condition, index) => (
-            <li key={index} className={styles.examText}>
-              {condition.name} - Diagnóstico: {condition.diagnosisDate} - {condition.notes} (Veterinário: {condition.veterinarian})
-            </li>
-          ))}
-        </ul>
-        <button onClick={onClose} className={styles.closeButton}>Fechar</button>
-      </form>
+            <h3 className={styles.examCategory}>Vacinas:</h3>
+            <ul>
+              {editableHealthData.vaccines.map((vaccine, index) => (
+                <li key={index} className={styles.examText}>
+                  <input
+                    type="text"
+                    value={vaccine.name}
+                    onChange={(e) => handleChange(e, "vaccines", index, "name")}
+                  />{" "}
+                  <input
+                    type="date"
+                    value={vaccine.date}
+                    onChange={(e) => handleChange(e, "vaccines", index, "date")}
+                  />
+                  <span>Próxima dose:</span>
+                  <input
+                    type="date"
+                    value={vaccine.nextDose}
+                    onChange={(e) => handleChange(e, "vaccines", index, "nextDose")}
+                  />{" "}
+                  <span>Veterinário:</span>
+                  <input
+                    type="text"
+                    value={vaccine.veterinarian}
+                    onChange={(e) => handleChange(e, "vaccines", index, "veterinarian")}
+                  />
+                </li>
+              ))}
+            </ul>
+
+            <h3 className={styles.examCategory}>Condições de Saúde:</h3>
+            <ul>
+              {editableHealthData.conditions.map((condition, index) => (
+                <li key={index} className={styles.examText}>
+                  <input
+                    type="text"
+                    value={condition.name}
+                    onChange={(e) => handleChange(e, "conditions", index, "name")}
+                  />{" "}
+                  <input
+                    type="text"
+                    value={condition.description}
+                    onChange={(e) => handleChange(e, "conditions", index, "description")}
+                  />{" "}
+                  <span>Veterinário:</span>
+                  <input
+                    type="text"
+                    value={condition.veterinarian}
+                    onChange={(e) => handleChange(e, "conditions", index, "veterinarian")}
+                  />
+                </li>
+              ))}
+            </ul>
+
+            <button className={styles.submitButton} onClick={handleSave}>
+              Salvar Alterações
+            </button>
+          </>
+        ) : (
+          <>
+            <h3 className={styles.examCategory}>Exames:</h3>
+            <ul>
+              {healthData.exams.map((exam, index) => (
+                <li key={index} className={styles.examText}>
+                  {exam.type} - {exam.date} - {exam.result} (Veterinário: {exam.veterinarian})
+                </li>
+              ))}
+            </ul>
+
+            <h3 className={styles.examCategory}>Vacinas:</h3>
+            <ul>
+              {healthData.vaccines.map((vaccine, index) => (
+                <li key={index} className={styles.examText}>
+                  {vaccine.name} - {vaccine.date} (Próxima dose: {vaccine.nextDose}, Veterinário: {vaccine.veterinarian})
+                </li>
+              ))}
+            </ul>
+
+            <h3 className={styles.examCategory}>Condições de Saúde:</h3>
+            <ul>
+              {healthData.conditions.map((condition, index) => (
+                <li key={index} className={styles.examText}>
+                  {condition.name} - {condition.description} (Veterinário: {condition.veterinarian})
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+
+        <button className={styles.closeButton} onClick={onClose}>
+          Fechar
+        </button>
       </div>
     </div>
   );
 };
-
 
 export default DogDetails;
