@@ -1,0 +1,27 @@
+/* src/styles/FavoritesPage.css */
+.favorites-page {
+    padding: 20px;
+}
+
+.dog-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.dog-card:hover {
+    background-color: #f0f0f0;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
