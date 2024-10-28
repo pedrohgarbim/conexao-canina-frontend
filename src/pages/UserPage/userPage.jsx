@@ -104,7 +104,7 @@ const UserPage = () => {
             ) : (
               dogs.map((dog, index) => (
                 <div key={index} className={styles.dogCard}>
-                  <img src={dogIcon} alt="Ícone de Cão" className={styles.dogIcon} />
+                  <img src={dogIcon} alt="Ícone de Cachorro" className={styles.dogIcon} />
                   <span>{dog.nome}</span> {/* Exiba o nome do cão */}
                 </div>
               ))
