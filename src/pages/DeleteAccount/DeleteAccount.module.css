@@ -1,0 +1,33 @@
+.delete-account-container {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.warning-message {
+    color: #d9534f; /* Vermelho para chamar atenção */
+    font-weight: bold;
+}
+
+button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #c9302c; /* Tom mais escuro ao passar o mouse */
+}
+
+.confirmation-notification {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #5bc0de;
+    background-color: #d9edf7;
+    color: #31708f;
+    border-radius: 5px;
+}
