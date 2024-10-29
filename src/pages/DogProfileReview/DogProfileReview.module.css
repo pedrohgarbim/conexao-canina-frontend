@@ -1,0 +1,16 @@
+/* src/DogProfileReview.css */
+.dog-profile-review {
+    padding: 20px;
+  }
+  
+  .dog-profile {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .actions button {
+    margin-right: 10px;
+  }
+  
