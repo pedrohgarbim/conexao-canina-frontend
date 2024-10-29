@@ -1,0 +1,28 @@
+/* src/ContentModeration.css */
+.content-moderation {
+    padding: 20px;
+  }
+  
+  .profile {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .images {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .images img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .actions button {
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+  
