@@ -126,7 +126,7 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 ### 🗑️ **Exclusão de Perfil de Cachorro**
 - 🟢 Implementar Funcionalidade de Exclusão do Perfil (frontend) -> A fazer
 - 🟢 Enviar Notificação de Exclusão (frontend) -> A fazer
-- 🟢 Informar sobre a Política de Exclusão (frontend) -> A fazer
+- 🟢 Informar sobre a Política de Exclusão (frontend)
 
 ### 👀 **Visualização de Perfis de Cachorro**
 - 🟢 Visualização Básica do Perfil (frontend)
