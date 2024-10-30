@@ -155,8 +155,8 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Implementar Notificação para Moderação de Perfis de Cães (frontend) -> A fazer
 
 ### ✅ **Aceitar ou Rejeitar Solicitações de Cruzamento**
-- 🟢 Implementar Aceitação de Solicitação de Cruzamento (frontend) -> A fazer
-- 🟢 Implementar Rejeição de Solicitação de Cruzamento (frontend) -> A fazer  
+- 🟢 Implementar Aceitação de Solicitação de Cruzamento (frontend)
+- 🟢 Implementar Rejeição de Solicitação de Cruzamento (frontend)
 
 ### 📑 **Requisitos Específicos de Cruzamento**
 - 🟢 Definir Requisitos Específicos para o Cruzamento (frontend) -> A fazer
