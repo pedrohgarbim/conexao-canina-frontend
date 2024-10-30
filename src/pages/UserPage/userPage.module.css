@@ -5,8 +5,10 @@
   background-color: #f8f9fa;
   padding: 20px;
   flex-wrap: wrap;
-  margin: 44px auto 0; /* Centraliza o bloco */
-  max-width: 1200px; /* Define uma largura máxima para o bloco */
+  margin: 44px auto 0;
+  /* Centraliza o bloco */
+  max-width: 1200px;
+  /* Define uma largura máxima para o bloco */
 }
 
 .leftColumn {
@@ -29,7 +31,8 @@
 }
 
 .avatar img {
-  width: 150px; /* Tamanho ajustado da imagem */
+  width: 150px;
+  /* Tamanho ajustado da imagem */
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
@@ -86,7 +89,8 @@
   border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
-  margin-bottom: 10px; /* Adiciona espaço abaixo do botão de editar */
+  margin-bottom: 10px;
+  /* Adiciona espaço abaixo do botão de editar */
 }
 
 .editButton:hover {
@@ -100,7 +104,8 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px; /* Aumenta o espaço acima do botão de criar cão */
+  margin-top: 20px;
+  /* Aumenta o espaço acima do botão de criar cão */
   margin-left: 10px;
 }
 
@@ -128,10 +133,19 @@
 }
 
 .dogIcon {
-  width: 40px; /* Ajuste o tamanho do ícone do cachorro */
+  width: 40px;
+  /* Ajuste o tamanho do ícone do cachorro */
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
+}
+
+.dogsSection {
+  margin-top: 15px;
+}
+
+.requestsSection {
+  margin-top: 15px;
 }
 
 /* Responsividade */
@@ -145,7 +159,8 @@
   }
 
   .avatar img {
-    width: 300px; /* Tamanho reduzido para dispositivos móveis */
+    width: 300px;
+    /* Tamanho reduzido para dispositivos móveis */
     height: 300px;
   }
 }

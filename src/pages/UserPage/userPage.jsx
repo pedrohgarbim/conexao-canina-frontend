@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import styles from './userPage.module.css';
 import transition from '../../components/Transition/transition';
-import { useNavigate } from 'react-router-dom'; // Importando useNavigate
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'; // Importando funções do Firebase
+import { useNavigate } from 'react-router-dom';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
 import avatarIcon from '../../assets/PessoaUsuario.png';
 import userIcon from '../../assets/perfilUsuario.png';
 import locationIcon from '../../assets/ELEMENTS.png';
 import emailIcon from '../../assets/email.png';
 import phoneIcon from '../../assets/phone.png';
-import dogIcon from '../../assets/dogIcon.png'; // Adicione um ícone de cachorro
+import dogIcon from '../../assets/dogIcon.png';
 
 const UserPage = () => {
   const [imgUrl, setImgUrl] = useState('');
-  const [dogs, setDogs] = useState([]); // Estado para armazenar os cães
-  const navigate = useNavigate(); // Inicializando o useNavigate
-  const [progress, setProgress] = useState(0); // Estado para o progresso do upload
+  const [dogs, setDogs] = useState([]);
+  const [requests, setRequests] = useState([]); // Estado para armazenar as solicitações de cruzamento
+  const navigate = useNavigate();
+  const [progress, setProgress] = useState(0);
 
-  // Função para adicionar um novo cão ao estado
   const addDog = (newDog) => {
     setDogs([...dogs, newDog]);
   };
@@ -28,7 +28,7 @@ const UserPage = () => {
     const file = event.target[0]?.files[0];
     if (!file) return;
 
-    const storageRef = ref(storage, `images/${file.name}`); // Corrigido para usar template string
+    const storageRef = ref(storage, `images/${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
@@ -48,9 +48,22 @@ const UserPage = () => {
     );
   };
 
-  // Função para redirecionar para a página CreateProfile
   const goToCreateProfile = () => {
     navigate('/create-profile');
+  };
+
+  // Função para aceitar uma solicitação
+  const acceptRequest = (requestId) => {
+    // Atualize o estado para remover a solicitação aceita
+    setRequests(requests.filter((request) => request.id !== requestId));
+    // Aqui você pode adicionar lógica adicional para atualizar o backend, se necessário
+  };
+
+  // Função para rejeitar uma solicitação
+  const rejectRequest = (requestId) => {
+    // Atualize o estado para remover a solicitação rejeitada
+    setRequests(requests.filter((request) => request.id !== requestId));
+    // Aqui você pode adicionar lógica adicional para atualizar o backend, se necessário
   };
 
   return (
@@ -68,7 +81,7 @@ const UserPage = () => {
           <h4>Alterar minha foto de Perfil</h4>
           <input type="file" className={styles.file_input} />
           <button type="submit" className={styles.upload_button}>Enviar</button>
-          {progress > 0 && <p>Progresso: {progress.toFixed(2)}%</p>} {/* Mostrando progresso */}
+          {progress > 0 && <p>Progresso: {progress.toFixed(2)}%</p>}
         </form>
       </div>
 
@@ -88,8 +101,6 @@ const UserPage = () => {
             <img src={phoneIcon} alt="Ícone de Telefone" className={styles.icon} /> (16) 99999-9999
           </p>
           <button className={styles.editButton}>Alterar meus dados</button>
-
-          {/* Alterando o botão para redirecionar para a página CreateProfile */}
           <button className={styles.registerDogButton} onClick={goToCreateProfile}>
             Cadastre seu Cão
           </button>
@@ -105,7 +116,29 @@ const UserPage = () => {
               dogs.map((dog, index) => (
                 <div key={index} className={styles.dogCard}>
                   <img src={dogIcon} alt="Ícone de Cachorro" className={styles.dogIcon} />
-                  <span>{dog.nome}</span> {/* Exiba o nome do cão */}
+                  <span>{dog.nome}</span>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+
+        {/* Seção "Solicitações de Cruzamento" */}
+        <div className={styles.requestsSection}>
+          <h2>Solicitações de Cruzamento</h2>
+          <div className={styles.requestsList}>
+            {requests.length === 0 ? (
+              <p>Você não tem solicitações de cruzamento.</p>
+            ) : (
+              requests.map((request) => (
+                <div key={request.id} className={styles.requestCard}>
+                  <p>{request.dogName} deseja cruzar com o seu cão.</p>
+                  <button onClick={() => acceptRequest(request.id)} className={styles.acceptButton}>
+                    Aceitar
+                  </button>
+                  <button onClick={() => rejectRequest(request.id)} className={styles.rejectButton}>
+                    Rejeitar
+                  </button>
                 </div>
               ))
             )}
