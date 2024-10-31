@@ -23,6 +23,7 @@
   align-items: center;
   justify-content: center;
   padding: 100px;
+  flex-direction: column;
 }
 
 .dogImage {
@@ -36,6 +37,22 @@
   text-align: center;
   text-decoration: none;
 }
+
+.CreateAlbum {
+  display: block; /* Faz o link ocupar uma linha inteira */
+  margin-top: 30px; /* Espaço acima do link */
+  font-size: 1.3rem; /* Tamanho da fonte */
+  color: #152540; /* Cor do texto (azul) */
+  text-decoration: underline; /* Texto sublinhado */
+  text-align: center; /* Centraliza o texto */
+  transition: color 0.3s; /* Transição suave para a cor */
+  cursor: pointer;
+}
+
+.CreateAlbum:hover {
+  color: #0056b3; /* Cor do texto ao passar o mouse */
+}
+
 
 .content {
   flex: 1;

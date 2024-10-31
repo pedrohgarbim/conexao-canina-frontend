@@ -1498,8 +1498,8 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
       <div className={styles.modalContentEdit}>
         <h2>Editar Dados do Cachorro</h2>
         <form onSubmit={handleSubmit}>
-          <label>          
-           <h3>Nome:</h3>
+          <label>
+            <h3>Nome:</h3>
             <input
               type="text"
               name="name"
@@ -1510,7 +1510,7 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
             />
           </label>
           <label>
-          <h3>Raça:</h3>
+            <h3>Raça:</h3>
             <input
               type="text"
               name="breed"
@@ -1521,7 +1521,7 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
             />
           </label>
           <label>
-          <h3>Gênero:</h3>
+            <h3>Gênero:</h3>
             <input
               type="text"
               name="gender"
@@ -1532,7 +1532,7 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
             />
           </label>
           <label>
-          <h3>Tamanho</h3>
+            <h3>Tamanho</h3>
             <input
               type="text"
               name="size"
@@ -1543,7 +1543,7 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
             />
           </label>
           <label>
-          <h3>Idade:</h3>
+            <h3>Idade:</h3>
             <input
               type="text"
               name="age"
@@ -1554,7 +1554,7 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
             />
           </label>
           <label>
-          <h3>Descrição:</h3>
+            <h3>Descrição:</h3>
             <textarea
               name="description"
               value={formData.description}
@@ -1564,7 +1564,7 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
             />
           </label>
           <label>
-          <h3>Foto do Cachorro:</h3>
+            <h3>Foto do Cachorro:</h3>
             <input
               type="file"
               accept="image/*" // Aceitar apenas arquivos de imagem
@@ -1672,13 +1672,20 @@ const DogDetails = () => {
     setIsEditingHealth(true); // Ativa o modo de edição
   };
 
+  const goToCreateAlbum = () => {
+    navigate('/create-album');
+  };
+
   const currentUrl = window.location.href;
   const shareText = "Confira este cachorrinho!";
 
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
-        <img src={dog.image} alt={dog.name} className={styles.dogImage} />
+        <img src={dog.image} alt={dog.name} className={styles.dogImage}  />
+        <h2 className={styles.CreateAlbum} onClick={goToCreateAlbum}>
+        Ver álbum de fotos
+        </h2>
       </div>
       <div className={styles.content}>
         <h1 className={styles.dogName}>
