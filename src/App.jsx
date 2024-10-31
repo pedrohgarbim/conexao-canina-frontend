@@ -22,6 +22,7 @@ import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
 import CreateDogProfile from './pages/CreateProfile/CreateDogProfile';
 import DogProfileForm from './components/DogProfileForm/DogProfileForm';
+import CreateAlbum from './pages/CreateAlbum/CreateAlbum';
 
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
                         <Route path="/recuperarSenha" element={<RecoverPassword />} />
                         <Route path="/comentarios" element={<CommentsPage />} />
                         <Route path="/create-profile" element={<CreateDogProfile />} />
+                        <Route path="/create-album" element={<CreateAlbum />} />
                     </Routes>
                 </AnimatePresence>
                 <Footer />
