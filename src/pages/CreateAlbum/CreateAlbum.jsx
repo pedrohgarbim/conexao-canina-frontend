@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './CreateAlbum.css';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const CreateAlbum = () => {
     const [albumName, setAlbumName] = useState('');
@@ -9,17 +10,31 @@ const CreateAlbum = () => {
 
     const handleFileChange = (event) => {
         const files = Array.from(event.target.files);
-        setPhotos(files);
+        setPhotos((prevPhotos) => [...prevPhotos, ...files]);
         const previewUrls = files.map(file => URL.createObjectURL(file));
-        setPreviewPhotos(previewUrls);
+        setPreviewPhotos((prevUrls) => [...prevUrls, ...previewUrls]);
     };
 
     const handleDrop = (event) => {
         event.preventDefault();
         const files = Array.from(event.dataTransfer.files);
-        setPhotos(files);
+        setPhotos((prevPhotos) => [...prevPhotos, ...files]);
         const previewUrls = files.map(file => URL.createObjectURL(file));
-        setPreviewPhotos(previewUrls);
+        setPreviewPhotos((prevUrls) => [...prevUrls, ...previewUrls]);
+    };
+
+    const removePhoto = (index) => {
+        setPhotos((prevPhotos) => prevPhotos.filter((_, i) => i !== index));
+        setPreviewPhotos((prevUrls) => prevUrls.filter((_, i) => i !== index));
+    };
+
+    const onDragEnd = (result) => {
+        if (!result.destination) return;
+
+        const reorderedPhotos = Array.from(previewPhotos);
+        const [removed] = reorderedPhotos.splice(result.source.index, 1);
+        reorderedPhotos.splice(result.destination.index, 0, removed);
+        setPreviewPhotos(reorderedPhotos);
     };
 
     const handleSubmit = async (event) => {
@@ -39,7 +54,6 @@ const CreateAlbum = () => {
 
             if (response.ok) {
                 alert('Álbum criado com sucesso!');
-                // Aqui você pode redirecionar ou resetar o formulário
                 setAlbumName('');
                 setDescription('');
                 setPhotos([]);
@@ -88,11 +102,25 @@ const CreateAlbum = () => {
                         onChange={handleFileChange}
                     />
                 </div>
-                <div className="preview">
-                    {previewPhotos.map((photo, index) => (
-                        <img key={index} src={photo} alt="Preview" width="100" />
-                    ))}
-                </div>
+                <DragDropContext onDragEnd={onDragEnd}>
+                    <Droppable droppableId="photos">
+                        {(provided) => (
+                            <div ref={provided.innerRef} {...provided.droppableProps} className="preview">
+                                {previewPhotos.map((photo, index) => (
+                                    <Draggable key={index} draggableId={`photo-${index}`} index={index}>
+                                        {(provided) => (
+                                            <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} className="photo-item">
+                                                <img src={photo} alt="Preview" width="100" />
+                                                <button type="button" onClick={() => removePhoto(index)}>Remover</button>
+                                            </div>
+                                        )}
+                                    </Draggable>
+                                ))}
+                                {provided.placeholder}
+                            </div>
+                        )}
+                    </Droppable>
+                </DragDropContext>
                 <button className="CreateAlbumButton" type="submit">Criar Álbum</button>
             </form>
         </div>

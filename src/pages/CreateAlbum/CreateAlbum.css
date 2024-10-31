@@ -38,10 +38,19 @@
     flex-wrap: wrap;
 }
 
-.create-album .preview img {
+.create-album .photo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    padding: 5px;
+    background-color: #fff;
+}
+
+.create-album .preview img {
+    margin-right: 10px;
 }
 
 .CreateAlbumButton {
@@ -60,12 +69,11 @@
     align-items: center;
     justify-content: center;
     margin-left: 37%;
-    
-  }
-  
-  .CreateAlbumButton:hover {
+}
+
+.CreateAlbumButton:hover {
     cursor: pointer;
     color: #fff;
     background-color: #2c4d85;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-  }
+}
