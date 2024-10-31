@@ -18,6 +18,23 @@
     margin: 10px 0 5px;
 }
 
+.create-album select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.create-album input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+
 .create-album input[type="text"],
 .create-album textarea {
     width: 100%;
