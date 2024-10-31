@@ -1,40 +1,26 @@
 import React, { useState } from 'react';
 import './CreateAlbum.css';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const CreateAlbum = () => {
     const [albumName, setAlbumName] = useState('');
     const [description, setDescription] = useState('');
     const [photos, setPhotos] = useState([]);
     const [previewPhotos, setPreviewPhotos] = useState([]);
+    const [visibility, setVisibility] = useState('all'); // Estado para visibilidade
 
     const handleFileChange = (event) => {
         const files = Array.from(event.target.files);
-        setPhotos((prevPhotos) => [...prevPhotos, ...files]);
+        setPhotos(files);
         const previewUrls = files.map(file => URL.createObjectURL(file));
-        setPreviewPhotos((prevUrls) => [...prevUrls, ...previewUrls]);
+        setPreviewPhotos(previewUrls);
     };
 
     const handleDrop = (event) => {
         event.preventDefault();
         const files = Array.from(event.dataTransfer.files);
-        setPhotos((prevPhotos) => [...prevPhotos, ...files]);
+        setPhotos(files);
         const previewUrls = files.map(file => URL.createObjectURL(file));
-        setPreviewPhotos((prevUrls) => [...prevUrls, ...previewUrls]);
-    };
-
-    const removePhoto = (index) => {
-        setPhotos((prevPhotos) => prevPhotos.filter((_, i) => i !== index));
-        setPreviewPhotos((prevUrls) => prevUrls.filter((_, i) => i !== index));
-    };
-
-    const onDragEnd = (result) => {
-        if (!result.destination) return;
-
-        const reorderedPhotos = Array.from(previewPhotos);
-        const [removed] = reorderedPhotos.splice(result.source.index, 1);
-        reorderedPhotos.splice(result.destination.index, 0, removed);
-        setPreviewPhotos(reorderedPhotos);
+        setPreviewPhotos(previewUrls);
     };
 
     const handleSubmit = async (event) => {
@@ -42,6 +28,7 @@ const CreateAlbum = () => {
         const formData = new FormData();
         formData.append('albumName', albumName);
         formData.append('description', description);
+        formData.append('visibility', visibility); // Adiciona visibilidade ao FormData
         photos.forEach(photo => {
             formData.append('photos', photo);
         });
@@ -58,6 +45,7 @@ const CreateAlbum = () => {
                 setDescription('');
                 setPhotos([]);
                 setPreviewPhotos([]);
+                setVisibility('all'); // Reseta visibilidade
             } else {
                 alert('Erro ao criar álbum. Tente novamente.');
             }
@@ -90,6 +78,28 @@ const CreateAlbum = () => {
                         required
                     ></textarea>
                 </div>
+                <div>
+                    <label htmlFor="visibility">Visibilidade:</label>
+                    <select
+                        id="visibility"
+                        value={visibility}
+                        onChange={(e) => setVisibility(e.target.value)}
+                    >
+                        <option value="all">Todos os usuários</option>
+                        <option value="registered">Apenas usuários registrados</option>
+                        <option value="specific">Apenas usuários específicos</option>
+                    </select>
+                </div>
+                {visibility === 'specific' && (
+                    <div>
+                        <label htmlFor="specificUsers">Usuários Específicos:</label>
+                        <input
+                            type="text"
+                            id="specificUsers"
+                            placeholder="Digite os nomes ou IDs dos usuários separados por vírgula"
+                        />
+                    </div>
+                )}
                 <div
                     className="upload-area"
                     onDragOver={(e) => e.preventDefault()}
@@ -102,25 +112,11 @@ const CreateAlbum = () => {
                         onChange={handleFileChange}
                     />
                 </div>
-                <DragDropContext onDragEnd={onDragEnd}>
-                    <Droppable droppableId="photos">
-                        {(provided) => (
-                            <div ref={provided.innerRef} {...provided.droppableProps} className="preview">
-                                {previewPhotos.map((photo, index) => (
-                                    <Draggable key={index} draggableId={`photo-${index}`} index={index}>
-                                        {(provided) => (
-                                            <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} className="photo-item">
-                                                <img src={photo} alt="Preview" width="100" />
-                                                <button type="button" onClick={() => removePhoto(index)}>Remover</button>
-                                            </div>
-                                        )}
-                                    </Draggable>
-                                ))}
-                                {provided.placeholder}
-                            </div>
-                        )}
-                    </Droppable>
-                </DragDropContext>
+                <div className="preview">
+                    {previewPhotos.map((photo, index) => (
+                        <img key={index} src={photo} alt="Preview" width="100" />
+                    ))}
+                </div>
                 <button className="CreateAlbumButton" type="submit">Criar Álbum</button>
             </form>
         </div>
@@ -128,3 +124,23 @@ const CreateAlbum = () => {
 };
 
 export default CreateAlbum;
+
+// EXEMPLO DE COMO LINKAR NO BACKEND
+
+// app.post('/api/albums', (req, res) => {
+//     const { albumName, description, visibility } = req.body;
+
+//     // Lógica para salvar o álbum, incluindo a configuração de visibilidade
+//     const newAlbum = {
+//         albumName,
+//         description,
+//         visibility,
+//         // outras propriedades...
+//     };
+
+//     // Salve o novo álbum no banco de dados
+//     // ...
+
+//     res.status(201).json({ message: 'Álbum criado com sucesso!' });
+// });
+
