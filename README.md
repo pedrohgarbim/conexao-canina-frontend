@@ -143,9 +143,9 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Segurança e Privacidade (frontend) -> A fazer
 
 ### 📸 **Criação de Álbum de Fotos**
-- 🟢 Desenvolver Funcionalidade para Criar Álbum de Fotos (Backend)
-- 🟢 Adicionar Funcionalidades de Gerenciamento do Álbum (Backend)
-- 🟢 Configuração de Privacidade do Álbum de Fotos (Backend)
+- 🟢 Desenvolver Funcionalidade para Criar Álbum de Fotos (frontend)
+- 🟢 Adicionar Funcionalidades de Gerenciamento do Álbum (frontend)
+- 🟢 Configuração de Privacidade do Álbum de Fotos (frontend)
 
 ### 💌 **Envio de Solicitações de Cruzamento**
 - 🟢 Implementar a Funcionalidade de Envio de Solicitação de Cruzamento (frontend)
