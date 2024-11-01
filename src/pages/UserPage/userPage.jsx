@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './userPage.module.css';
 import transition from '../../components/Transition/transition';
 import { useNavigate } from 'react-router-dom';
@@ -15,6 +15,7 @@ const UserPage = () => {
   const [imgUrl, setImgUrl] = useState('');
   const [dogs, setDogs] = useState([]);
   const [requests, setRequests] = useState([]); // Estado para armazenar as solicitações de cruzamento
+  const [historyRequests, setHistoryRequests] = useState([]); // Histórico de solicitações
   const navigate = useNavigate();
   const [progress, setProgress] = useState(0);
 
@@ -54,17 +55,33 @@ const UserPage = () => {
 
   // Função para aceitar uma solicitação
   const acceptRequest = (requestId) => {
-    // Atualize o estado para remover a solicitação aceita
     setRequests(requests.filter((request) => request.id !== requestId));
-    // Aqui você pode adicionar lógica adicional para atualizar o backend, se necessário
+    // Adicione lógica para atualizar o backend se necessário
   };
 
   // Função para rejeitar uma solicitação
   const rejectRequest = (requestId) => {
-    // Atualize o estado para remover a solicitação rejeitada
     setRequests(requests.filter((request) => request.id !== requestId));
-    // Aqui você pode adicionar lógica adicional para atualizar o backend, se necessário
+    // Adicione lógica para atualizar o backend se necessário
   };
+
+  // Função para cancelar uma solicitação
+  const cancelRequest = (requestId) => {
+    setHistoryRequests(historyRequests.filter((request) => request.id !== requestId));
+    // Adicione lógica para atualizar o backend se necessário
+  };
+
+  // Função para buscar o histórico de solicitações
+  const fetchHistoryRequests = async () => {
+    // Aqui você deve fazer uma chamada à API para buscar o histórico de solicitações
+    const response = await fetch('/api/history-requests'); // Exemplo de endpoint
+    const data = await response.json();
+    setHistoryRequests(data);
+  };
+
+  useEffect(() => {
+    fetchHistoryRequests();
+  }, []);
 
   return (
     <div className={styles.profileContainer}>
@@ -139,6 +156,27 @@ const UserPage = () => {
                   <button onClick={() => rejectRequest(request.id)} className={styles.rejectButton}>
                     Rejeitar
                   </button>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+
+        {/* Seção "Histórico de Solicitações" */}
+        <div className={styles.historySection}>
+          <h2>Histórico de Solicitações</h2>
+          <div className={styles.historyList}>
+            {historyRequests.length === 0 ? (
+              <p>Você não tem solicitações enviadas.</p>
+            ) : (
+              historyRequests.map((request) => (
+                <div key={request.id} className={styles.historyCard}>
+                  <p>{request.dogName} - Status: {request.status}</p>
+                  {request.status === 'pendente' && (
+                    <button onClick={() => cancelRequest(request.id)} className={styles.cancelButton}>
+                      Cancelar
+                    </button>
+                  )}
                 </div>
               ))
             )}
