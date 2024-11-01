@@ -149,7 +149,7 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 
 ### 💌 **Envio de Solicitações de Cruzamento**
 - 🟢 Implementar a Funcionalidade de Envio de Solicitação de Cruzamento (frontend)
-- 🟢 Implementar Notificação ao Dono do Cachorro (frontend) -> A fazer)
+- 🟢 Implementar Notificação ao Dono do Cachorro (frontend)
 
 ### 📋 **Gerenciamento de Solicitações de Cruzamento e Perfis de Usuários**
 - 🟢 Implementar Notificação para Moderação de Perfis de Cães (frontend)
