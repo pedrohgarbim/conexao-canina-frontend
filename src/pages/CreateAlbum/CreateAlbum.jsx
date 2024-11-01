@@ -1,26 +1,16 @@
 import React, { useState } from 'react';
+import PhotoGallery from '../../pages/PhotoGallery/PhotoGallery'; // Importa o componente de galeria de fotos
 import './CreateAlbum.css';
 
 const CreateAlbum = () => {
     const [albumName, setAlbumName] = useState('');
     const [description, setDescription] = useState('');
-    const [photos, setPhotos] = useState([]);
-    const [previewPhotos, setPreviewPhotos] = useState([]);
+    const [photos, setPhotos] = useState([]); // Fotos gerenciadas no estado do álbum
     const [visibility, setVisibility] = useState('all'); // Estado para visibilidade
 
-    const handleFileChange = (event) => {
-        const files = Array.from(event.target.files);
-        setPhotos(files);
-        const previewUrls = files.map(file => URL.createObjectURL(file));
-        setPreviewPhotos(previewUrls);
-    };
-
-    const handleDrop = (event) => {
-        event.preventDefault();
-        const files = Array.from(event.dataTransfer.files);
-        setPhotos(files);
-        const previewUrls = files.map(file => URL.createObjectURL(file));
-        setPreviewPhotos(previewUrls);
+    // Função de callback para o componente PhotoGallery para adicionar fotos
+    const handlePhotosUpdate = (newPhotos) => {
+        setPhotos(newPhotos);
     };
 
     const handleSubmit = async (event) => {
@@ -30,7 +20,7 @@ const CreateAlbum = () => {
         formData.append('description', description);
         formData.append('visibility', visibility); // Adiciona visibilidade ao FormData
         photos.forEach(photo => {
-            formData.append('photos', photo);
+            formData.append('photos', photo.file); // Adiciona cada foto
         });
 
         try {
@@ -44,7 +34,6 @@ const CreateAlbum = () => {
                 setAlbumName('');
                 setDescription('');
                 setPhotos([]);
-                setPreviewPhotos([]);
                 setVisibility('all'); // Reseta visibilidade
             } else {
                 alert('Erro ao criar álbum. Tente novamente.');
@@ -100,23 +89,10 @@ const CreateAlbum = () => {
                         />
                     </div>
                 )}
-                <div
-                    className="upload-area"
-                    onDragOver={(e) => e.preventDefault()}
-                    onDrop={handleDrop}
-                >
-                    <p>Arraste e solte suas fotos aqui ou selecione-as:</p>
-                    <input
-                        type="file"
-                        multiple
-                        onChange={handleFileChange}
-                    />
-                </div>
-                <div className="preview">
-                    {previewPhotos.map((photo, index) => (
-                        <img key={index} src={photo} alt="Preview" width="100" />
-                    ))}
-                </div>
+
+                {/* Renderiza a galeria de fotos aqui */}
+                <PhotoGallery photos={photos} setPhotos={handlePhotosUpdate} />
+
                 <button className="CreateAlbumButton" type="submit">Criar Álbum</button>
             </form>
         </div>
@@ -124,23 +100,3 @@ const CreateAlbum = () => {
 };
 
 export default CreateAlbum;
-
-// EXEMPLO DE COMO LINKAR NO BACKEND
-
-// app.post('/api/albums', (req, res) => {
-//     const { albumName, description, visibility } = req.body;
-
-//     // Lógica para salvar o álbum, incluindo a configuração de visibilidade
-//     const newAlbum = {
-//         albumName,
-//         description,
-//         visibility,
-//         // outras propriedades...
-//     };
-
-//     // Salve o novo álbum no banco de dados
-//     // ...
-
-//     res.status(201).json({ message: 'Álbum criado com sucesso!' });
-// });
-
