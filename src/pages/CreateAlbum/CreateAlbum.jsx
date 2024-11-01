@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PhotoGallery from '../../pages/PhotoGallery/PhotoGallery'; // Importa o componente de galeria de fotos
+import { useAuthValue } from '../../context/AuthContext'; // Importa o hook do contexto de autenticação
 import './CreateAlbum.css';
 
 const CreateAlbum = () => {
@@ -7,6 +8,7 @@ const CreateAlbum = () => {
     const [description, setDescription] = useState('');
     const [photos, setPhotos] = useState([]); // Fotos gerenciadas no estado do álbum
     const [visibility, setVisibility] = useState('all'); // Estado para visibilidade
+    const { user, isAuthenticated } = useAuthValue(); // Obtém usuário e status de autenticação do contexto
 
     // Função de callback para o componente PhotoGallery para adicionar fotos
     const handlePhotosUpdate = (newPhotos) => {
@@ -43,6 +45,17 @@ const CreateAlbum = () => {
             alert('Erro ao criar álbum. Tente novamente.');
         }
     };
+
+//    Verifica se o usuário está autenticado
+    if (!isAuthenticated) {
+        return (
+            <div className="access-denied">
+                <h2>Acesso Negado</h2>
+                <p>Você não tem permissão para criar álbuns. Por favor, faça login para continuar.</p>
+                <button onClick={() => window.location.href = '/entrar'}>Ir para Login</button>
+            </div>
+        );
+    }
 
     return (
         <div className="create-album">
