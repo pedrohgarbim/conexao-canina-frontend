@@ -148,6 +148,10 @@
   margin-top: 15px;
 }
 
+.historySection {
+  margin-top: 15px;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
   .profileContainer {
