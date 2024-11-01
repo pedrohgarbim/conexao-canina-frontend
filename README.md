@@ -139,8 +139,8 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Atualização de Informações Básicas (frontend)
 - 🟢 Adição ou Remoção de Fotos (frontend)
 - 🟢 Atualização de Histórico de Saúde (frontend)
-- 🟢 Interface e Usabilidade (frontend) -> A fazer
-- 🟢 Segurança e Privacidade (frontend) -> A fazer
+- 🟢 Interface e Usabilidade (frontend)
+- 🟢 Segurança e Privacidade (frontend)
 
 ### 📸 **Criação de Álbum de Fotos**
 - 🟢 Desenvolver Funcionalidade para Criar Álbum de Fotos (frontend)
