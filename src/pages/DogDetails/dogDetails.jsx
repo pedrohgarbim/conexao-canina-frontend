@@ -1492,6 +1492,7 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
     setIsLoading(false);
     setFeedbackMessage('Dados atualizados com sucesso!');
   };
+  
 
   return (
     <div className={styles.modalOverlay}>
@@ -1573,6 +1574,7 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
             />
           </label>
           {image && <p>Arquivo selecionado: {image.name}</p>} {/* Exibir nome do arquivo selecionado */}
+          
           <button type="submit" className={styles.submitButton}>
             {isLoading ? 'Salvando...' : 'Salvar Alterações'}
           </button>
