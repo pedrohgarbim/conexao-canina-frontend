@@ -137,7 +137,7 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 
 ### 🛠️ **Gerenciamento de Perfil**
 - 🟢 Atualização de Informações Básicas (frontend)
-- 🟢 Adição ou Remoção de Fotos (frontend) -> A fazer
+- 🟢 Adição ou Remoção de Fotos (frontend)
 - 🟢 Atualização de Histórico de Saúde (frontend)
 - 🟢 Interface e Usabilidade (frontend) -> A fazer
 - 🟢 Segurança e Privacidade (frontend) -> A fazer
