@@ -8,6 +8,7 @@ const CreateAlbum = () => {
     const [description, setDescription] = useState('');
     const [photos, setPhotos] = useState([]); // Fotos gerenciadas no estado do álbum
     const [visibility, setVisibility] = useState('all'); // Estado para visibilidade
+    const [feedbackMessage, setFeedbackMessage] = useState(''); // Estado para mensagem de feedback
     const { user, isAuthenticated } = useAuthValue(); // Obtém usuário e status de autenticação do contexto
 
     // Função de callback para o componente PhotoGallery para adicionar fotos
@@ -32,17 +33,17 @@ const CreateAlbum = () => {
             });
 
             if (response.ok) {
-                alert('Álbum criado com sucesso!');
+                setFeedbackMessage('Álbum criado com sucesso!');
                 setAlbumName('');
                 setDescription('');
                 setPhotos([]);
                 setVisibility('all'); // Reseta visibilidade
             } else {
-                alert('Erro ao criar álbum. Tente novamente.');
+                setFeedbackMessage('Erro ao criar álbum. Tente novamente.');
             }
         } catch (error) {
             console.error('Erro:', error);
-            alert('Erro ao criar álbum. Tente novamente.');
+            setFeedbackMessage('Erro ao criar álbum. Tente novamente.');
         }
     };
 
@@ -126,6 +127,9 @@ const CreateAlbum = () => {
                 />
 
                 <button className="CreateAlbumButton" type="submit">Criar Álbum</button>
+
+                {/* Exibe a mensagem de feedback */}
+                {feedbackMessage && <p className="feedback-message">{feedbackMessage}</p>}
             </form>
         </div>
     );
