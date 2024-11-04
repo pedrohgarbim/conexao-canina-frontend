@@ -60,15 +60,15 @@ const CreateAlbum = () => {
     };
 
     // // Verifica se o usuário está autenticado
-    // if (!isAuthenticated) {
-    //     return (
-    //         <div className="access-denied">
-    //             <h2>Acesso Negado</h2>
-    //             <p>Você não tem permissão para criar álbuns. Por favor, faça login para continuar.</p>
-    //             <button onClick={() => window.location.href = '/entrar'}>Ir para Login</button>
-    //         </div>
-    //     );
-    // }
+    if (!isAuthenticated) {
+        return (
+            <div className="access-denied">
+                <h2>Acesso Negado</h2>
+                <p>Você não tem permissão para criar álbuns. Por favor, faça login para continuar.</p>
+                <button onClick={() => window.location.href = '/entrar'}>Ir para Login</button>
+            </div>
+        );
+    }
 
     return (
         <div className="create-album">
