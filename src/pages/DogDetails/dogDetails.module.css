@@ -40,7 +40,7 @@
 
 .CreateAlbum {
   display: block; /* Faz o link ocupar uma linha inteira */
-  margin-top: 30px; /* Espaço acima do link */
+  margin-top: 32px; /* Espaço acima do link */
   font-size: 1.3rem; /* Tamanho da fonte */
   color: #152540; /* Cor do texto (azul) */
   text-decoration: underline; /* Texto sublinhado */
