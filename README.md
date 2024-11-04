@@ -120,8 +120,8 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Criação Básica de Perfil (frontend)
 - 🟢 Inclusão de Fotos no Perfil (frontend)
 - 🟢 Atualização e Edição de Perfil (frontend)
-- 🟢 Interface e Usabilidade (frontend) -> A fazer
-- 🟢 Segurança e Privacidade (frontend) -> A fazer
+- 🟢 Interface e Usabilidade (frontend) 
+- 🟢 Segurança e Privacidade (frontend) 
 
 ### 🗑️ **Exclusão de Perfil de Cachorro**
 - 🟢 Implementar Funcionalidade de Exclusão do Perfil (frontend) -> A fazer
@@ -132,8 +132,8 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Visualização Básica do Perfil (frontend)
 - 🟢 Visualização de Fotos (frontend)
 - 🟢 Visualização de Histórico de Saúde (frontend)
-- 🟢 Interface e Usabilidade (frontend) -> A fazer
-- 🟢 Segurança e Privacidade (frontend) -> A fazer
+- 🟢 Interface e Usabilidade (frontend) 
+- 🟢 Segurança e Privacidade (frontend)
 
 ### 🛠️ **Gerenciamento de Perfil**
 - 🟢 Atualização de Informações Básicas (frontend)
