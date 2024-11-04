@@ -124,7 +124,7 @@ const dogData = {
           type: 'Exame de urina',
           date: '2023-12-05',
           result: 'Sem anomalias',
-          veterinarian: 'Dra. Carla Nascimento'
+          veterinarian: 'Dr. Carlos Tadei'
         }
       ],
       vaccines: [
