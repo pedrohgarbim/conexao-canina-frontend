@@ -55,11 +55,10 @@ const CreateAlbum = () => {
 
     // Função para otimizar o carregamento das imagens
     const optimizedImageUrl = (url) => {
-        // Exemplo de URL otimizada, depende da sua infraestrutura
         return `${url}?w=800&h=800&auto=format`;
     };
 
-    // // Verifica se o usuário está autenticado
+    // Verifica se o usuário está autenticado
     if (!isAuthenticated) {
         return (
             <div className="access-denied">
@@ -69,6 +68,11 @@ const CreateAlbum = () => {
             </div>
         );
     }
+
+    // Adicionando alerta sobre consentimento para dados sensíveis
+    const handleConsentAlert = () => {
+        alert("Lembre-se de que a privacidade e o consentimento são importantes. Verifique se você tem permissão para compartilhar as fotos.");
+    };
 
     return (
         <div className="create-album">
@@ -125,6 +129,8 @@ const CreateAlbum = () => {
                     setPhotos={handlePhotosUpdate}
                     onClickPhoto={enlargeImage} // Amplia a imagem ao clicar
                 />
+
+                <button type="button" onClick={handleConsentAlert}>Verificar Consentimento</button>
 
                 <button className="CreateAlbumButton" type="submit">Criar Álbum</button>
 
