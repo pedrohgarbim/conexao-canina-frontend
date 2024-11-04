@@ -46,16 +46,28 @@ const CreateAlbum = () => {
         }
     };
 
-// //    Verifica se o usuário está autenticado
-//     if (!isAuthenticated) {
-//         return (
-//             <div className="access-denied">
-//                 <h2>Acesso Negado</h2>
-//                 <p>Você não tem permissão para criar álbuns. Por favor, faça login para continuar.</p>
-//                 <button onClick={() => window.location.href = '/entrar'}>Ir para Login</button>
-//             </div>
-//         );
-//     }
+    // Função para ampliar a imagem ao clicar
+    const enlargeImage = (photoUrl) => {
+        const newWindow = window.open(photoUrl, '_blank');
+        if (newWindow) newWindow.focus();
+    };
+
+    // Função para otimizar o carregamento das imagens
+    const optimizedImageUrl = (url) => {
+        // Exemplo de URL otimizada, depende da sua infraestrutura
+        return `${url}?w=800&h=800&auto=format`;
+    };
+
+    // // Verifica se o usuário está autenticado
+    // if (!isAuthenticated) {
+    //     return (
+    //         <div className="access-denied">
+    //             <h2>Acesso Negado</h2>
+    //             <p>Você não tem permissão para criar álbuns. Por favor, faça login para continuar.</p>
+    //             <button onClick={() => window.location.href = '/entrar'}>Ir para Login</button>
+    //         </div>
+    //     );
+    // }
 
     return (
         <div className="create-album">
@@ -104,7 +116,14 @@ const CreateAlbum = () => {
                 )}
 
                 {/* Renderiza a galeria de fotos aqui */}
-                <PhotoGallery photos={photos} setPhotos={handlePhotosUpdate} />
+                <PhotoGallery 
+                    photos={photos.map(photo => ({
+                        ...photo,
+                        url: optimizedImageUrl(photo.url) // Carrega as imagens otimizadas
+                    }))}
+                    setPhotos={handlePhotosUpdate}
+                    onClickPhoto={enlargeImage} // Amplia a imagem ao clicar
+                />
 
                 <button className="CreateAlbumButton" type="submit">Criar Álbum</button>
             </form>
