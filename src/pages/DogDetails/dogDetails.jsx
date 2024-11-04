@@ -84,7 +84,7 @@ const dogData = {
           name: 'Vacina polivalente (V8)',
           date: '2023-09-15',
           nextDose: '2024-09-15',
-          veterinarian: 'Dr. João Mendes'
+          veterinarian: 'Dr. Cesar Pança'
         }
       ],
       conditions: [
