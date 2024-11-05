@@ -14,10 +14,12 @@ import dogIcon from '../../assets/dogIcon.png';
 const UserPage = () => {
   const [imgUrl, setImgUrl] = useState('');
   const [dogs, setDogs] = useState([]);
-  const [requests, setRequests] = useState([]); // Estado para armazenar as solicitações de cruzamento
-  const [historyRequests, setHistoryRequests] = useState([]); // Histórico de solicitações
-  const navigate = useNavigate();
+  const [requests, setRequests] = useState([]);
+  const [historyRequests, setHistoryRequests] = useState([]);
   const [progress, setProgress] = useState(0);
+  const [dogToDelete, setDogToDelete] = useState(null); // Estado para armazenar o cachorro que será excluído
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false); // Estado para controlar o diálogo de confirmação
+  const navigate = useNavigate();
 
   const addDog = (newDog) => {
     setDogs([...dogs, newDog]);
@@ -53,28 +55,23 @@ const UserPage = () => {
     navigate('/create-profile');
   };
 
-  // Função para aceitar uma solicitação
   const acceptRequest = (requestId) => {
     setRequests(requests.filter((request) => request.id !== requestId));
     // Adicione lógica para atualizar o backend se necessário
   };
 
-  // Função para rejeitar uma solicitação
   const rejectRequest = (requestId) => {
     setRequests(requests.filter((request) => request.id !== requestId));
     // Adicione lógica para atualizar o backend se necessário
   };
 
-  // Função para cancelar uma solicitação
   const cancelRequest = (requestId) => {
     setHistoryRequests(historyRequests.filter((request) => request.id !== requestId));
     // Adicione lógica para atualizar o backend se necessário
   };
 
-  // Função para buscar o histórico de solicitações
   const fetchHistoryRequests = async () => {
-    // Aqui você deve fazer uma chamada à API para buscar o histórico de solicitações
-    const response = await fetch('/api/history-requests'); // Exemplo de endpoint
+    const response = await fetch('/api/history-requests'); 
     const data = await response.json();
     setHistoryRequests(data);
   };
@@ -82,6 +79,23 @@ const UserPage = () => {
   useEffect(() => {
     fetchHistoryRequests();
   }, []);
+
+  const handleDeleteDog = (dog) => {
+    setDogToDelete(dog);
+    setShowConfirmDialog(true); // Exibir diálogo de confirmação
+  };
+
+  const confirmDeleteDog = async () => {
+    try {
+      // Exemplo de chamada API para deletar o perfil do cachorro
+      await fetch(`/api/delete-dog/${dogToDelete.id}`, { method: 'DELETE' });
+      setDogs(dogs.filter((dog) => dog.id !== dogToDelete.id)); // Atualizar a lista de cães
+      setShowConfirmDialog(false);
+      setDogToDelete(null); // Limpar o estado
+    } catch (error) {
+      alert('Erro ao excluir o perfil do cachorro.');
+    }
+  };
 
   return (
     <div className={styles.profileContainer}>
@@ -130,15 +144,27 @@ const UserPage = () => {
             {dogs.length === 0 ? (
               <p>Você ainda não cadastrou nenhum cão.</p>
             ) : (
-              dogs.map((dog, index) => (
-                <div key={index} className={styles.dogCard}>
+              dogs.map((dog) => (
+                <div key={dog.id} className={styles.dogCard}>
                   <img src={dogIcon} alt="Ícone de Cachorro" className={styles.dogIcon} />
                   <span>{dog.nome}</span>
+                  <button onClick={() => handleDeleteDog(dog)} className={styles.deleteButton}>
+                    Excluir Perfil
+                  </button>
                 </div>
               ))
             )}
           </div>
         </div>
+
+        {/* Dialogo de confirmação */}
+        {showConfirmDialog && (
+          <div className={styles.confirmDialog}>
+            <p>Tem certeza de que deseja excluir o perfil do {dogToDelete.nome}? Esta ação não pode ser desfeita.</p>
+            <button onClick={confirmDeleteDog} className={styles.confirmButton}>Confirmar</button>
+            <button onClick={() => setShowConfirmDialog(false)} className={styles.cancelButton}>Cancelar</button>
+          </div>
+        )}
 
         {/* Seção "Solicitações de Cruzamento" */}
         <div className={styles.requestsSection}>

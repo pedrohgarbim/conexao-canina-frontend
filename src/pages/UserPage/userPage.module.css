@@ -152,6 +152,28 @@
   margin-top: 15px;
 }
 
+.cancelButton {
+  background-color: #f44336; /* Vermelho claro para indicar uma ação perigosa */
+  color: white; /* Texto em branco para contraste */
+  border: none; /* Remover borda padrão */
+  padding: 10px 20px; /* Ajustar espaçamento interno */
+  font-size: 16px; /* Tamanho do texto */
+  border-radius: 5px; /* Borda arredondada */
+  cursor: pointer; /* Mostrar cursor pointer ao passar o mouse */
+  transition: background-color 0.3s ease; /* Transição suave ao passar o mouse */
+  margin: 10px; /* Margem para separar do conteúdo próximo */
+}
+
+.cancelButton:hover {
+  background-color: #d32f2f; /* Vermelho mais escuro ao passar o mouse */
+}
+
+.cancelButton:focus {
+  outline: none; /* Remover contorno de foco padrão */
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2); /* Adicionar uma leve sombra ao focar */
+}
+
+
 /* Responsividade */
 @media (max-width: 768px) {
   .profileContainer {
