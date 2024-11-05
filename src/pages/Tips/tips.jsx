@@ -197,6 +197,7 @@ function Tips() {
         <h2>Tem alguma outra dica? Conte para nós:</h2>
         <form className='contact-form' onSubmit={handleSubmit}>
           <div className='form-row'>
+            <label htmlFor='name'></label>
             <input
               type='text'
               id='name'
@@ -208,6 +209,7 @@ function Tips() {
             />
           </div>
           <div className='form-row'>
+            <label htmlFor='feedback'></label>
             <textarea
               id='feedback'
               name='feedback'
@@ -221,13 +223,15 @@ function Tips() {
           <div className='button-container'>
             <button type='submit' className='submit-button'>Enviar</button>
           </div>
-          {successMessage && <p className='message-success'>{successMessage}</p>}
-          {errorMessage && <p className='message-error'>{errorMessage}</p>}
+          {/* Acessibilidade para mensagens de sucesso ou erro */}
+          <div aria-live='polite' role='status'>
+            {successMessage && <p className='message-success'>{successMessage}</p>}
+            {errorMessage && <p className='message-error'>{errorMessage}</p>}
+          </div>
         </form>
       </div>
     </>
-
-  )
+  );
 }
 
 export default trasition(Tips);
