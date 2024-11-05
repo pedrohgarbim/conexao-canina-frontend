@@ -23,6 +23,7 @@ import Navbar from './components/Navbar/Navbar';
 import CreateDogProfile from './pages/CreateProfile/CreateDogProfile';
 import DogProfileForm from './components/DogProfileForm/DogProfileForm';
 import CreateAlbum from './pages/CreateAlbum/CreateAlbum';
+import Acompanhamento from './pages/Acompanhamento/Acompanhamento';
 
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
                         <Route path="/comentarios" element={<CommentsPage />} />
                         <Route path="/create-profile" element={<CreateDogProfile />} />
                         <Route path="/create-album" element={<CreateAlbum />} />
+                        <Route path="/acompanhamento" element={<Acompanhamento />} />
                     </Routes>
                 </AnimatePresence>
                 <Footer />
