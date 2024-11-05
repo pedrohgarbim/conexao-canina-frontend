@@ -70,6 +70,24 @@ textarea {
     resize: none;
 }
 
+/* Estilos para a área de notificações */
+.notificacoes {
+    margin-bottom: 40px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #e7f3fe;
+    margin-top: 20px;
+}
+
+.notificacao {
+    padding: 10px;
+    border: 1px solid #b3d4fc;
+    background-color: #f1f9ff;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
+
 @media (max-width: 600px) {
     .container {
         padding: 10px;

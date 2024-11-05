@@ -8,16 +8,15 @@ const Acompanhamento = () => {
     const [sugestoes, setSugestoes] = useState([]);
     const [feedbacks, setFeedbacks] = useState([]);
     const [respostas, setRespostas] = useState({});
-    
+    const [notificacoes, setNotificacoes] = useState([]);
+
     useEffect(() => {
-        // Simulação de chamada a API para buscar sugestões
         const fetchSugestoes = async () => {
             const resposta = await fetch('/api/sugestoes'); // Substitua pela sua API real
             const data = await resposta.json();
             setSugestoes(data);
         };
 
-        // Simulação de chamada a API para buscar feedbacks
         const fetchFeedbacks = async () => {
             const resposta = await fetch('/api/feedbacks'); // Substitua pela sua API real
             const data = await resposta.json();
@@ -30,6 +29,7 @@ const Acompanhamento = () => {
 
     const notify = (mensagem) => {
         toast.success(mensagem);
+        setNotificacoes((prev) => [...prev, mensagem]); // Adiciona mensagem à lista de notificações
     };
 
     const atualizarStatus = (id) => {
@@ -48,6 +48,10 @@ const Acompanhamento = () => {
     };
 
     const enviarResposta = (id) => {
+        if (!respostas[id]) {
+            notify('A resposta não pode ser vazia!');
+            return;
+        }
         notify(`Resposta enviada para o feedback ${id}!`);
         // Aqui você pode implementar a lógica para enviar a resposta para a API
         setRespostas({ ...respostas, [id]: '' }); // Limpar campo após envio
@@ -56,6 +60,7 @@ const Acompanhamento = () => {
     return (
         <div className={styles.container}>
             <h1>Acompanhamento de Sugestões</h1>
+
             <table className={styles.table}>
                 <thead>
                     <tr>
@@ -100,7 +105,23 @@ const Acompanhamento = () => {
             )}
 
             <ToastContainer />
+
+            {/* Área de Notificações */}
+            <div className={styles.notificacoes}>
+                <h2>Notificações</h2>
+                {notificacoes.length === 0 ? (
+                    <p>Não há notificações no momento.</p>
+                ) : (
+                    notificacoes.map((notificacao, index) => (
+                        <div key={index} className={styles.notificacao}>
+                            {notificacao}
+                        </div>
+                    ))
+                )}
+            </div>
         </div>
+
+
     );
 };
 
