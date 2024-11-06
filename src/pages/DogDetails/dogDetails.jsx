@@ -1468,11 +1468,13 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const [image, setImage] = useState(null); // Estado para armazenar a imagem selecionada
 
+  // Função para lidar com mudanças no input de texto
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // Função para lidar com a seleção de imagem
   const handleImageChange = (e) => {
     const file = e.target.files[0]; // Pega o arquivo selecionado
     if (file) {
@@ -1481,6 +1483,7 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
     }
   };
 
+  // Função para enviar o formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -1492,7 +1495,6 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
     setIsLoading(false);
     setFeedbackMessage('Dados atualizados com sucesso!');
   };
-  
 
   return (
     <div className={styles.modalOverlay}>
@@ -1565,6 +1567,16 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
             />
           </label>
           <label>
+            <h3>Requisitos Específicos:</h3> {/* Campo adicionado para requisitos específicos */}
+            <textarea
+              name="requirements"
+              value={formData.requirements || ''}
+              onChange={handleChange}
+              placeholder="Descreva requisitos específicos para o cruzamento, como temperamento, tamanho preferido, etc."
+              className={styles.inputField}
+            />
+          </label>
+          <label>
             <h3>Foto do Cachorro:</h3>
             <input
               type="file"
@@ -1574,7 +1586,7 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
             />
           </label>
           {image && <p>Arquivo selecionado: {image.name}</p>} {/* Exibir nome do arquivo selecionado */}
-          
+
           <button type="submit" className={styles.submitButton}>
             {isLoading ? 'Salvando...' : 'Salvar Alterações'}
           </button>
@@ -1585,6 +1597,7 @@ const EditDogModal = ({ onClose, dog, onSubmit }) => {
     </div>
   );
 };
+
 
 const DogDetails = () => {
   const { name } = useParams();
