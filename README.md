@@ -124,8 +124,7 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Segurança e Privacidade (frontend) 
 
 ### 🗑️ **Exclusão de Perfil de Cachorro**
-- 🟢 Implementar Funcionalidade de Exclusão do Perfil (frontend)
-- 🟢 Enviar Notificação de Exclusão (frontend)
+- 🟢 Desenvolver Interface de Exclusão e Confirmação (Frontend)
 - 🟢 Informar sobre a Política de Exclusão (frontend)
 
 ### 👀 **Visualização de Perfis de Cachorro**
@@ -145,6 +144,7 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 ### 📸 **Criação de Álbum de Fotos**
 - 🟢 Desenvolver Funcionalidade para Criar Álbum de Fotos (frontend)
 - 🟢 Adicionar Funcionalidades de Gerenciamento do Álbum (frontend)
+- 🟢 Implementar Visualização de Álbum de Fotos no Perfil (Frontend)
 - 🟢 Configuração de Privacidade do Álbum de Fotos (frontend)
 
 ### 💌 **Envio de Solicitações de Cruzamento**
@@ -152,7 +152,8 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Implementar Notificação ao Dono do Cachorro (frontend)
 
 ### 📋 **Gerenciamento de Solicitações de Cruzamento e Perfis de Usuários**
-- 🟢 Implementar Notificação para Moderação de Perfis de Cães (frontend)
+- 🟢 Criar Interface de Moderação de Perfis de Cães (Frontend)
+- 🟢 Criar Painel de Administração para Monitoramento e Relatórios (Frontend)
 
 ### ✅ **Aceitar ou Rejeitar Solicitações de Cruzamento**
 - 🟢 Implementar Aceitação de Solicitação de Cruzamento (frontend)
@@ -175,3 +176,11 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 ### ❤️ **Dar Like em Perfis de Cães**
 - 🟢 Implementar Funcionalidade de Dar Like (frontend)
 - 🟢 Atualizar Modelos de Dados e Notificações (frontend)
+
+### ⚠️ **Denúncia de Perfis**
+- 🟢 Criar Interface para Denúncia de Perfis (Frontend)
+- 🟢 Implementar Página de Revisão de Denúncias (Frontend)
+
+### 🚨 **Revisão de Perfis e Denúncias de Solicitações de Cruzamento**
+- 🟢 Criar Interface para Denúncia de Perfis (Frontend)
+- 🟢 Criar Interface para Moderação de Imagens e Conteúdos (Frontend)
