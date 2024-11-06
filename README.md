@@ -172,7 +172,7 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Feedback dos Administradores sobre Sugestões (frontend)
 - 🟢 Interface e Usabilidade (frontend)
 - 🟢 Notificações (frontend)
-- 
+  
 ### ❤️ **Dar Like em Perfis de Cães**
 - 🟢 Implementar Funcionalidade de Dar Like (frontend)
 - 🟢 Atualizar Modelos de Dados e Notificações (frontend)
