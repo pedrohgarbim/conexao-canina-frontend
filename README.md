@@ -160,11 +160,11 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Implementar Rejeição de Solicitação de Cruzamento (frontend)
 
 ### 📑 **Requisitos Específicos de Cruzamento**
-- 🟢 Definir Requisitos Específicos para o Cruzamento (frontend) -> A fazer
-- 🟢 Notificação de Solicitações Rejeitadas (frontend) -> A fazer
-- 🟢 Filtragem Automática de Solicitações com Base nos Requisitos (frontend) -> A fazer 
-- 🟢 Interface de Usuário e Usabilidade (frontend) -> A fazer
-- 🟢 Persistência e Atualização (frontend) -> A fazer
+- 🟢 Definir Requisitos Específicos para o Cruzamento (frontend) 
+- 🟢 Notificação de Solicitações Rejeitadas (frontend) 
+- 🟢 Filtragem Automática de Solicitações com Base nos Requisitos (frontend) 
+- 🟢 Interface de Usuário e Usabilidade (frontend) 
+- 🟢 Persistência e Atualização (frontend) 
 
 ### 💡 **Sugestões de Melhorias**
 - 🟢 Acesso ao Formulário de Sugestões (frontend)
