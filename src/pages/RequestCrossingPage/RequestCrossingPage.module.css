@@ -46,7 +46,19 @@
     color: green;
   }
   
+  .errorMessages {
+    background-color: #ffcccc;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .errorTitle {
+    font-weight: bold;
+    color: red;
+  }
+  
   .errorMessage {
     color: red;
+    margin: 5px 0;
   }
   
