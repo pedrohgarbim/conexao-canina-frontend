@@ -6,21 +6,29 @@ const RequestCrossingPage = () => {
   const [dogName, setDogName] = useState('');
   const [breed, setBreed] = useState('');
   const [requestStatus, setRequestStatus] = useState(null);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessages, setErrorMessages] = useState([]);
 
   // Função de validação dos requisitos
   const validateRequest = () => {
-    if (dogName.trim() === '' || breed.trim() === '') {
-      setErrorMessage('Todos os campos são obrigatórios.');
-      return false;
+    const errors = [];
+    
+    if (dogName.trim() === '') {
+      errors.push('O nome do cão é obrigatório.');
+    }
+    if (breed.trim() === '') {
+      errors.push('A raça do cão é obrigatória.');
     }
     
     if (breed.toLowerCase() !== 'golden retriever') {  // Exemplo de validação de raça
-      setErrorMessage('Apenas Golden Retrievers podem solicitar cruzamento.');
+      errors.push('Apenas Golden Retrievers podem solicitar cruzamento.');
+    }
+
+    if (errors.length > 0) {
+      setErrorMessages(errors);
       return false;
     }
 
-    setErrorMessage('');
+    setErrorMessages([]);
     return true;
   };
 
@@ -40,7 +48,16 @@ const RequestCrossingPage = () => {
     if (requestStatus === 'accepted') {
       return <p className={styles.successMessage}>Solicitação aceita! Entraremos em contato em breve.</p>;
     } else if (requestStatus === 'rejected') {
-      return <p className={styles.errorMessage}>{errorMessage}</p>;
+      return (
+        <div className={styles.errorMessages}>
+          <p className={styles.errorTitle}>Solicitação rejeitada:</p>
+          <ul>
+            {errorMessages.map((msg, index) => (
+              <li key={index} className={styles.errorMessage}>{msg}</li>
+            ))}
+          </ul>
+        </div>
+      );
     }
     return null;
   };
