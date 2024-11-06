@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './RequestCrossingPage.module.css'; // Importa o CSS modular
 
 const RequestCrossingPage = () => {
-  // Estados para controlar a solicitação e feedback
+  // Estados para controlar os dados do formulário
   const [dogName, setDogName] = useState('');
   const [breed, setBreed] = useState('');
   const [age, setAge] = useState('');
@@ -38,25 +38,21 @@ const RequestCrossingPage = () => {
       errors.push('O requisito personalizado não está adequado.');
     }
 
-    if (errors.length > 0) {
-      setErrorMessages(errors);
-      return false;
-    }
-
-    setErrorMessages([]);
-    return true;
+    setErrorMessages(errors);
+    return errors.length === 0;
   };
 
   // Função de envio da solicitação
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    if (validateRequest()) {
-      setRequestStatus('accepted');
-    } else {
-      setRequestStatus('rejected');
-    }
+    const isValid = validateRequest();
+    setRequestStatus(isValid ? 'accepted' : 'rejected');
   };
+
+  // Função para atualizar em tempo real
+  useEffect(() => {
+    validateRequest();
+  }, [dogName, breed, age, customRequirements]);  // Revalida sempre que algum campo mudar
 
   // Exibir feedback de acordo com o status
   const renderFeedbackMessage = () => {
