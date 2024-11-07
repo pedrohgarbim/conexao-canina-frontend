@@ -38,7 +38,7 @@ h1, h2 {
     background-color: #f1f1f1;
 }
 
-button {
+/* button {
     padding: 10px 15px;
     background-color: #4CAF50;
     color: white;
@@ -50,7 +50,7 @@ button {
 
 button:hover {
     background-color: #45a049;
-}
+} */
 
 .feedback {
     border: 1px solid #ddd;
