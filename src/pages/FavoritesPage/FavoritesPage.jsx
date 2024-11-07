@@ -1,7 +1,8 @@
 // src/pages/FavoritesPage.js
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getFavoriteDogs } from '../api/dogService'; // Serviço para obter cães favoritos
+import { getFavoriteDogs, toggleFavoriteDog } from '../api/dogService';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
 const FavoritesPage = () => {
     const [favorites, setFavorites] = useState([]);
@@ -9,7 +10,7 @@ const FavoritesPage = () => {
     useEffect(() => {
         const fetchFavorites = async () => {
             try {
-                const data = await getFavoriteDogs(); // Função para obter os favoritos
+                const data = await getFavoriteDogs();
                 setFavorites(data);
             } catch (error) {
                 console.error('Error fetching favorite dogs:', error);
@@ -19,13 +20,22 @@ const FavoritesPage = () => {
         fetchFavorites();
     }, []);
 
+    const handleToggleFavorite = async (dogId) => {
+        try {
+            const updatedFavorites = await toggleFavoriteDog(dogId);
+            setFavorites(updatedFavorites);
+        } catch (error) {
+            console.error('Error toggling favorite status:', error);
+        }
+    };
+
     return (
         <div className="favorites-page">
-            <h1>Meus Favoritos</h1>
+            <h1 className="favorites-title">Meus Favoritos</h1> {/* Adicionada classe única */}
             {favorites.length === 0 ? (
                 <p>Você ainda não tem cães favoritos.</p>
             ) : (
-                <ul>
+                <ul className="favorites-list"> {/* Adicionada classe única */}
                     {favorites.map((dog) => (
                         <li key={dog.id}>
                             <Link to={`/dogs/${dog.id}`}>
@@ -36,6 +46,17 @@ const FavoritesPage = () => {
                                     <p>Likes: {dog.likes}</p>
                                 </div>
                             </Link>
+                            <button 
+                                onClick={() => handleToggleFavorite(dog.id)}
+                                className="favorite-button"
+                                aria-label={dog.isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
+                            >
+                                {dog.isFavorite ? (
+                                    <FaHeart color="red" size={24} />
+                                ) : (
+                                    <FaRegHeart color="grey" size={24} />
+                                )}
+                            </button>
                         </li>
                     ))}
                 </ul>
