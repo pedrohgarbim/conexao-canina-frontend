@@ -1,0 +1,50 @@
+/* src/pages/UserFavorites.module.css */
+.userFavoritesPage {
+    padding: 20px;
+}
+
+.userFavoritesTitle {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.userFavoritesList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.userFavoriteItem {
+    margin-bottom: 15px;
+}
+
+.userDogCard {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.userDogCard:hover {
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.userDogImage {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.userDogInfo h2 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.userDogInfo p {
+    font-size: 1rem;
+    color: #555;
+}
