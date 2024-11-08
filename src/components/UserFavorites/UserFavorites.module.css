@@ -64,3 +64,19 @@
 .removeButton:hover {
     transform: scale(1.2); /* Animação de zoom ao passar o mouse */
 }
+
+/* src/pages/UserFavorites.module.css */
+.exploreButton {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.exploreButton:hover {
+    background-color: #0056b3;
+}
+

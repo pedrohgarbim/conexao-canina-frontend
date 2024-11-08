@@ -1,12 +1,14 @@
 // src/pages/UserFavorites.jsx
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { getFavoriteDogs, removeFavoriteDog } from '../api/dogService'; // Função de remoção adicionada
-import styles from './UserFavorites.module.css'; // Importando CSS Modules
-import { FaTimes } from 'react-icons/fa'; // Ícone de "x" para remover
+import { Link, useHistory } from 'react-router-dom';
+import { getFavoriteDogs, removeFavoriteDog } from '../api/dogService';
+import styles from './UserFavorites.module.css';
+import { FaTimes } from 'react-icons/fa';
 
 const UserFavorites = () => {
     const [favorites, setFavorites] = useState([]);
+    const [loading, setLoading] = useState(true); // Adicionando estado de carregamento
+    const history = useHistory();
 
     useEffect(() => {
         const fetchFavorites = async () => {
@@ -15,23 +17,32 @@ const UserFavorites = () => {
                 setFavorites(data);
             } catch (error) {
                 console.error('Error fetching favorite dogs:', error);
+                // Redirecionar o usuário para o login se o token não for válido
+                if (error.response && error.response.status === 401) {
+                    history.push('/login'); // Redirecionar para a página de login
+                }
+            } finally {
+                setLoading(false); // Concluído o carregamento
             }
         };
 
         fetchFavorites();
-    }, []);
+    }, [history]);
 
-    // Função para remover um cão dos favoritos
     const handleRemoveFavorite = async (dogId) => {
         try {
-            await removeFavoriteDog(dogId); // Remove o favorito no backend
+            await removeFavoriteDog(dogId);
             setFavorites((prevFavorites) => 
-                prevFavorites.filter((dog) => dog.id !== dogId) // Remove localmente da lista
+                prevFavorites.filter((dog) => dog.id !== dogId)
             );
         } catch (error) {
             console.error('Error removing favorite dog:', error);
         }
     };
+
+    if (loading) {
+        return <div>Carregando seus favoritos...</div>; // Mostra enquanto os favoritos estão carregando
+    }
 
     return (
         <div className={styles.userFavoritesPage}>
@@ -55,7 +66,6 @@ const UserFavorites = () => {
                                     </div>
                                 </div>
                             </Link>
-                            {/* Botão de remover com ícone de "x" */}
                             <button 
                                 onClick={() => handleRemoveFavorite(dog.id)}
                                 className={styles.removeButton}
