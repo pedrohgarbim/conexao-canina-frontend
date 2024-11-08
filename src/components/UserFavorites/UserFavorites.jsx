@@ -1,8 +1,9 @@
 // src/pages/UserFavorites.jsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getFavoriteDogs } from '../api/dogService'; // Serviço para obter cães favoritos
-import styles from './UserFavorites.module.css'; // Importando o CSS como módulo
+import { getFavoriteDogs, removeFavoriteDog } from '../api/dogService'; // Função de remoção adicionada
+import styles from './UserFavorites.module.css'; // Importando CSS Modules
+import { FaTimes } from 'react-icons/fa'; // Ícone de "x" para remover
 
 const UserFavorites = () => {
     const [favorites, setFavorites] = useState([]);
@@ -19,6 +20,18 @@ const UserFavorites = () => {
 
         fetchFavorites();
     }, []);
+
+    // Função para remover um cão dos favoritos
+    const handleRemoveFavorite = async (dogId) => {
+        try {
+            await removeFavoriteDog(dogId); // Remove o favorito no backend
+            setFavorites((prevFavorites) => 
+                prevFavorites.filter((dog) => dog.id !== dogId) // Remove localmente da lista
+            );
+        } catch (error) {
+            console.error('Error removing favorite dog:', error);
+        }
+    };
 
     return (
         <div className={styles.userFavoritesPage}>
@@ -42,6 +55,14 @@ const UserFavorites = () => {
                                     </div>
                                 </div>
                             </Link>
+                            {/* Botão de remover com ícone de "x" */}
+                            <button 
+                                onClick={() => handleRemoveFavorite(dog.id)}
+                                className={styles.removeButton}
+                                aria-label="Remover dos favoritos"
+                            >
+                                <FaTimes size={20} color="red" />
+                            </button>
                         </li>
                     ))}
                 </ul>
