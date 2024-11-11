@@ -20,12 +20,18 @@
     }
   }
   
-  .shareButton {
-    padding: 10px 20px;
+  .availabilityFormError {
+    color: red;
+    font-size: 12px;
+  }
+  
+  .availabilityFormButton {
     background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
+    padding: 10px 20px;
+    margin-top: 10px;
   }
   
   @media (max-width: 600px) {
