@@ -188,6 +188,13 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 ### ⭐ **Lista de Favoritos**
 - 🟢 Adicionar um Perfil à Lista de Favoritos (frontend)
 - 🟢 Visualização da Lista de Favoritos (frontend)
-- 🟢 Remoção de um Perfil da Lista de Favoritos (frontend))
+- 🟢 Remoção de um Perfil da Lista de Favoritos (frontend)
 - 🟢 Persistência e Usabilidade (frontend)
 - 🟢 Feedback ao Usuário (frontend)
+
+### 📅 **Calendário de Disponibilidade**
+- 🟢 Adicionar Disponibilidade ao Calendário (frontend)
+- 🟢 Atualizar Disponibilidade no Calendário (frontend)
+- 🟢 Visualização e Compartilhamento da Disponibilidade (frontend)
+- 🟢 Interface e Usabilidade (frontend)
+- 🟢 Segurança e Privacidade(frontend)
