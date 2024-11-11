@@ -184,3 +184,10 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 ### 🚨 **Revisão de Perfis e Denúncias de Solicitações de Cruzamento**
 - 🟢 Criar Interface para Denúncia de Perfis (Frontend)
 - 🟢 Criar Interface para Moderação de Imagens e Conteúdos (Frontend)
+
+### ⭐ **Lista de Favoritos**
+- 🟢 Adicionar um Perfil à Lista de Favoritos (frontend)
+- 🟢 Visualização da Lista de Favoritos (frontend)
+- 🟢 Remoção de um Perfil da Lista de Favoritos (frontend))
+- 🟢 Persistência e Usabilidade (frontend)
+- 🟢 Feedback ao Usuário (frontend)
