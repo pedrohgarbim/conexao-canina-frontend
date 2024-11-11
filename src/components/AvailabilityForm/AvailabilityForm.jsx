@@ -20,16 +20,15 @@ const AvailabilityForm = () => {
   const [calendarLink, setCalendarLink] = useState(""); // Link de compartilhamento
 
   useEffect(() => {
-    // Carregar as disponibilidades iniciais (exemplo de chamada do backend)
     const fetchAvailabilityList = async () => {
       try {
-        const response = await axios.get("/api/availability"); // Chamada para o backend
+        const response = await axios.get("/api/availability");
         setAvailabilityList(response.data);
       } catch (error) {
         console.error("Erro ao carregar as disponibilidades:", error);
       }
     };
-    
+
     fetchAvailabilityList();
   }, []);
 
@@ -57,11 +56,7 @@ const AvailabilityForm = () => {
     }
 
     try {
-      const response = await axios.post("/api/availability", {
-        date,
-        time,
-        note
-      });
+      const response = await axios.post("/api/availability", { date, time, note });
       setAvailabilityList([...availabilityList, response.data]);
       resetForm();
       alert("Disponibilidade adicionada com sucesso!");
@@ -79,7 +74,6 @@ const AvailabilityForm = () => {
   const handleDelete = (availability) => {
     setAvailabilityList(availabilityList.filter(item => item !== availability));
     setModalIsOpen(false);
-    // Aqui você pode fazer a chamada para o backend para remover a disponibilidade
     axios.delete(`/api/availability/${availability.id}`)
       .catch((error) => {
         console.error("Erro ao deletar a disponibilidade", error);
@@ -92,8 +86,7 @@ const AvailabilityForm = () => {
   };
 
   const generateCalendarLink = () => {
-    // Gera um link único para o calendário, sem permitir edição
-    const link = `/calendar/view-only`; // Este link poderia ser configurado com base no estado atual
+    const link = `/calendar/view-only`;
     setCalendarLink(link);
   };
 
@@ -102,7 +95,6 @@ const AvailabilityForm = () => {
       (item) => item.date.toDateString() === date.toDateString()
     );
 
-    // Estilo visual para disponibilidade
     const isAvailable = availability ? "available" : "unavailable";
     return (
       <div className={styles.calendarTile}>
@@ -116,20 +108,25 @@ const AvailabilityForm = () => {
   return (
     <div className={styles.availabilityFormContainer}>
       <h2 className={styles.availabilityFormTitle}>Adicionar Disponibilidade</h2>
-      <Calendar
-        onChange={setSelectedDate}
-        value={selectedDate}
-        onClickDay={(date) => {
-          const availability = availabilityList.find(
-            (availability) => availability.date.toDateString() === date.toDateString()
-          );
-          if (availability) {
-            handleEdit(availability); // Editar se já existir disponibilidade
-          }
-        }}
-        tileContent={renderCalendarTile} // Renderiza ícones ou cores no calendário
-      />
 
+      {/* Calendário com navegação */}
+      <div className={styles.calendarContainer}>
+        <Calendar
+          onChange={setSelectedDate}
+          value={selectedDate}
+          onClickDay={(date) => {
+            const availability = availabilityList.find(
+              (availability) => availability.date.toDateString() === date.toDateString()
+            );
+            if (availability) {
+              handleEdit(availability);
+            }
+          }}
+          tileContent={renderCalendarTile}
+        />
+      </div>
+
+      {/* Formulário para adicionar nova disponibilidade */}
       <Formik
         initialValues={{
           date: selectedDate,
@@ -191,6 +188,7 @@ const AvailabilityForm = () => {
         ))}
       </ul>
 
+      {/* Botão para compartilhar o link */}
       <div className={styles.shareContainer}>
         <button onClick={generateCalendarLink} className={styles.shareButton}>
           Gerar Link de Compartilhamento
@@ -215,7 +213,6 @@ const AvailabilityForm = () => {
             }}
             validationSchema={validationSchema}
             onSubmit={async (values, { resetForm }) => {
-              // Atualiza a disponibilidade
               const updatedAvailability = {
                 ...currentAvailability,
                 ...values,
@@ -247,7 +244,6 @@ const AvailabilityForm = () => {
                 <div className={styles.availabilityFormField}>
                   <label>Horário:</label>
                   <Field as="select" name="time" className={styles.availabilityFormSelect}>
-                    <option value="">Selecione o horário</option>
                     <option value="09:00">09:00</option>
                     <option value="10:00">10:00</option>
                     <option value="11:00">11:00</option>
