@@ -1,0 +1,70 @@
+.availabilityFormContainer {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .availabilityFormTitle {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .availabilityForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .availabilityFormField {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .availabilityFormSelect,
+  .availabilityFormTextarea {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .availabilityFormError {
+    color: red;
+    font-size: 14px;
+  }
+  
+  .availabilityFormButton {
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .availabilityFormButton:hover {
+    background-color: #45a049;
+  }
+  
+  .availabilityFormSubtitle {
+    margin-top: 20px;
+    color: #555;
+  }
+  
+  .availabilityFormList {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+  }
+  
+  .availabilityFormListItem {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
