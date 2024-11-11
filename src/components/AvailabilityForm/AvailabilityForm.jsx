@@ -17,10 +17,10 @@ const AvailabilityForm = () => {
   const [availabilityList, setAvailabilityList] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentAvailability, setCurrentAvailability] = useState(null);
+  const [calendarLink, setCalendarLink] = useState(""); // Link de compartilhamento
 
   useEffect(() => {
     // Carregar as disponibilidades iniciais (exemplo de chamada do backend)
-    // Esta parte deve ser substituída pela lógica do seu backend
     const fetchAvailabilityList = async () => {
       try {
         const response = await axios.get("/api/availability"); // Chamada para o backend
@@ -91,6 +91,28 @@ const AvailabilityForm = () => {
     setModalIsOpen(false);
   };
 
+  const generateCalendarLink = () => {
+    // Gera um link único para o calendário, sem permitir edição
+    const link = `/calendar/view-only`; // Este link poderia ser configurado com base no estado atual
+    setCalendarLink(link);
+  };
+
+  const renderCalendarTile = ({ date, view }) => {
+    const availability = availabilityList.find(
+      (item) => item.date.toDateString() === date.toDateString()
+    );
+
+    // Estilo visual para disponibilidade
+    const isAvailable = availability ? "available" : "unavailable";
+    return (
+      <div className={styles.calendarTile}>
+        <div className={styles[isAvailable]}>
+          {date.getDate()}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className={styles.availabilityFormContainer}>
       <h2 className={styles.availabilityFormTitle}>Adicionar Disponibilidade</h2>
@@ -105,6 +127,7 @@ const AvailabilityForm = () => {
             handleEdit(availability); // Editar se já existir disponibilidade
           }
         }}
+        tileContent={renderCalendarTile} // Renderiza ícones ou cores no calendário
       />
 
       <Formik
@@ -168,6 +191,18 @@ const AvailabilityForm = () => {
         ))}
       </ul>
 
+      <div className={styles.shareContainer}>
+        <button onClick={generateCalendarLink} className={styles.shareButton}>
+          Gerar Link de Compartilhamento
+        </button>
+        {calendarLink && (
+          <div className={styles.shareLink}>
+            <label>Link para Compartilhar:</label>
+            <input type="text" value={window.location.origin + calendarLink} readOnly />
+          </div>
+        )}
+      </div>
+
       {/* Modal de edição */}
       <Modal isOpen={modalIsOpen} onRequestClose={handleCloseModal} contentLabel="Editar Disponibilidade">
         <h2>Editar Disponibilidade</h2>
@@ -212,6 +247,7 @@ const AvailabilityForm = () => {
                 <div className={styles.availabilityFormField}>
                   <label>Horário:</label>
                   <Field as="select" name="time" className={styles.availabilityFormSelect}>
+                    <option value="">Selecione o horário</option>
                     <option value="09:00">09:00</option>
                     <option value="10:00">10:00</option>
                     <option value="11:00">11:00</option>
