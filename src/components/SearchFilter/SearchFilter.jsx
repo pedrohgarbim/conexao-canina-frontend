@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styles from './SearchFilter.module.css';
 
 const SearchFilter = ({ updateSearchRadius, updateSortOption }) => {
-  const [radius, setRadius] = useState(10); // Default radius of 10 km
-  const [sortOption, setSortOption] = useState('Mais Próximo'); // Default sort option
+  const [radius, setRadius] = useState(10); // Raio padrão de 10 km
+  const [sortOption, setSortOption] = useState('Mais Próximo'); // Opção de ordenação padrão
 
   // Atualiza o valor do raio conforme o slider ou campo de texto é ajustado
   const handleRadiusChange = (e) => {
@@ -19,12 +19,12 @@ const SearchFilter = ({ updateSearchRadius, updateSortOption }) => {
 
   // Chama a função de atualização dos resultados quando o raio muda
   useEffect(() => {
-    updateSearchRadius(radius);
+    updateSearchRadius(radius); // Atualiza a distância de busca no componente pai
   }, [radius, updateSearchRadius]);
 
   // Chama a função de atualização dos resultados quando a ordenação muda
   useEffect(() => {
-    updateSortOption(sortOption);
+    updateSortOption(sortOption); // Atualiza a opção de ordenação no componente pai
   }, [sortOption, updateSortOption]);
 
   return (
@@ -68,6 +68,8 @@ const SearchFilter = ({ updateSearchRadius, updateSortOption }) => {
         <select id="sortOption" value={sortOption} onChange={handleSortChange} className={styles.select}>
           <option value="Mais Próximo">Mais Próximo</option>
           {/* Adicione outras opções de ordenação conforme necessário */}
+          <option value="Menos Likes">Menos Likes</option>
+          <option value="Mais Likes">Mais Likes</option>
         </select>
       </div>
     </div>
