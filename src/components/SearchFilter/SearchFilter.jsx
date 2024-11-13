@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './SearchFilter.module.css';
 
-const SearchFilter = ({ updateSearchRadius, updateSortOption }) => {
+const SearchFilter = ({ updateSearchRadius, updateSortOption, dogsAvailable }) => {
   const [radius, setRadius] = useState(10); // Raio padrão de 10 km
   const [sortOption, setSortOption] = useState('Mais Próximo'); // Opção de ordenação padrão
   const [userLocation, setUserLocation] = useState(null); // Armazenar a localização do usuário
@@ -9,12 +9,14 @@ const SearchFilter = ({ updateSearchRadius, updateSortOption }) => {
   const [manualLocation, setManualLocation] = useState({ latitude: '', longitude: '' }); // Localização manual
   const [isLoading, setIsLoading] = useState(false); // Estado de carregamento
   const [filterApplied, setFilterApplied] = useState(false); // Indica se os filtros foram aplicados
+  const [noDogsMessage, setNoDogsMessage] = useState(false); // Indica quando não há cães no raio de busca
 
   // Atualiza o valor do raio conforme o slider ou campo de texto é ajustado
   const handleRadiusChange = (e) => {
     const newRadius = e.target.value;
     setRadius(newRadius);
     setFilterApplied(false); // Reseta a mensagem de filtro aplicado
+    setNoDogsMessage(false); // Reseta a notificação de "sem cães"
   };
 
   // Atualiza a opção de ordenação
@@ -22,6 +24,7 @@ const SearchFilter = ({ updateSearchRadius, updateSortOption }) => {
     const newSortOption = e.target.value;
     setSortOption(newSortOption);
     setFilterApplied(false); // Reseta a mensagem de filtro aplicado
+    setNoDogsMessage(false); // Reseta a notificação de "sem cães"
   };
 
   // Solicita a localização automática do usuário
@@ -37,6 +40,7 @@ const SearchFilter = ({ updateSearchRadius, updateSortOption }) => {
           setErrorMessage(''); // Limpa a mensagem de erro
           setIsLoading(false); // Finaliza o carregamento
           setFilterApplied(true); // Define que os filtros foram aplicados
+          setNoDogsMessage(false); // Reseta a notificação de "sem cães"
         },
         (error) => {
           setErrorMessage('Permissão negada ou erro ao acessar a localização.');
@@ -56,6 +60,7 @@ const SearchFilter = ({ updateSearchRadius, updateSortOption }) => {
       [name]: value,
     }));
     setFilterApplied(false); // Reseta a mensagem de filtro aplicado
+    setNoDogsMessage(false); // Reseta a notificação de "sem cães"
   };
 
   // Chama a função de atualização dos resultados quando o raio muda
@@ -67,6 +72,15 @@ const SearchFilter = ({ updateSearchRadius, updateSortOption }) => {
   useEffect(() => {
     updateSortOption(sortOption);
   }, [sortOption, updateSortOption]);
+
+  // Verifica se há cães disponíveis quando a busca é feita
+  useEffect(() => {
+    if (dogsAvailable === 0) {
+      setNoDogsMessage(true); // Exibe a notificação se não houver cães
+    } else {
+      setNoDogsMessage(false); // Esconde a notificação se houver cães
+    }
+  }, [dogsAvailable]);
 
   return (
     <div className={styles.searchFilterContainer}>
@@ -157,6 +171,18 @@ const SearchFilter = ({ updateSearchRadius, updateSortOption }) => {
       <div className={styles.feedbackSection}>
         {/* Feedback visual para filtros aplicados */}
         {filterApplied && <p className={styles.successMessage}>Filtros aplicados com sucesso!</p>}
+      </div>
+
+      <div className={styles.notificationSection}>
+        {/* Notificação quando não houver cães disponíveis */}
+        {noDogsMessage && (
+          <div className={styles.noDogsNotification}>
+            <p className={styles.noDogsMessage}>Nenhum cão encontrado dentro do raio de busca.</p>
+            <p className={styles.suggestionMessage}>
+              Tente aumentar o raio de busca ou alterar as opções de ordenação.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
