@@ -7,32 +7,40 @@ const SearchFilter = ({ updateSearchRadius, updateSortOption }) => {
   const [userLocation, setUserLocation] = useState(null); // Armazenar a localização do usuário
   const [errorMessage, setErrorMessage] = useState(''); // Para armazenar erros de geolocalização
   const [manualLocation, setManualLocation] = useState({ latitude: '', longitude: '' }); // Localização manual
+  const [isLoading, setIsLoading] = useState(false); // Estado de carregamento
+  const [filterApplied, setFilterApplied] = useState(false); // Indica se os filtros foram aplicados
 
   // Atualiza o valor do raio conforme o slider ou campo de texto é ajustado
   const handleRadiusChange = (e) => {
     const newRadius = e.target.value;
     setRadius(newRadius);
+    setFilterApplied(false); // Reseta a mensagem de filtro aplicado
   };
 
   // Atualiza a opção de ordenação
   const handleSortChange = (e) => {
     const newSortOption = e.target.value;
     setSortOption(newSortOption);
+    setFilterApplied(false); // Reseta a mensagem de filtro aplicado
   };
 
   // Solicita a localização automática do usuário
   const requestUserLocation = () => {
     if (navigator.geolocation) {
+      setIsLoading(true); // Inicia o carregamento
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setUserLocation({
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
           });
-          setErrorMessage(''); // Limpa a mensagem de erro se a geolocalização for bem-sucedida
+          setErrorMessage(''); // Limpa a mensagem de erro
+          setIsLoading(false); // Finaliza o carregamento
+          setFilterApplied(true); // Define que os filtros foram aplicados
         },
         (error) => {
           setErrorMessage('Permissão negada ou erro ao acessar a localização.');
+          setIsLoading(false); // Finaliza o carregamento
         }
       );
     } else {
@@ -47,6 +55,7 @@ const SearchFilter = ({ updateSearchRadius, updateSortOption }) => {
       ...prevState,
       [name]: value,
     }));
+    setFilterApplied(false); // Reseta a mensagem de filtro aplicado
   };
 
   // Chama a função de atualização dos resultados quando o raio muda
@@ -109,7 +118,8 @@ const SearchFilter = ({ updateSearchRadius, updateSortOption }) => {
         <button onClick={requestUserLocation} className={styles.button}>
           Usar Minha Localização Atual
         </button>
-        {userLocation && (
+        {isLoading && <p className={styles.loadingMessage}>Detectando localização...</p>}
+        {userLocation && !isLoading && (
           <p className={styles.locationInfo}>
             Localização Detectada: Latitude {userLocation.latitude}, Longitude {userLocation.longitude}
           </p>
@@ -142,6 +152,11 @@ const SearchFilter = ({ updateSearchRadius, updateSortOption }) => {
           onChange={handleManualLocationChange}
           className={styles.input}
         />
+      </div>
+
+      <div className={styles.feedbackSection}>
+        {/* Feedback visual para filtros aplicados */}
+        {filterApplied && <p className={styles.successMessage}>Filtros aplicados com sucesso!</p>}
       </div>
     </div>
   );
