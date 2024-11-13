@@ -57,4 +57,16 @@
     border-radius: 5px;
     background-color: white;
   }
+
+  .locationInfo {
+    margin-top: 10px;
+    color: #333;
+    font-size: 1rem;
+  }
+  
+  .errorMessage {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
   
