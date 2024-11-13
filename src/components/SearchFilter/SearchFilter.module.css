@@ -70,3 +70,19 @@
     margin-top: 10px;
   }
   
+  .loadingMessage {
+    color: #007bff;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+  
+  .successMessage {
+    color: green;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+  
+  .feedbackSection {
+    margin-top: 20px;
+    text-align: center;
+  }
