@@ -1,5 +1,5 @@
 /* Container Principal */
-.container {
+.verificationRequestContainer {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
@@ -9,14 +9,14 @@
 }
 
 /* Título da página */
-.title {
+.verificationRequestTitle {
   font-size: 1.8rem;
   margin-bottom: 20px;
   text-align: center;
 }
 
 /* Perfil do Usuário */
-.profile {
+.verificationRequestProfile {
   background-color: #ffffff;
   padding: 15px;
   margin-bottom: 20px;
@@ -25,18 +25,18 @@
   text-align: center;
 }
 
-.profileTitle {
+.verificationRequestProfileTitle {
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
 
-.profileName {
+.verificationRequestProfileName {
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-.verifiedBadge {
+.verificationRequestVerifiedBadge {
   display: inline-block;
   padding: 5px 10px;
   color: #ffffff;
@@ -45,7 +45,7 @@
   font-size: 0.9rem;
 }
 
-.notVerifiedBadge {
+.verificationRequestNotVerifiedBadge {
   display: inline-block;
   padding: 5px 10px;
   color: #ffffff;
@@ -54,8 +54,31 @@
   font-size: 0.9rem;
 }
 
+/* Notificações */
+.verificationRequestNotifications {
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.verificationRequestNotification {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.verificationRequestSuccess {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.verificationRequestInfo {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
 /* Informações de segurança */
-.securityInfo {
+.verificationRequestSecurityInfo {
   background-color: #e8f5e9;
   padding: 15px;
   margin-bottom: 20px;
@@ -63,19 +86,19 @@
   border: 1px solid #4caf50;
 }
 
-.securityTitle {
+.verificationRequestSecurityTitle {
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-.securityText {
+.verificationRequestSecurityText {
   font-size: 1rem;
   color: #4caf50;
 }
 
 /* Instruções */
-.instructions {
+.verificationRequestInstructions {
   background-color: #fff3cd;
   padding: 10px;
   margin-bottom: 20px;
@@ -83,107 +106,63 @@
   border: 1px solid #ffeeba;
 }
 
-.instructionsText {
+.verificationRequestInstructionsText {
   font-size: 1rem;
   font-weight: normal;
   color: #856404;
 }
 
 /* Formulário */
-.form {
+.verificationRequestForm {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.field {
+.verificationRequestField {
   display: flex;
   flex-direction: column;
 }
 
-.label {
+.verificationRequestLabel {
   font-size: 1rem;
   margin-bottom: 8px;
   font-weight: bold;
 }
 
-.input,
-.select {
+.verificationRequestInput,
+.verificationRequestSelect {
   padding: 10px;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-/* Aviso de confidencialidade */
-.notice {
-  background-color: #fff3cd;
-  border: 1px solid #ffeeba;
-  padding: 10px;
-  border-radius: 4px;
-  font-size: 0.9rem;
+.verificationRequestNotice {
+  font-size: 1rem;
+  color: #ff9800;
+  font-weight: bold;
 }
 
-/* Botão de envio */
-.button {
-  padding: 10px;
+/* Botão */
+.verificationRequestButton {
+  padding: 10px 20px;
   font-size: 1rem;
-  font-weight: bold;
   color: #fff;
   background-color: #4caf50;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.button:hover {
+.verificationRequestButton:hover {
   background-color: #45a049;
 }
 
 /* Feedback */
-.feedback {
-  margin-top: 20px;
+.verificationRequestFeedback {
   font-size: 1rem;
-  color: #007bff;
+  color: #f44336;
+  margin-top: 15px;
   text-align: center;
-}
-
-/* Responsividade para dispositivos móveis */
-@media (max-width: 768px) {
-  .container {
-    padding: 15px;
-  }
-
-  .title {
-    font-size: 1.5rem;
-  }
-
-  .profileName {
-    font-size: 1rem;
-  }
-
-  .profileTitle {
-    font-size: 1.2rem;
-  }
-
-  .verifiedBadge,
-  .notVerifiedBadge {
-    font-size: 0.8rem;
-    padding: 4px 8px;
-  }
-
-  .instructionsText {
-    font-size: 0.9rem;
-  }
-
-  .input,
-  .select {
-    padding: 8px;
-    font-size: 0.9rem;
-  }
-
-  .button {
-    font-size: 0.9rem;
-  }
 }
