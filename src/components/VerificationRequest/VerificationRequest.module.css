@@ -13,6 +13,44 @@
     text-align: center;
   }
   
+  .profile {
+    background-color: #ffffff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .profileTitle {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .profileName {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .verifiedBadge {
+    display: inline-block;
+    padding: 5px 10px;
+    color: #ffffff;
+    background-color: #4caf50;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+  
+  .notVerifiedBadge {
+    display: inline-block;
+    padding: 5px 10px;
+    color: #ffffff;
+    background-color: #f44336;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+  
   .form {
     display: flex;
     flex-direction: column;
@@ -38,7 +76,7 @@
     border-radius: 4px;
   }
   
-  .button {
+  /* .button {
     padding: 10px;
     font-size: 1rem;
     font-weight: bold;
@@ -52,7 +90,7 @@
   
   .button:hover {
     background-color: #45a049;
-  }
+  } */
   
   .feedback {
     margin-top: 20px;

@@ -5,6 +5,7 @@ const VerificationRequest = () => {
   const [document, setDocument] = useState(null);
   const [method, setMethod] = useState("");
   const [feedback, setFeedback] = useState("");
+  const [isVerified, setIsVerified] = useState(false); // Status de verificação
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,15 +15,30 @@ const VerificationRequest = () => {
       return;
     }
 
-    // Simular envio
+    // Simular envio e verificação
+    setFeedback("Solicitação enviada, aguardando análise.");
     setTimeout(() => {
-      setFeedback("Solicitação enviada, aguardando análise.");
-    }, 1000);
+      setIsVerified(true); // Simula aprovação
+      setFeedback("Parabéns! Sua conta foi verificada.");
+    }, 2000);
   };
 
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Solicitação de Verificação de Identidade</h2>
+
+      {/* Exibição do perfil */}
+      <div className={styles.profile}>
+        <h3 className={styles.profileTitle}>Perfil do Usuário</h3>
+        <p className={styles.profileName}>Nome do Usuário</p>
+        {isVerified ? (
+          <span className={styles.verifiedBadge}>Verificado ✅</span>
+        ) : (
+          <span className={styles.notVerifiedBadge}>Não Verificado ❌</span>
+        )}
+      </div>
+
+      {/* Formulário de solicitação */}
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.field}>
           <label htmlFor="document" className={styles.label}>
