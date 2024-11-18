@@ -49,6 +49,15 @@ const VerificationRequest = () => {
         </p>
       </div>
 
+      {/* Instruções de uso */}
+      <div className={styles.instructions}>
+        <p className={styles.instructionsText}>
+          Para iniciar o processo de verificação, por favor, faça o upload de
+          um documento válido e escolha o método de verificação. Sua solicitação
+          será analisada, e você será informado sobre o status.
+        </p>
+      </div>
+
       {/* Formulário de solicitação */}
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.field}>
