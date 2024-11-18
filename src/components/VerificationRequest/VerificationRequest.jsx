@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import styles from "./VerificationRequest.module.css";
+import React, { useState, useEffect } from "react";
+import styles from "./VerificationRequestPage.module.css";
 
 const VerificationRequest = () => {
   const [document, setDocument] = useState(null);
   const [method, setMethod] = useState("");
   const [feedback, setFeedback] = useState("");
   const [isVerified, setIsVerified] = useState(false); // Status de verificação
+  const [notifications, setNotifications] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,33 +16,67 @@ const VerificationRequest = () => {
       return;
     }
 
-    // Simular envio e verificação
+    // Simulação de envio e verificação
     setFeedback("Solicitação enviada, aguardando análise.");
+    setNotifications((prevNotifications) => [
+      ...prevNotifications,
+      { message: "Solicitação enviada, aguardando análise.", type: "info" },
+    ]);
     setTimeout(() => {
       setIsVerified(true); // Simula aprovação
       setFeedback("Parabéns! Sua conta foi verificada.");
+      setNotifications((prevNotifications) => [
+        ...prevNotifications,
+        { message: "Sua conta foi verificada com sucesso!", type: "success" },
+      ]);
     }, 2000);
   };
 
+  // Simulação de notificações em tempo real
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setNotifications((prevNotifications) => [
+        ...prevNotifications,
+        { message: "Novidade: O processo de verificação está em andamento.", type: "info" },
+      ]);
+    }, 10000); // Notificação a cada 10 segundos, simulando atualizações
+
+    return () => clearInterval(interval); // Limpa o intervalo ao desmontar o componente
+  }, []);
+
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>Solicitação de Verificação de Identidade</h2>
+    <div className={styles.verificationRequestContainer}>
+      <h2 className={styles.verificationRequestTitle}>Solicitação de Verificação de Identidade</h2>
 
       {/* Exibição do perfil */}
-      <div className={styles.profile}>
-        <h3 className={styles.profileTitle}>Perfil do Usuário</h3>
-        <p className={styles.profileName}>Nome do Usuário</p>
+      <div className={styles.verificationRequestProfile}>
+        <h3 className={styles.verificationRequestProfileTitle}>Perfil do Usuário</h3>
+        <p className={styles.verificationRequestProfileName}>Nome do Usuário</p>
         {isVerified ? (
-          <span className={styles.verifiedBadge}>Verificado ✅</span>
+          <span className={styles.verificationRequestVerifiedBadge}>Verificado ✅</span>
         ) : (
-          <span className={styles.notVerifiedBadge}>Não Verificado ❌</span>
+          <span className={styles.verificationRequestNotVerifiedBadge}>Não Verificado ❌</span>
         )}
       </div>
 
+      {/* Notificações */}
+      <div className={styles.verificationRequestNotifications}>
+        {notifications.map((notification, index) => (
+          <div
+            key={index}
+            className={`${styles.verificationRequestNotification} ${
+              notification.type === "success" ? styles.verificationRequestSuccess : styles.verificationRequestInfo
+            }`}
+          >
+            {notification.message}
+          </div>
+        ))}
+      </div>
+
       {/* Informações de segurança */}
-      <div className={styles.securityInfo}>
-        <h3 className={styles.securityTitle}>Segurança e Privacidade</h3>
-        <p className={styles.securityText}>
+      <div className={styles.verificationRequestSecurityInfo}>
+        <h3 className={styles.verificationRequestSecurityTitle}>Segurança e Privacidade</h3>
+        <p className={styles.verificationRequestSecurityText}>
           Garantimos que todos os dados enviados durante o processo de
           verificação são tratados com total confidencialidade. Seus
           documentos serão protegidos utilizando as melhores práticas de
@@ -50,8 +85,8 @@ const VerificationRequest = () => {
       </div>
 
       {/* Instruções de uso */}
-      <div className={styles.instructions}>
-        <p className={styles.instructionsText}>
+      <div className={styles.verificationRequestInstructions}>
+        <p className={styles.verificationRequestInstructionsText}>
           Para iniciar o processo de verificação, por favor, faça o upload de
           um documento válido e escolha o método de verificação. Sua solicitação
           será analisada, e você será informado sobre o status.
@@ -59,9 +94,9 @@ const VerificationRequest = () => {
       </div>
 
       {/* Formulário de solicitação */}
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.field}>
-          <label htmlFor="document" className={styles.label}>
+      <form onSubmit={handleSubmit} className={styles.verificationRequestForm}>
+        <div className={styles.verificationRequestField}>
+          <label htmlFor="document" className={styles.verificationRequestLabel}>
             Upload do Documento
           </label>
           <input
@@ -69,19 +104,19 @@ const VerificationRequest = () => {
             id="document"
             accept="image/*,.pdf"
             onChange={(e) => setDocument(e.target.files[0])}
-            className={styles.input}
+            className={styles.verificationRequestInput}
           />
         </div>
 
-        <div className={styles.field}>
-          <label htmlFor="method" className={styles.label}>
+        <div className={styles.verificationRequestField}>
+          <label htmlFor="method" className={styles.verificationRequestLabel}>
             Método de Verificação
           </label>
           <select
             id="method"
             value={method}
             onChange={(e) => setMethod(e.target.value)}
-            className={styles.select}
+            className={styles.verificationRequestSelect}
           >
             <option value="">Selecione um método</option>
             <option value="email">Verificação por E-mail</option>
@@ -89,7 +124,7 @@ const VerificationRequest = () => {
           </select>
         </div>
 
-        <div className={styles.notice}>
+        <div className={styles.verificationRequestNotice}>
           <p>
             📢 <strong>Aviso:</strong> Seus dados serão utilizados
             exclusivamente para fins de verificação e não serão compartilhados
@@ -97,12 +132,12 @@ const VerificationRequest = () => {
           </p>
         </div>
 
-        <button type="submit" className={styles.button}>
+        <button type="submit" className={styles.verificationRequestButton}>
           Enviar Solicitação
         </button>
       </form>
 
-      {feedback && <p className={styles.feedback}>{feedback}</p>}
+      {feedback && <p className={styles.verificationRequestFeedback}>{feedback}</p>}
     </div>
   );
 };
