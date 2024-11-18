@@ -38,6 +38,17 @@ const VerificationRequest = () => {
         )}
       </div>
 
+      {/* Informações de segurança */}
+      <div className={styles.securityInfo}>
+        <h3 className={styles.securityTitle}>Segurança e Privacidade</h3>
+        <p className={styles.securityText}>
+          Garantimos que todos os dados enviados durante o processo de
+          verificação são tratados com total confidencialidade. Seus
+          documentos serão protegidos utilizando as melhores práticas de
+          segurança e criptografia.
+        </p>
+      </div>
+
       {/* Formulário de solicitação */}
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.field}>
@@ -67,6 +78,14 @@ const VerificationRequest = () => {
             <option value="email">Verificação por E-mail</option>
             <option value="telefone">Verificação por Telefone</option>
           </select>
+        </div>
+
+        <div className={styles.notice}>
+          <p>
+            📢 <strong>Aviso:</strong> Seus dados serão utilizados
+            exclusivamente para fins de verificação e não serão compartilhados
+            com terceiros.
+          </p>
         </div>
 
         <button type="submit" className={styles.button}>
