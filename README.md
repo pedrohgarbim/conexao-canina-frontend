@@ -200,7 +200,7 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Segurança e Privacidade(frontend)
 
 ### 🌍 **Filtro por Distância**
-- 🟢 Aplicação de Filtro de Distância na Busca (frontend) (frontend)
+- 🟢 Aplicação de Filtro de Distância na Busca (frontend)
 - 🟢 Ordenação dos Resultados por Proximidade (frontend)
 - 🟢 Exibição de Distância nos Resultados (frontend)
 - 🟢 Geolocalização (frontend)
@@ -213,3 +213,9 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Segurança dos Dados de Verificação (frontend)
 - 🟢 Interface e Usabilidade (frontend)
 - 🟢 Notificações (frontend)
+  
+### 📊 **Visualização de Estatísticas**
+- 🟢 Visualização de Contagem de Visualizações (frontend)
+- 🟢 Visualização de Estatísticas por Período (frontend)
+- 🟢 Interface e Usabilidade (frontend)
+- 🟢 Segurança e Privacidade (frontend)
