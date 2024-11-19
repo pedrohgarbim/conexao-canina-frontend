@@ -198,3 +198,18 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Visualização e Compartilhamento da Disponibilidade (frontend)
 - 🟢 Interface e Usabilidade (frontend)
 - 🟢 Segurança e Privacidade(frontend)
+
+### 🌍 **Filtro por Distância**
+- 🟢 Aplicação de Filtro de Distância na Busca (frontend) (frontend)
+- 🟢 Ordenação dos Resultados por Proximidade (frontend)
+- 🟢 Exibição de Distância nos Resultados (frontend)
+- 🟢 Geolocalização (frontend)
+- 🟢 Interface e Usabilidade (frontend)
+- 🟢 Notificações (frontend)
+
+### 👤 **Verificação de Identidade do Usuário**
+- 🟢 Solicitação de Verificação de Identidade (frontend)
+- 🟢 Visualização de Status de Verificação dos Outros Usuários (frontend)
+- 🟢 Segurança dos Dados de Verificação (frontend)
+- 🟢 Interface e Usabilidade (frontend)
+- 🟢 Notificações (frontend)
