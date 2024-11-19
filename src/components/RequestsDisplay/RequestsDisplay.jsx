@@ -1,52 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { format, subDays, subMonths } from 'date-fns';
+import { BounceLoader } from 'react-spinners';
+import { FaChartBar, FaEnvelope } from 'react-icons/fa';
 import styles from './RequestsDisplay.module.css';
 
 const RequestsDisplay = () => {
   const [requestCount, setRequestCount] = useState(0);
   const [statistics, setStatistics] = useState([]);
   const [selectedPeriod, setSelectedPeriod] = useState('lastWeek');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [activeTab, setActiveTab] = useState('requests'); // 'requests' or 'views'
 
-  const fetchStatistics = (period) => {
-    // Simulação de chamada à API para buscar estatísticas baseadas no período
-    let startDate;
-    if (period === 'lastWeek') {
-      startDate = subDays(new Date(), 7);
-    } else if (period === 'lastMonth') {
-      startDate = subMonths(new Date(), 1);
-    } else {
-      startDate = subDays(new Date(), 30); // Período personalizado (ajustável)
-    }
-
-    // Simulação de dados
-    const stats = Array.from({ length: 7 }, (_, i) => ({
-      date: format(subDays(new Date(), 6 - i), 'yyyy-MM-dd'),
-      requests: Math.floor(Math.random() * 50),
-    }));
-    setStatistics(stats);
-  };
-
-  useEffect(() => {
-    // WebSocket para número de solicitações
-    const socket = new WebSocket('wss://example.com/requests'); // Substitua pelo endpoint real
-
-    socket.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      if (data.type === 'updateRequestCount') {
-        setRequestCount(data.count);
+  const fetchStatistics = async (period) => {
+    setLoading(true);
+    setError('');
+    try {
+      // Simulação de dados
+      let startDate;
+      if (period === 'lastWeek') {
+        startDate = subDays(new Date(), 7);
+      } else if (period === 'lastMonth') {
+        startDate = subMonths(new Date(), 1);
+      } else {
+        startDate = subDays(new Date(), 30); // Período personalizado (ajustável)
       }
-    };
 
-    socket.onerror = (error) => {
-      console.error('WebSocket Error:', error);
-    };
+      const stats = Array.from({ length: 7 }, (_, i) => ({
+        date: format(subDays(new Date(), 6 - i), 'yyyy-MM-dd'),
+        requests: Math.floor(Math.random() * 50),
+      }));
 
-    // Fechar o socket ao desmontar o componente
-    return () => {
-      socket.close();
-    };
-  }, []);
+      // Simula tempo de carregamento
+      await new Promise((res) => setTimeout(res, 1000));
+      setStatistics(stats);
+    } catch (err) {
+      setError('Erro ao carregar os dados. Por favor, tente novamente.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     fetchStatistics(selectedPeriod);
@@ -56,14 +50,21 @@ const RequestsDisplay = () => {
     setSelectedPeriod(event.target.value);
   };
 
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+  };
+
   const chartData = {
     labels: statistics.map((stat) => stat.date),
     datasets: [
       {
         label: 'Solicitações',
         data: statistics.map((stat) => stat.requests),
-        borderColor: '#0078d4',
-        backgroundColor: 'rgba(0, 120, 212, 0.2)',
+        borderColor: activeTab === 'requests' ? '#0078d4' : '#28a745',
+        backgroundColor:
+          activeTab === 'requests'
+            ? 'rgba(0, 120, 212, 0.2)'
+            : 'rgba(40, 167, 69, 0.2)',
         tension: 0.4,
       },
     ],
@@ -86,7 +87,7 @@ const RequestsDisplay = () => {
       y: {
         title: {
           display: true,
-          text: 'Solicitações',
+          text: activeTab === 'requests' ? 'Solicitações' : 'Visualizações',
         },
       },
     },
@@ -94,27 +95,52 @@ const RequestsDisplay = () => {
 
   return (
     <div className={styles.requestsDisplayContainer}>
-      <div className={styles.requestsDisplayIcon}>
-        <span role="img" aria-label="Solicitações">
-          📩
-        </span>
-      </div>
-      <div className={styles.requestsDisplayText}>
-        <span>Solicitações:</span>
-        <span className={styles.requestsDisplayCount}>{requestCount}</span>
+      <div className={styles.navTabs}>
+        <button
+          className={`${styles.navButton} ${
+            activeTab === 'requests' ? styles.active : ''
+          }`}
+          onClick={() => handleTabChange('requests')}
+        >
+          <FaEnvelope /> Solicitações
+        </button>
+        <button
+          className={`${styles.navButton} ${
+            activeTab === 'views' ? styles.active : ''
+          }`}
+          onClick={() => handleTabChange('views')}
+        >
+          <FaChartBar /> Visualizações
+        </button>
       </div>
 
-      <div className={styles.periodSelector}>
-        <label htmlFor="period">Período:</label>
-        <select id="period" value={selectedPeriod} onChange={handlePeriodChange}>
-          <option value="lastWeek">Última semana</option>
-          <option value="lastMonth">Último mês</option>
-          <option value="custom">Período personalizado</option>
-        </select>
-      </div>
+      <div className={styles.requestsDisplayContent}>
+        {loading ? (
+          <div className={styles.loader}>
+            <BounceLoader color="#0078d4" />
+          </div>
+        ) : error ? (
+          <div className={styles.errorMessage}>{error}</div>
+        ) : (
+          <>
+            <div className={styles.periodSelector}>
+              <label htmlFor="period">Período:</label>
+              <select
+                id="period"
+                value={selectedPeriod}
+                onChange={handlePeriodChange}
+              >
+                <option value="lastWeek">Última semana</option>
+                <option value="lastMonth">Último mês</option>
+                <option value="custom">Período personalizado</option>
+              </select>
+            </div>
 
-      <div className={styles.chartContainer}>
-        <Line data={chartData} options={chartOptions} />
+            <div className={styles.chartContainer}>
+              <Line data={chartData} options={chartOptions} />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
