@@ -3,28 +3,29 @@ import { Line } from 'react-chartjs-2';
 import { format, subDays, subMonths } from 'date-fns';
 import { BounceLoader } from 'react-spinners';
 import { FaChartBar, FaEnvelope } from 'react-icons/fa';
+import { useAuth } from './AuthContext'; // Importando o contexto de autenticação
 import styles from './RequestsDisplay.module.css';
 
 const RequestsDisplay = () => {
-  const [requestCount, setRequestCount] = useState(0);
+  const { isAuthenticated } = useAuth(); // Obtendo o estado de autenticação
   const [statistics, setStatistics] = useState([]);
   const [selectedPeriod, setSelectedPeriod] = useState('lastWeek');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [activeTab, setActiveTab] = useState('requests'); // 'requests' or 'views'
 
+  // Função para buscar as estatísticas
   const fetchStatistics = async (period) => {
     setLoading(true);
     setError('');
     try {
-      // Simulação de dados
       let startDate;
       if (period === 'lastWeek') {
         startDate = subDays(new Date(), 7);
       } else if (period === 'lastMonth') {
         startDate = subMonths(new Date(), 1);
       } else {
-        startDate = subDays(new Date(), 30); // Período personalizado (ajustável)
+        startDate = subDays(new Date(), 30); // Período personalizado
       }
 
       const stats = Array.from({ length: 7 }, (_, i) => ({
@@ -43,17 +44,22 @@ const RequestsDisplay = () => {
   };
 
   useEffect(() => {
-    fetchStatistics(selectedPeriod);
-  }, [selectedPeriod]);
+    if (isAuthenticated) {
+      fetchStatistics(selectedPeriod); // Carregar estatísticas se o usuário estiver logado
+    }
+  }, [selectedPeriod, isAuthenticated]);
 
+  // Controlando o período de exibição
   const handlePeriodChange = (event) => {
     setSelectedPeriod(event.target.value);
   };
 
+  // Controlando a troca de abas
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
 
+  // Dados do gráfico
   const chartData = {
     labels: statistics.map((stat) => stat.date),
     datasets: [
@@ -93,21 +99,26 @@ const RequestsDisplay = () => {
     },
   };
 
+  // Redirecionar ou mostrar erro se não estiver autenticado
+  if (!isAuthenticated) {
+    return (
+      <div className={styles.errorMessage}>
+        Você precisa estar logado para acessar as estatísticas. <a href="/login">Clique aqui para fazer login.</a>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.requestsDisplayContainer}>
       <div className={styles.navTabs}>
         <button
-          className={`${styles.navButton} ${
-            activeTab === 'requests' ? styles.active : ''
-          }`}
+          className={`${styles.navButton} ${activeTab === 'requests' ? styles.active : ''}`}
           onClick={() => handleTabChange('requests')}
         >
           <FaEnvelope /> Solicitações
         </button>
         <button
-          className={`${styles.navButton} ${
-            activeTab === 'views' ? styles.active : ''
-          }`}
+          className={`${styles.navButton} ${activeTab === 'views' ? styles.active : ''}`}
           onClick={() => handleTabChange('views')}
         >
           <FaChartBar /> Visualizações
@@ -125,11 +136,7 @@ const RequestsDisplay = () => {
           <>
             <div className={styles.periodSelector}>
               <label htmlFor="period">Período:</label>
-              <select
-                id="period"
-                value={selectedPeriod}
-                onChange={handlePeriodChange}
-              >
+              <select id="period" value={selectedPeriod} onChange={handlePeriodChange}>
                 <option value="lastWeek">Última semana</option>
                 <option value="lastMonth">Último mês</option>
                 <option value="custom">Período personalizado</option>
