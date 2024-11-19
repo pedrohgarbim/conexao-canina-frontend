@@ -1,0 +1,28 @@
+.requestsDisplayContainer {
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    margin: 10px auto;
+  }
+  
+  .requestsDisplayIcon {
+    font-size: 2rem;
+    margin-right: 15px;
+  }
+  
+  .requestsDisplayText {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+  }
+  
+  .requestsDisplayCount {
+    font-weight: bold;
+    color: #0078d4;
+    font-size: 1.2rem;
+  }
+  
