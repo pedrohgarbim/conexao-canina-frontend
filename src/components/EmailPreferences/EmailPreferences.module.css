@@ -1,5 +1,5 @@
 .emailPreferencesContainer {
-    max-width: 400px;
+    max-width: 500px;
     margin: 20px auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -9,33 +9,42 @@
   }
   
   .emailPreferencesTitle {
-    font-size: 1.5em;
-    margin-bottom: 10px;
+    font-size: 1.8em;
+    margin-bottom: 20px;
     text-align: center;
   }
   
-  .emailPreferencesDescription {
-    margin-bottom: 15px;
-    text-align: center;
+  .preferenceSection {
+    margin-bottom: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+  }
+  
+  .preferenceTitle {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+  }
+  
+  .preferenceDescription {
+    margin-bottom: 10px;
     font-size: 1em;
     color: #555;
   }
   
-  .emailPreferencesOptions {
+  .preferenceOptions {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-bottom: 20px;
   }
   
-  .emailPreferencesOption {
+  .preferenceOption {
     font-size: 1em;
     color: #333;
     display: flex;
     align-items: center;
   }
   
-  .emailPreferencesOption input[type="checkbox"] {
+  .preferenceOption input[type="checkbox"] {
     margin-right: 10px;
     transform: scale(1.2);
     cursor: pointer;
