@@ -1,0 +1,70 @@
+.emailPreferencesContainer {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .emailPreferencesTitle {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .emailPreferencesDescription {
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1em;
+    color: #555;
+  }
+  
+  .emailPreferencesOptions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .emailPreferencesOption {
+    font-size: 1em;
+    color: #333;
+    display: flex;
+    align-items: center;
+  }
+  
+  .emailPreferencesOption input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+  
+  .emailPreferencesSaveButton {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .emailPreferencesSaveButton:hover {
+    background-color: #0056b3;
+  }
+  
+  .emailPreferencesMessage {
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9em;
+    color: green;
+    border: 1px solid green;
+    border-radius: 4px;
+    background-color: #e6f9e6;
+  }
+  
