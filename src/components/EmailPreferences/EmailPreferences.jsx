@@ -27,6 +27,7 @@ const EmailPreferences = () => {
       ...prev,
       [type]: !prev[type],
     }));
+    showMessage(`Preferência de e-mail "${type}" atualizada!`);
   };
 
   // Função para alternar preferências de notificações
@@ -35,11 +36,25 @@ const EmailPreferences = () => {
       ...prev,
       [type]: !prev[type],
     }));
+    showMessage(`Preferência de notificação "${type}" atualizada!`);
   };
 
   // Função para salvar todas as preferências
   const handleSave = () => {
-    setMessage("Suas preferências foram salvas com sucesso!");
+    showMessage("Todas as preferências foram salvas com sucesso!");
+  };
+
+  // Função para salvar a frequência de notificações
+  const handleFrequencyChange = (event) => {
+    setNotificationFrequency(event.target.value);
+    showMessage(
+      `Frequência de notificações alterada para "${event.target.value}"!`
+    );
+  };
+
+  // Função para exibir mensagem de feedback
+  const showMessage = (text) => {
+    setMessage(text);
     setTimeout(() => setMessage(""), 3000);
   };
 
@@ -52,7 +67,7 @@ const EmailPreferences = () => {
 
   return (
     <div className={styles.emailPreferencesContainer}>
-      <h2 className={styles.emailPreferencesTitle}>Configurações</h2>
+      <h2 className={styles.emailPreferencesTitle}>Gerenciar Preferências</h2>
 
       {/* Preferências de e-mail */}
       <section className={styles.preferenceSection}>
