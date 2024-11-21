@@ -16,6 +16,9 @@ const EmailPreferences = () => {
     systemUpdates: false,
   });
 
+  // Estado para frequência de notificações
+  const [notificationFrequency, setNotificationFrequency] = useState("daily");
+
   const [message, setMessage] = useState("");
 
   // Função para alternar preferências de e-mail
@@ -37,6 +40,13 @@ const EmailPreferences = () => {
   // Função para salvar todas as preferências
   const handleSave = () => {
     setMessage("Suas preferências foram salvas com sucesso!");
+    setTimeout(() => setMessage(""), 3000);
+  };
+
+  // Função para salvar a frequência de notificações
+  const handleFrequencyChange = (event) => {
+    setNotificationFrequency(event.target.value);
+    setMessage("A frequência de notificações foi atualizada com sucesso!");
     setTimeout(() => setMessage(""), 3000);
   };
 
@@ -110,6 +120,24 @@ const EmailPreferences = () => {
             Notificações de atualizações do sistema
           </label>
         </div>
+      </section>
+
+      {/* Frequência de notificações */}
+      <section className={styles.preferenceSection}>
+        <h3 className={styles.preferenceTitle}>Frequência de Notificações</h3>
+        <p className={styles.preferenceDescription}>
+          Escolha com que frequência deseja receber notificações:
+        </p>
+        <select
+          className={styles.notificationFrequencySelect}
+          value={notificationFrequency}
+          onChange={handleFrequencyChange}
+        >
+          <option value="immediate">Imediata</option>
+          <option value="daily">Diária</option>
+          <option value="weekly">Semanal</option>
+          <option value="monthly">Mensal</option>
+        </select>
       </section>
 
       {/* Botão de salvar */}
