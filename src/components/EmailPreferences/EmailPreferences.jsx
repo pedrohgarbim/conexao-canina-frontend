@@ -16,6 +16,9 @@ const EmailPreferences = () => {
     systemUpdates: false,
   });
 
+  // Estado para frequência de notificações
+  const [notificationFrequency, setNotificationFrequency] = useState("daily");
+
   const [message, setMessage] = useState("");
 
   // Função para alternar preferências de e-mail
@@ -24,6 +27,7 @@ const EmailPreferences = () => {
       ...prev,
       [type]: !prev[type],
     }));
+    showMessage(`Preferência de e-mail "${type}" atualizada!`);
   };
 
   // Função para alternar preferências de notificações
@@ -32,17 +36,31 @@ const EmailPreferences = () => {
       ...prev,
       [type]: !prev[type],
     }));
+    showMessage(`Preferência de notificação "${type}" atualizada!`);
   };
 
   // Função para salvar todas as preferências
   const handleSave = () => {
-    setMessage("Suas preferências foram salvas com sucesso!");
+    showMessage("Todas as preferências foram salvas com sucesso!");
+  };
+
+  // Função para salvar a frequência de notificações
+  const handleFrequencyChange = (event) => {
+    setNotificationFrequency(event.target.value);
+    showMessage(
+      `Frequência de notificações alterada para "${event.target.value}"!`
+    );
+  };
+
+  // Função para exibir mensagem de feedback
+  const showMessage = (text) => {
+    setMessage(text);
     setTimeout(() => setMessage(""), 3000);
   };
 
   return (
     <div className={styles.emailPreferencesContainer}>
-      <h2 className={styles.emailPreferencesTitle}>Configurações</h2>
+      <h2 className={styles.emailPreferencesTitle}>Gerenciar Preferências</h2>
 
       {/* Preferências de e-mail */}
       <section className={styles.preferenceSection}>
@@ -110,6 +128,24 @@ const EmailPreferences = () => {
             Notificações de atualizações do sistema
           </label>
         </div>
+      </section>
+
+      {/* Frequência de notificações */}
+      <section className={styles.preferenceSection}>
+        <h3 className={styles.preferenceTitle}>Frequência de Notificações</h3>
+        <p className={styles.preferenceDescription}>
+          Escolha com que frequência deseja receber notificações:
+        </p>
+        <select
+          className={styles.notificationFrequencySelect}
+          value={notificationFrequency}
+          onChange={handleFrequencyChange}
+        >
+          <option value="immediate">Imediata</option>
+          <option value="daily">Diária</option>
+          <option value="weekly">Semanal</option>
+          <option value="monthly">Mensal</option>
+        </select>
       </section>
 
       {/* Botão de salvar */}
