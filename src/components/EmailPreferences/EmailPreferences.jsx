@@ -1,27 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./EmailPreferences.module.css";
 
-const EmailPreferences = () => {
-  // Estados para preferências de e-mail
+// Supondo que a função `getCurrentUser` retorne as informações do usuário logado.
+import { getCurrentUser } from "../auth"; // Importe a função que retorna o usuário logado
+
+const EmailPreferences = ({ profileOwnerId }) => {
   const [emailPreferences, setEmailPreferences] = useState({
     promotional: false,
     updates: false,
     news: false,
   });
 
-  // Estados para preferências de notificações
   const [notificationPreferences, setNotificationPreferences] = useState({
     requests: false,
     newMessages: false,
     systemUpdates: false,
   });
 
-  // Estado para frequência de notificações
   const [notificationFrequency, setNotificationFrequency] = useState("daily");
 
   const [message, setMessage] = useState("");
+  const [currentUser, setCurrentUser] = useState(null);
 
-  // Função para alternar preferências de e-mail
+  // Verifica se o usuário está logado
+  useEffect(() => {
+    const user = getCurrentUser(); // Função para obter as informações do usuário logado
+    if (user) {
+      setCurrentUser(user);
+    }
+  }, []);
+
+  // Função para verificar se o usuário logado é o dono do perfil
+  const isProfileOwner = currentUser && currentUser.id === profileOwnerId;
+
+  if (!currentUser) {
+    // Caso o usuário não esteja logado, exibe uma mensagem ou redireciona
+    return <div className={styles.accessDenied}>Acesso restrito! Faça login para acessar.</div>;
+  }
+
+  if (!isProfileOwner) {
+    // Caso o usuário logado não seja o dono do perfil, restringe o acesso
+    return <div className={styles.accessDenied}>Você não tem permissão para acessar estas preferências.</div>;
+  }
+
   const handleEmailToggle = (type) => {
     setEmailPreferences((prev) => ({
       ...prev,
@@ -30,7 +51,6 @@ const EmailPreferences = () => {
     showMessage(`Preferência de e-mail "${type}" atualizada!`);
   };
 
-  // Função para alternar preferências de notificações
   const handleNotificationToggle = (type) => {
     setNotificationPreferences((prev) => ({
       ...prev,
@@ -39,20 +59,15 @@ const EmailPreferences = () => {
     showMessage(`Preferência de notificação "${type}" atualizada!`);
   };
 
-  // Função para salvar todas as preferências
   const handleSave = () => {
     showMessage("Todas as preferências foram salvas com sucesso!");
   };
 
-  // Função para salvar a frequência de notificações
   const handleFrequencyChange = (event) => {
     setNotificationFrequency(event.target.value);
-    showMessage(
-      `Frequência de notificações alterada para "${event.target.value}"!`
-    );
+    showMessage(`Frequência de notificações alterada para "${event.target.value}"!`);
   };
 
-  // Função para exibir mensagem de feedback
   const showMessage = (text) => {
     setMessage(text);
     setTimeout(() => setMessage(""), 3000);
@@ -69,7 +84,6 @@ const EmailPreferences = () => {
     <div className={styles.emailPreferencesContainer}>
       <h2 className={styles.emailPreferencesTitle}>Gerenciar Preferências</h2>
 
-      {/* Preferências de e-mail */}
       <section className={styles.preferenceSection}>
         <h3 className={styles.preferenceTitle}>Preferências de E-mail</h3>
         <p className={styles.preferenceDescription}>
@@ -103,7 +117,6 @@ const EmailPreferences = () => {
         </div>
       </section>
 
-      {/* Preferências de notificações */}
       <section className={styles.preferenceSection}>
         <h3 className={styles.preferenceTitle}>Preferências de Notificações</h3>
         <p className={styles.preferenceDescription}>
@@ -137,7 +150,6 @@ const EmailPreferences = () => {
         </div>
       </section>
 
-      {/* Frequência de notificações */}
       <section className={styles.preferenceSection}>
         <h3 className={styles.preferenceTitle}>Frequência de Notificações</h3>
         <p className={styles.preferenceDescription}>
@@ -155,12 +167,10 @@ const EmailPreferences = () => {
         </select>
       </section>
 
-      {/* Botão de salvar */}
       <button className={styles.emailPreferencesSaveButton} onClick={handleSave}>
         Salvar Preferências
       </button>
 
-      {/* Feedback visual */}
       {message && (
         <div className={styles.emailPreferencesMessage}>{message}</div>
       )}
