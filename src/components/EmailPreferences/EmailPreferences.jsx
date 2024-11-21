@@ -73,6 +73,13 @@ const EmailPreferences = ({ profileOwnerId }) => {
     setTimeout(() => setMessage(""), 3000);
   };
 
+  // Função para salvar a frequência de notificações
+  const handleFrequencyChange = (event) => {
+    setNotificationFrequency(event.target.value);
+    setMessage("A frequência de notificações foi atualizada com sucesso!");
+    setTimeout(() => setMessage(""), 3000);
+  };
+
   return (
     <div className={styles.emailPreferencesContainer}>
       <h2 className={styles.emailPreferencesTitle}>Gerenciar Preferências</h2>
