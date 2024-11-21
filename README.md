@@ -219,3 +219,10 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Visualização de Estatísticas por Período (frontend)
 - 🟢 Interface e Usabilidade (frontend)
 - 🟢 Segurança e Privacidade (frontend)
+
+### 📩 **Gestão de Preferências de Comunicação**
+- 🟢 Configuração de Preferências de E-mail (frontend)
+- 🟢 Configuração de Preferências de Notificações no Sistema (frontend)
+- 🟢 Gerenciamento de Preferências de Frequência (frontend)
+- 🟢 Interface e Usabilidade (frontend)
+- 🟢 Segurança e Privacidade (frontend)
