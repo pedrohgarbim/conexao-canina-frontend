@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './Notification.module.css';
+import './Notification.css';
 
-const Notification = ({ message, onClose }) => {
+const Notification = ({ onClose }) => {
   const [isVisible, setIsVisible] = useState(true);
 
   const handleClose = () => {
@@ -12,7 +12,9 @@ const Notification = ({ message, onClose }) => {
   return (
     isVisible && (
       <div className="notification">
-        <p className="notification-message">{message}</p>
+        <p className="notification-message">
+          Este serviço está temporariamente indisponível. Pedimos desculpas pelo transtorno.
+        </p>
         <button className="notification-closeButton" onClick={handleClose}>
           X
         </button>
