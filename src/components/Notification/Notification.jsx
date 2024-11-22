@@ -1,51 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { ref, onValue, push } from 'firebase/database';
+import { database } from './firebase-config'; // Importando a configuração do Firebase
 import './Notification.css';
 
 const Notification = () => {
   const [notifications, setNotifications] = useState([]);
   const [isAdding, setIsAdding] = useState(false);
 
-  // Adicionar uma nova notificação
+  // Escutar as notificações em tempo real
+  useEffect(() => {
+    const notificationsRef = ref(database, 'notifications');
+
+    // Escuta mudanças em tempo real
+    onValue(notificationsRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        const notificationList = Object.values(data);
+        setNotifications(notificationList);
+      }
+    });
+  }, []);
+
+  // Adicionar uma nova notificação ao Firebase
   const addNotification = (message) => {
-    const id = new Date().getTime(); // Gerar um ID único
-    setNotifications((prev) => [...prev, { id, message }]);
+    const notificationsRef = ref(database, 'notifications');
+    push(notificationsRef, {
+      message,
+      timestamp: new Date().getTime(),
+    });
+    setIsAdding(true);
+    setTimeout(() => setIsAdding(false), 500); // Feedback visual ao adicionar
   };
 
-  // Remover uma notificação pelo ID
+  // Remover uma notificação pelo ID (opcional, se você quiser adicionar essa funcionalidade)
   const removeNotification = (id) => {
-    setNotifications((prev) => prev.filter((notification) => notification.id !== id));
+    const notificationRef = ref(database, `notifications/${id}`);
+    notificationRef.remove();
   };
 
   return (
     <div className="notification-manager">
-      {/* Mensagem caso não haja notificações */}
       {notifications.length === 0 && (
         <p className="no-notifications-message">Nenhuma notificação no momento.</p>
       )}
 
-      {/* Botão para adicionar notificações */}
       <button
         className="add-notification-button"
-        onClick={() => {
-          addNotification('Nova notificação de status!');
-          setIsAdding(true); // Quando uma notificação for adicionada, ativa o feedback de adição
-          setTimeout(() => setIsAdding(false), 500); // Desativa o feedback após um curto tempo
-        }}
+        onClick={() => addNotification('Nova notificação de status!')}
       >
         {isAdding ? 'Notificação Adicionada!' : 'Adicionar Notificação'}
       </button>
 
-      {/* Lista de notificações */}
       <div className="notification-list">
-        {notifications.map((notification) => (
+        {notifications.map((notification, index) => (
           <div
-            key={notification.id}
-            className="notification fade-in" // Animação de fade-in
+            key={index}
+            className="notification fade-in"
           >
             <p className="notification-message">{notification.message}</p>
             <button
               className="notification-closeButton"
-              onClick={() => removeNotification(notification.id)}
+              onClick={() => removeNotification(index)}
             >
               X
             </button>
