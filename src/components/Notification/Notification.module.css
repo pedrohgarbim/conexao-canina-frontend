@@ -1,54 +1,79 @@
-/* Estilos gerais para o gerenciador */
+/* Container geral do gerenciamento de notificações */
 .notification-manager {
     max-width: 400px;
     margin: 20px auto;
     text-align: center;
+    position: relative;
   }
   
-  /* Botão de adicionar notificação */
+  /* Estilo de feedback visual caso não haja notificações */
+  .no-notifications-message {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo para o botão de adicionar notificação */
   .add-notification-button {
     background-color: #4caf50;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border: none;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
     margin-bottom: 20px;
     transition: background-color 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
   
   .add-notification-button:hover {
     background-color: #45a049;
   }
   
+  /* Efeito de animação de fade-in nas notificações */
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  /* Keyframes para a animação de fade-in */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
   /* Lista de notificações */
   .notification-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
   }
   
-  /* Estilos para cada notificação */
+  /* Estilo de cada notificação */
   .notification {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #2196f3;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border-radius: 5px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
   }
   
+  /* Mensagem dentro da notificação */
   .notification-message {
     font-size: 14px;
     flex-grow: 1;
     margin-right: 10px;
   }
   
-  /* Botão de fechar notificação */
+  /* Botão de fechar da notificação */
   .notification-closeButton {
     background: transparent;
     border: none;
