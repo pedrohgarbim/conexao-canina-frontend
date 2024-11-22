@@ -1,4 +1,3 @@
-/* Container geral do gerenciamento de notificações */
 .notification-manager {
     max-width: 400px;
     margin: 20px auto;
@@ -6,14 +5,12 @@
     position: relative;
   }
   
-  /* Estilo de feedback visual caso não haja notificações */
   .no-notifications-message {
     font-size: 16px;
     color: #777;
     margin-bottom: 20px;
   }
   
-  /* Estilo para o botão de adicionar notificação */
   .add-notification-button {
     background-color: #4caf50;
     color: white;
@@ -31,12 +28,10 @@
     background-color: #45a049;
   }
   
-  /* Efeito de animação de fade-in nas notificações */
   .fade-in {
     animation: fadeIn 0.5s ease-out;
   }
   
-  /* Keyframes para a animação de fade-in */
   @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -46,14 +41,12 @@
     }
   }
   
-  /* Lista de notificações */
   .notification-list {
     display: flex;
     flex-direction: column;
     gap: 15px;
   }
   
-  /* Estilo de cada notificação */
   .notification {
     display: flex;
     justify-content: space-between;
@@ -66,14 +59,12 @@
     font-family: Arial, sans-serif;
   }
   
-  /* Mensagem dentro da notificação */
   .notification-message {
     font-size: 14px;
     flex-grow: 1;
     margin-right: 10px;
   }
   
-  /* Botão de fechar da notificação */
   .notification-closeButton {
     background: transparent;
     border: none;
