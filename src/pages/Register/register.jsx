@@ -3,6 +3,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { userAuthentication } from '../../hooks/userAuthentication'
 import trasition from '../../components/Transition/transition'
+import axios from 'axios'
 
 
 function Register() {
@@ -54,6 +55,23 @@ function Register() {
     }
 
     const res = await createUser(user)
+
+    try {
+      axios.post('https://localhost:7060/api/Usuario', {
+
+        nome: displayName,
+
+        email: email,
+
+        senha: password,
+
+        telefone: '123456789',
+      })
+    } catch (error) {
+
+      console.error('Erro ao fazer o POST', error);
+      
+    }
     console.table(res)
   }
 
