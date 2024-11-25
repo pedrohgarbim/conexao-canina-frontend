@@ -51,7 +51,7 @@
     gap: 10px;
   }
   
-  .approveButton, .rejectButton {
+  .approveButton, .rejectButton, .suspendButton, .blockButton {
     padding: 8px 12px;
     border: none;
     border-radius: 4px;
@@ -76,5 +76,74 @@
   
   .rejectButton:hover {
     background-color: #e53935;
+  }
+  
+  .suspendButton {
+    background-color: #ff9800;
+    color: white;
+  }
+  
+  .suspendButton:hover {
+    background-color: #fb8c00;
+  }
+  
+  .blockButton {
+    background-color: #9c27b0;
+    color: white;
+  }
+  
+  .blockButton:hover {
+    background-color: #8e24aa;
+  }
+  
+  /* Modal */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  .modalContent {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    text-align: center;
+  }
+  
+  .textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+  
+  .modalActions {
+    margin-top: 20px;
+  }
+  
+  .submitButton, .cancelButton {
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .submitButton {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .cancelButton {
+    background-color: #f44336;
+    color: white;
   }
   
