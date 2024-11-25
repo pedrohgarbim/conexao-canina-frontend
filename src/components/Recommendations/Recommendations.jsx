@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Recommendations.module.css";
 
-const Recommendations = ({ dogProfile, fetchRecommendations }) => {
+const Recommendations = ({ dogProfile, fetchRecommendations, preferences }) => {
   const [recommendations, setRecommendations] = useState([]);
   const [notification, setNotification] = useState("");
 
   useEffect(() => {
-    // Fetch initial recommendations on component mount
+    // Fetch initial recommendations on component mount or when preferences change
     const loadRecommendations = async () => {
       try {
-        const initialRecommendations = await fetchRecommendations(dogProfile);
+        const initialRecommendations = await fetchRecommendations(dogProfile, preferences);
         setRecommendations(initialRecommendations);
       } catch (error) {
         console.error("Erro ao carregar recomendações:", error);
@@ -17,12 +17,12 @@ const Recommendations = ({ dogProfile, fetchRecommendations }) => {
     };
 
     loadRecommendations();
-  }, [dogProfile, fetchRecommendations]);
+  }, [dogProfile, preferences, fetchRecommendations]);
 
   // Atualiza as recomendações ao salvar as alterações do perfil
   const handleProfileSave = async () => {
     try {
-      const updatedRecommendations = await fetchRecommendations(dogProfile);
+      const updatedRecommendations = await fetchRecommendations(dogProfile, preferences);
       setRecommendations(updatedRecommendations);
       setNotification("Recomendações atualizadas com sucesso!");
       setTimeout(() => setNotification(""), 3000); // Remove a mensagem após 3 segundos
