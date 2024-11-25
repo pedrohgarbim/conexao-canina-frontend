@@ -113,3 +113,55 @@
 .confirmationMessage button:hover {
   background-color: #45a049;
 }
+
+/* Notificação */
+.notification {
+  background-color: #e7f3ff;
+  color: #3178c6;
+  padding: 10px;
+  border: 1px solid #b6d4fe;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* Seção de Atualizações */
+.updatesSection {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.updatesSection h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.updatesList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.updateItem {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.updateItem:last-child {
+  border-bottom: none;
+}
+
+.updateItem strong {
+  color: #4CAF50;
+}
+
+.updateItem p {
+  margin: 5px 0 0;
+  color: #555;
+}
+
