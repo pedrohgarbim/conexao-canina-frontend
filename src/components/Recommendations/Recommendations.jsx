@@ -1,11 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Recommendations.module.css";
 
 const Recommendations = ({ dogProfile, fetchRecommendations }) => {
   const [recommendations, setRecommendations] = useState([]);
   const [notification, setNotification] = useState("");
 
-  // Simula a atualização de características do perfil do cachorro
+  useEffect(() => {
+    // Fetch initial recommendations on component mount
+    const loadRecommendations = async () => {
+      try {
+        const initialRecommendations = await fetchRecommendations(dogProfile);
+        setRecommendations(initialRecommendations);
+      } catch (error) {
+        console.error("Erro ao carregar recomendações:", error);
+      }
+    };
+
+    loadRecommendations();
+  }, [dogProfile, fetchRecommendations]);
+
+  // Atualiza as recomendações ao salvar as alterações do perfil
   const handleProfileSave = async () => {
     try {
       const updatedRecommendations = await fetchRecommendations(dogProfile);
@@ -28,9 +42,16 @@ const Recommendations = ({ dogProfile, fetchRecommendations }) => {
         {recommendations.length > 0 ? (
           recommendations.map((rec, index) => (
             <div key={index} className={styles.recommendationItem}>
-              <p><strong>Nome:</strong> {rec.name}</p>
-              <p><strong>Raça:</strong> {rec.breed}</p>
-              <p><strong>Idade:</strong> {rec.age} anos</p>
+              <div className={styles.dogInfo}>
+                <p><strong>Nome:</strong> {rec.name}</p>
+                <p><strong>Raça:</strong> {rec.breed}</p>
+                <p><strong>Idade:</strong> {rec.age} anos</p>
+                <p><strong>Características:</strong> {rec.characteristics}</p>
+              </div>
+              <div className={styles.ownerInfo}>
+                <p><strong>Dono:</strong> {rec.owner.name}</p>
+                <p><strong>Contato:</strong> {rec.owner.contact}</p>
+              </div>
             </div>
           ))
         ) : (
