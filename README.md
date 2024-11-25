@@ -243,3 +243,8 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Desenvolver o Formulário de Feedback (Frontend)
 - 🟢 Enviar Confirmação de Envio de Feedback (Frontend)
 - 🟢 Implementar Notificação de Acompanhamento de Feedback (Frontend)
+
+### 🤝 **Recomendação de Parceiros**
+- 🟢 Implementar Atualização Dinâmica das Recomendações (Frontend)
+- 🟢 Desenvolver Interface para Exibição das Recomendações (Frontend)
+- 🟢 Adicionar Funcionalidade de Personalização das Recomendações (Frontend)
