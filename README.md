@@ -233,3 +233,8 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Gerenciamento de Notificações (frontend)
 - 🟢 Interface e Usabilidade (frontend)
 - 🟢 Notificações em Tempo Real (frontend)
+
+### 🔐 **Controle de Acesso**
+- 🟢 Aprovação de Cadastros de Usuários (frontend)
+- 🟢 Aprovação de Perfis de Cachorros (frontend)
+- 🟢 Gerenciamento de Acessos de Usuários Existentes (frontend)
