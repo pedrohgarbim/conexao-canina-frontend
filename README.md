@@ -238,3 +238,8 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Aprovação de Cadastros de Usuários (frontend)
 - 🟢 Aprovação de Perfis de Cachorros (frontend)
 - 🟢 Gerenciamento de Acessos de Usuários Existentes (frontend)
+
+### 💬 **Feedback sobre o Site**
+- 🟢 Desenvolver o Formulário de Feedback (Frontend)
+- 🟢 Enviar Confirmação de Envio de Feedback (Frontend)
+- 🟢 Implementar Notificação de Acompanhamento de Feedback (Frontend)
