@@ -226,3 +226,10 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Gerenciamento de Preferências de Frequência (frontend)
 - 🟢 Interface e Usabilidade (frontend)
 - 🟢 Segurança e Privacidade (frontend)
+
+### 🔔 **Notificações de Alterações no Status do Cão**
+- 🟢 Notificação de Novo Status de Disponibilidade (frontend)
+- 🟢 Notificação de Indisponibilidade Temporária (frontend)
+- 🟢 Gerenciamento de Notificações (frontend)
+- 🟢 Interface e Usabilidade (frontend)
+- 🟢 Notificações em Tempo Real (frontend)
