@@ -11,6 +11,15 @@ const PrivacySettings = () => {
   const [authorizedUsers, setAuthorizedUsers] = useState([]);
   const [newUser, setNewUser] = useState('');
   const [message, setMessage] = useState('');
+  const [profiles, setProfiles] = useState([
+    { id: 1, name: 'Rex', photos: true, details: true, history: false },
+    { id: 2, name: 'Bella', photos: false, details: true, history: true },
+  ]);
+  const [userPermissions, setUserPermissions] = useState({
+    user1: { photos: true, details: true, history: true },
+    user2: { photos: false, details: true, history: true },
+  });
+  const [currentUser, setCurrentUser] = useState('user1'); // Simulação de usuário logado
 
   // Função para atualizar as configurações de visibilidade
   const handleVisibilityChange = (event) => {
@@ -57,6 +66,16 @@ const PrivacySettings = () => {
     // api.savePrivacySettings(visibility);
 
     console.log('Configurações de privacidade salvas:', visibility);
+  };
+
+  // Função para verificar se o usuário tem permissão para visualizar o perfil
+  const hasPermissionToViewProfile = (profile) => {
+    const userPermissionsForProfile = userPermissions[currentUser];
+    return (
+      (profile.photos && userPermissionsForProfile.photos) ||
+      (profile.details && userPermissionsForProfile.details) ||
+      (profile.history && userPermissionsForProfile.history)
+    );
   };
 
   return (
@@ -140,6 +159,30 @@ const PrivacySettings = () => {
       </div>
 
       {message && <p className={styles.message}>{message}</p>}
+
+      <div className={styles.profilesContainer}>
+        <h3>Perfis de Cachorros</h3>
+        {profiles.map((profile) => (
+          <div
+            key={profile.id}
+            className={styles.profile}
+            style={{
+              display: hasPermissionToViewProfile(profile) ? 'block' : 'none',
+            }}
+          >
+            <h4>{profile.name}</h4>
+            <div className={styles.profileInfo}>
+              {profile.photos && visibility.photos && <p>Fotos</p>}
+              {profile.details && visibility.details && <p>Detalhes</p>}
+              {profile.history && visibility.history && <p>Histórico de Cruzamentos</p>}
+            </div>
+
+            {!hasPermissionToViewProfile(profile) && (
+              <p className={styles.noPermission}>Você não tem permissão para ver este perfil.</p>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
