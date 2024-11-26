@@ -51,6 +51,7 @@ const NotificationBell = () => {
 
   return (
     <div className={styles.notificationContainer}>
+      {/* Ícone do sininho */}
       <div className={styles.bellIcon} onClick={toggleNotifications}>
         <span className={styles.notificationCount}>
           {notifications.length}
@@ -58,13 +59,18 @@ const NotificationBell = () => {
         🔔
       </div>
 
+      {/* Lista de notificações */}
       {showNotifications && (
         <div className={styles.notificationList}>
+          <h3 className={styles.notificationTitle}>Notificações</h3>
           {notifications.length > 0 ? (
             notifications.map((notification) => (
               <div key={notification.id} className={styles.notificationItem}>
                 <p>
-                  <strong>{notification.name}</strong> ({notification.breed}, {notification.age} anos)
+                  <strong>{notification.name}</strong> - {notification.breed} ({notification.age} anos)
+                </p>
+                <p className={styles.notificationDetails}>
+                  Confira o perfil para ver mais detalhes sobre {notification.name}.
                 </p>
                 <a href={notification.link} className={styles.viewLink}>
                   Ver perfil
@@ -77,8 +83,9 @@ const NotificationBell = () => {
         </div>
       )}
 
+      {/* Configurações de alertas */}
       <div className={styles.preferencesSection}>
-        <h3>Configuração de Alertas</h3>
+        <h3 className={styles.preferencesTitle}>Configuração de Alertas</h3>
         <form onSubmit={savePreferences} className={styles.preferencesForm}>
           <div className={styles.formGroup}>
             <label htmlFor="frequency">Frequência de alertas:</label>
@@ -101,6 +108,7 @@ const NotificationBell = () => {
               name="breed"
               value={preferences.criteria.breed}
               onChange={handleCriteriaChange}
+              placeholder="Digite a raça"
             />
           </div>
           <div className={styles.formGroup}>
