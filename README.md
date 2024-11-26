@@ -248,3 +248,16 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Implementar Atualização Dinâmica das Recomendações (Frontend)
 - 🟢 Desenvolver Interface para Exibição das Recomendações (Frontend)
 - 🟢 Adicionar Funcionalidade de Personalização das Recomendações (Frontend)
+
+### 🐾 **Alertas de Cruzamento Compatível**
+- 🟢 Recebimento de Alerta por Notificação no Sistema (frontend)
+- 🟢 Configuração de Preferências de Alerta (frontend)
+- 🟢 Interface e Usabilidade (frontend)
+- 🟢 Segurança e Privacidade (frontend)
+
+### 📄 **Relatórios de Uso**
+- 🟢 Relatório de Engajamento de Usuários (frontend)
+- 🟢 Configuração de Preferências de Alerta (frontend)
+- 🟢 Gerenciamento de Notificações (frontend)
+- 🟢 Interface e Usabilidade (frontend)
+- 🟢 Segurança e Privacidade (frontend)
