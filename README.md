@@ -255,9 +255,18 @@ Você também pode acessar o site pelo link: https://projeto-pets-conexao-canina
 - 🟢 Interface e Usabilidade (frontend)
 - 🟢 Segurança e Privacidade (frontend)
 
+### 🔒 **Configurações de Privacidade**
+- 🟢 Criar Interface para Gerenciar Informações Visíveis (Frontend)
+- 🟢 Implementar Funcionalidade de Acesso Restrito para Usuários Específicos (Frontend)
+- 🟢 Aplicar e Testar Configurações de Privacidade (Frontend)
+
 ### 📄 **Relatórios de Uso**
 - 🟢 Relatório de Engajamento de Usuários (frontend)
 - 🟢 Configuração de Preferências de Alerta (frontend)
 - 🟢 Gerenciamento de Notificações (frontend)
 - 🟢 Interface e Usabilidade (frontend)
 - 🟢 Segurança e Privacidade (frontend)
+
+### 📧 **Notificações por E-mail**
+- 🟢 Criar Interface para Configurações de Notificação por E-mail (Frontend)
+- 🟢 Sincronizar Preferências de Notificação com Backend (Frontend)
