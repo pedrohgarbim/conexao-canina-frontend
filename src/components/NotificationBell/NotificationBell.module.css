@@ -1,11 +1,95 @@
-/* Estilos anteriores */
-
-.preferencesSection {
+/* Estilos gerais */
+.notificationContainer {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  /* Ícone do sininho */
+  .bellIcon {
+    font-size: 1.5rem;
+    position: relative;
+    color: #555;
+    transition: color 0.3s;
+  }
+  
+  .bellIcon:hover {
+    color: #007bff;
+  }
+  
+  .notificationCount {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  /* Lista de notificações */
+  .notificationList {
+    position: absolute;
+    top: 2rem;
+    right: 0;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 10;
+    padding: 1rem;
+  }
+  
+  .notificationTitle {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.5rem;
+  }
+  
+  .notificationItem {
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .notificationItem:last-child {
+    border-bottom: none;
+  }
+  
+  .notificationDetails {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 0.5rem;
+  }
+  
+  .viewLink {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .viewLink:hover {
+    text-decoration: underline;
+  }
+  
+  /* Configuração de alertas */
+  .preferencesSection {
     margin-top: 2rem;
     padding: 1.5rem;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .preferencesTitle {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
   }
   
   .preferencesForm {
