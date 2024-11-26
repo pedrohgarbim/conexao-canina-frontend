@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useAuth } from "../authContext"; // Supondo que você tenha um contexto para autenticação
 import styles from "./NotificationBell.module.css";
 
 const NotificationBell = () => {
+  const { user } = useAuth();  // Pegando o usuário logado do contexto de autenticação
   const [notifications, setNotifications] = useState([]);
   const [showNotifications, setShowNotifications] = useState(false);
   const [preferences, setPreferences] = useState({
@@ -9,18 +11,25 @@ const NotificationBell = () => {
     criteria: { breed: "", ageRange: "any" },
   });
 
+  // Carregar notificações apenas para o usuário logado
   useEffect(() => {
-    // Simulação de chamadas para buscar notificações do backend.
-    const fetchNotifications = async () => {
-      const mockData = [
-        { id: 1, name: "Rex", breed: "Golden Retriever", age: 3, link: "/profile/1" },
-        { id: 2, name: "Luna", breed: "Poodle", age: 2, link: "/profile/2" },
-      ];
-      setNotifications(mockData);
-    };
+    if (user) {
+      // Função para buscar notificações de um usuário específico
+      const fetchNotifications = async () => {
+        const mockData = [
+          { id: 1, userId: user.id, name: "Rex", breed: "Golden Retriever", age: 3, link: "/profile/1" },
+          { id: 2, userId: user.id, name: "Luna", breed: "Poodle", age: 2, link: "/profile/2" },
+          // Outras notificações de outros usuários não serão retornadas
+        ];
 
-    fetchNotifications();
-  }, []);
+        // Filtrando as notificações para o usuário logado
+        const filteredNotifications = mockData.filter(notification => notification.userId === user.id);
+        setNotifications(filteredNotifications);
+      };
+
+      fetchNotifications();
+    }
+  }, [user]);
 
   const toggleNotifications = () => {
     setShowNotifications(!showNotifications);
