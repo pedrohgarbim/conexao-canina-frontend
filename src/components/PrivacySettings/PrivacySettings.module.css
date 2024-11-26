@@ -54,3 +54,69 @@
     background-color: #45a049;
   }
   
+  /* Permissões */
+  .permissionsContainer {
+    margin-top: 30px;
+  }
+  
+  .permissionList {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .input {
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .addButton {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .addButton:hover {
+    background-color: #0056b3;
+  }
+  
+  .authorizedUsers {
+    margin-top: 20px;
+  }
+  
+  .userItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .removeButton {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: white;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .removeButton:hover {
+    background-color: #c82333;
+  }
+  
+  .message {
+    margin-top: 20px;
+    color: #4caf50;
+    text-align: center;
+    font-size: 16px;
+  }
+  
