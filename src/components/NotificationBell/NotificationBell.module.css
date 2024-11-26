@@ -1,0 +1,67 @@
+.notificationContainer {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .bellIcon {
+    font-size: 1.5rem;
+    position: relative;
+    color: #555;
+    transition: color 0.3s;
+  }
+  
+  .bellIcon:hover {
+    color: #007bff;
+  }
+  
+  .notificationCount {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  .notificationList {
+    position: absolute;
+    top: 2rem;
+    right: 0;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 10;
+  }
+  
+  .notificationItem {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .notificationItem:last-child {
+    border-bottom: none;
+  }
+  
+  .viewLink {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .viewLink:hover {
+    text-decoration: underline;
+  }
+  
+  .noNotifications {
+    padding: 1rem;
+    text-align: center;
+    color: #666;
+  }
+  
