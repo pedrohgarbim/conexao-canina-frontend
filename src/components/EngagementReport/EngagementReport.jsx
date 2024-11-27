@@ -1,13 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import styles from './EngagementReport.module.css';
 
 const EngagementReport = () => {
+  const navigate = useNavigate();
   const [selectedReport, setSelectedReport] = useState('engagement');
   const [period, setPeriod] = useState('daily');
   const [filter, setFilter] = useState({ device: 'all', location: 'all' });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  // Verificação de autenticação
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // Verifique se o usuário é um administrador (pode ser baseado em um campo no Firebase ou Firestore)
+        firebase
+          .firestore()
+          .collection('users')
+          .doc(user.uid)
+          .get()
+          .then((doc) => {
+            if (doc.exists && doc.data().role === 'admin') {
+              setIsAuthenticated(true);
+              setIsAdmin(true);
+            } else {
+              setIsAuthenticated(false);
+              navigate('/login'); // Redireciona para o login se não for admin
+            }
+          });
+      } else {
+        setIsAuthenticated(false);
+        navigate('/login'); // Redireciona para o login se não estiver autenticado
+      }
+    });
+
+    return () => unsubscribe();
+  }, [navigate]);
 
   const handleReportChange = (report) => {
     setSelectedReport(report);
@@ -35,6 +69,10 @@ const EngagementReport = () => {
       setSuccessMessage('Filtro de período aplicado com sucesso.');
     }, 1000);
   };
+
+  if (!isAuthenticated) {
+    return <p>Carregando...</p>; // Exibe uma mensagem de carregamento enquanto autentica
+  }
 
   return (
     <div className={styles.container}>
