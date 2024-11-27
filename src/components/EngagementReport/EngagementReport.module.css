@@ -1,3 +1,4 @@
+/* Estilos gerais */
 .container {
     width: 90%;
     margin: 0 auto;
@@ -16,11 +17,12 @@
     margin-bottom: 20px;
   }
   
-  .filters {
+  .filters, .trafficFilters {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+    gap: 10px;
   }
   
   .label {
@@ -48,6 +50,27 @@
     border-radius: 4px;
     padding: 10px;
     display: inline-block;
+  }
+  
+  .exportContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .exportButton {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 1rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .exportButton:hover {
+    background-color: #0056b3;
   }
   
   .error {
