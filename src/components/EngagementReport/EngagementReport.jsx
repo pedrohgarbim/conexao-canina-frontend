@@ -4,50 +4,55 @@ import styles from './EngagementReport.module.css';
 const EngagementReport = () => {
   const [period, setPeriod] = useState('daily');
   const [trafficData, setTrafficData] = useState(null);
+  const [performanceData, setPerformanceData] = useState(null);
   const [error, setError] = useState('');
   const [filter, setFilter] = useState({ device: 'all', location: 'all' });
 
   const handlePeriodChange = (event) => {
     setPeriod(event.target.value);
-    // Simular carregamento de dados de engajamento
     fetchEngagementData(event.target.value);
-  };
-
-  const handleFilterChange = (key, value) => {
-    setFilter((prev) => ({ ...prev, [key]: value }));
-    // Simular carregamento de dados filtrados
-    fetchTrafficData(filter.device, filter.location);
+    fetchPerformanceData(event.target.value);
   };
 
   const fetchEngagementData = (selectedPeriod) => {
+    // Simular carregamento de dados de engajamento
     if (selectedPeriod === 'daily') {
       setTrafficData({ visits: 120, pages: ['Home', 'About'], sessionTime: [5, 7, 10] });
-      setError('');
     } else if (selectedPeriod === 'weekly') {
       setTrafficData({ visits: 700, pages: ['Home', 'Contact'], sessionTime: [6, 8, 12] });
-      setError('');
-    } else if (selectedPeriod === 'monthly') {
-      setTrafficData({ visits: 3000, pages: ['Home', 'Products'], sessionTime: [4, 6, 11] });
-      setError('');
     } else {
       setTrafficData(null);
-      setError('Nenhum dado disponível para o período selecionado.');
     }
   };
 
-  const fetchTrafficData = (device, location) => {
-    // Simulação de carregamento de dados de tráfego
-    console.log(`Filtrando por dispositivo: ${device}, localização: ${location}`);
+  const fetchPerformanceData = (selectedPeriod) => {
+    // Simular carregamento de dados de performance técnica
+    if (selectedPeriod === 'daily') {
+      setPerformanceData({
+        loadTimes: [1.2, 1.8, 1.5],
+        errors: 2,
+        failures: 1,
+        criticalIssues: ['High load time on checkout', 'API timeout errors']
+      });
+    } else if (selectedPeriod === 'weekly') {
+      setPerformanceData({
+        loadTimes: [1.5, 2.0, 1.7],
+        errors: 5,
+        failures: 2,
+        criticalIssues: ['Database latency', 'High load times on product pages']
+      });
+    } else {
+      setPerformanceData(null);
+    }
   };
 
   const exportReport = (format) => {
     alert(`Relatório exportado como ${format.toUpperCase()}`);
-    // Implementação real incluiria a lógica de geração de arquivo
   };
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Relatório de Engajamento e Acesso</h1>
+      <h1 className={styles.title}>Relatórios de Engajamento, Acesso e Performance</h1>
 
       {/* Filtros de período */}
       <div className={styles.filters}>
@@ -64,61 +69,46 @@ const EngagementReport = () => {
         </select>
       </div>
 
-      {/* Filtros de dispositivo e localização */}
-      <div className={styles.trafficFilters}>
-        <label htmlFor="device" className={styles.label}>Dispositivo:</label>
-        <select
-          id="device"
-          className={styles.select}
-          value={filter.device}
-          onChange={(e) => handleFilterChange('device', e.target.value)}
-        >
-          <option value="all">Todos</option>
-          <option value="mobile">Mobile</option>
-          <option value="desktop">Desktop</option>
-        </select>
-
-        <label htmlFor="location" className={styles.label}>Localização:</label>
-        <select
-          id="location"
-          className={styles.select}
-          value={filter.location}
-          onChange={(e) => handleFilterChange('location', e.target.value)}
-        >
-          <option value="all">Global</option>
-          <option value="us">EUA</option>
-          <option value="br">Brasil</option>
-          <option value="eu">Europa</option>
-        </select>
-      </div>
-
-      {/* Dados ou mensagens de feedback */}
-      <div className={styles.graphContainer}>
-        {error ? (
-          <p className={styles.error}>{error}</p>
-        ) : trafficData ? (
+      {/* Gráficos de Engajamento e Acesso */}
+      <div className={styles.section}>
+        <h2 className={styles.subtitle}>Engajamento e Acesso</h2>
+        {trafficData ? (
           <div className={styles.graph}>
             <p>Número de visitas: {trafficData.visits}</p>
             <p>Páginas mais acessadas: {trafficData.pages.join(', ')}</p>
             <p>Tempo médio de sessão: {trafficData.sessionTime.join(', ')} minutos</p>
           </div>
         ) : (
-          <p className={styles.loading}>Carregando dados...</p>
+          <p className={styles.error}>Dados de engajamento não disponíveis.</p>
+        )}
+      </div>
+
+      {/* Gráficos de Performance Técnica */}
+      <div className={styles.section}>
+        <h2 className={styles.subtitle}>Performance Técnica</h2>
+        {performanceData ? (
+          <div className={styles.graph}>
+            <p>Tempos de carregamento (s): {performanceData.loadTimes.join(', ')}</p>
+            <p>Erros técnicos reportados: {performanceData.errors}</p>
+            <p>Falhas críticas: {performanceData.failures}</p>
+            <h3 className={styles.criticalTitle}>Problemas Críticos:</h3>
+            <ul className={styles.criticalList}>
+              {performanceData.criticalIssues.map((issue, index) => (
+                <li key={index} className={styles.criticalItem}>{issue}</li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <p className={styles.error}>Dados de performance técnica não disponíveis.</p>
         )}
       </div>
 
       {/* Botões de exportação */}
       <div className={styles.exportContainer}>
-        <button
-          className={styles.exportButton}
-          onClick={() => exportReport('csv')}
-        >
+        <button className={styles.exportButton} onClick={() => exportReport('csv')}>
           Exportar como CSV
         </button>
-        <button
-          className={styles.exportButton}
-          onClick={() => exportReport('pdf')}
-        >
+        <button className={styles.exportButton} onClick={() => exportReport('pdf')}>
           Exportar como PDF
         </button>
       </div>
