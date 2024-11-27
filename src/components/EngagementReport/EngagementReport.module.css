@@ -83,3 +83,32 @@
     font-style: italic;
   }
   
+  /* Seções */
+.section {
+    margin-top: 30px;
+  }
+  
+  .subtitle {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  /* Problemas críticos */
+  .criticalTitle {
+    font-size: 1.2rem;
+    color: #d9534f;
+    margin-top: 10px;
+  }
+  
+  .criticalList {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  
+  .criticalItem {
+    color: #d9534f;
+    font-weight: bold;
+  }
+  
