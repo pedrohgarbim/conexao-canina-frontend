@@ -2,61 +2,74 @@ import React, { useState } from 'react';
 import styles from './EngagementReport.module.css';
 
 const EngagementReport = () => {
+  const [selectedReport, setSelectedReport] = useState('engagement');
   const [period, setPeriod] = useState('daily');
-  const [trafficData, setTrafficData] = useState(null);
-  const [performanceData, setPerformanceData] = useState(null);
-  const [error, setError] = useState('');
   const [filter, setFilter] = useState({ device: 'all', location: 'all' });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
+  const handleReportChange = (report) => {
+    setSelectedReport(report);
+    setLoading(true);
+    setError('');
+    setSuccessMessage('');
+    setTimeout(() => {
+      setLoading(false);
+      setSuccessMessage(`Dados de ${report} carregados com sucesso.`);
+    }, 1000);
+  };
+
+  const handleFilterChange = (event) => {
+    const { name, value } = event.target;
+    setFilter((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handlePeriodChange = (event) => {
     setPeriod(event.target.value);
-    fetchEngagementData(event.target.value);
-    fetchPerformanceData(event.target.value);
-  };
-
-  const fetchEngagementData = (selectedPeriod) => {
-    // Simular carregamento de dados de engajamento
-    if (selectedPeriod === 'daily') {
-      setTrafficData({ visits: 120, pages: ['Home', 'About'], sessionTime: [5, 7, 10] });
-    } else if (selectedPeriod === 'weekly') {
-      setTrafficData({ visits: 700, pages: ['Home', 'Contact'], sessionTime: [6, 8, 12] });
-    } else {
-      setTrafficData(null);
-    }
-  };
-
-  const fetchPerformanceData = (selectedPeriod) => {
-    // Simular carregamento de dados de performance técnica
-    if (selectedPeriod === 'daily') {
-      setPerformanceData({
-        loadTimes: [1.2, 1.8, 1.5],
-        errors: 2,
-        failures: 1,
-        criticalIssues: ['High load time on checkout', 'API timeout errors']
-      });
-    } else if (selectedPeriod === 'weekly') {
-      setPerformanceData({
-        loadTimes: [1.5, 2.0, 1.7],
-        errors: 5,
-        failures: 2,
-        criticalIssues: ['Database latency', 'High load times on product pages']
-      });
-    } else {
-      setPerformanceData(null);
-    }
-  };
-
-  const exportReport = (format) => {
-    alert(`Relatório exportado como ${format.toUpperCase()}`);
+    setLoading(true);
+    setError('');
+    setSuccessMessage('');
+    setTimeout(() => {
+      setLoading(false);
+      setSuccessMessage('Filtro de período aplicado com sucesso.');
+    }, 1000);
   };
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Relatórios de Engajamento, Acesso e Performance</h1>
+      <h1 className={styles.title}>Painel de Relatórios</h1>
 
-      {/* Filtros de período */}
+      {/* Navegação entre relatórios */}
+      <div className={styles.nav}>
+        <button
+          className={`${styles.navButton} ${selectedReport === 'engagement' ? styles.active : ''}`}
+          onClick={() => handleReportChange('engagement')}
+        >
+          Relatório de Engajamento
+        </button>
+        <button
+          className={`${styles.navButton} ${selectedReport === 'access' ? styles.active : ''}`}
+          onClick={() => handleReportChange('access')}
+        >
+          Relatório de Acesso
+        </button>
+        <button
+          className={`${styles.navButton} ${selectedReport === 'performance' ? styles.active : ''}`}
+          onClick={() => handleReportChange('performance')}
+        >
+          Relatório de Performance
+        </button>
+      </div>
+
+      {/* Feedback visual */}
+      {loading && <p className={styles.loading}>Carregando...</p>}
+      {error && <p className={styles.error}>{error}</p>}
+      {successMessage && <p className={styles.success}>{successMessage}</p>}
+
+      {/* Filtros */}
       <div className={styles.filters}>
-        <label htmlFor="period" className={styles.label}>Filtrar por período:</label>
+        <label htmlFor="period" className={styles.label}>Período:</label>
         <select
           id="period"
           className={styles.select}
@@ -67,50 +80,46 @@ const EngagementReport = () => {
           <option value="weekly">Semanal</option>
           <option value="monthly">Mensal</option>
         </select>
+
+        <label htmlFor="device" className={styles.label}>Dispositivo:</label>
+        <select
+          id="device"
+          className={styles.select}
+          name="device"
+          value={filter.device}
+          onChange={handleFilterChange}
+        >
+          <option value="all">Todos</option>
+          <option value="mobile">Celular</option>
+          <option value="desktop">Desktop</option>
+        </select>
+
+        <label htmlFor="location" className={styles.label}>Localização:</label>
+        <select
+          id="location"
+          className={styles.select}
+          name="location"
+          value={filter.location}
+          onChange={handleFilterChange}
+        >
+          <option value="all">Todas</option>
+          <option value="usa">EUA</option>
+          <option value="brazil">Brasil</option>
+          <option value="europe">Europa</option>
+        </select>
       </div>
 
-      {/* Gráficos de Engajamento e Acesso */}
-      <div className={styles.section}>
-        <h2 className={styles.subtitle}>Engajamento e Acesso</h2>
-        {trafficData ? (
-          <div className={styles.graph}>
-            <p>Número de visitas: {trafficData.visits}</p>
-            <p>Páginas mais acessadas: {trafficData.pages.join(', ')}</p>
-            <p>Tempo médio de sessão: {trafficData.sessionTime.join(', ')} minutos</p>
-          </div>
-        ) : (
-          <p className={styles.error}>Dados de engajamento não disponíveis.</p>
+      {/* Exibição do relatório ativo */}
+      <div className={styles.reportContainer}>
+        {selectedReport === 'engagement' && (
+          <p>Exibindo dados de Engajamento (mock).</p>
         )}
-      </div>
-
-      {/* Gráficos de Performance Técnica */}
-      <div className={styles.section}>
-        <h2 className={styles.subtitle}>Performance Técnica</h2>
-        {performanceData ? (
-          <div className={styles.graph}>
-            <p>Tempos de carregamento (s): {performanceData.loadTimes.join(', ')}</p>
-            <p>Erros técnicos reportados: {performanceData.errors}</p>
-            <p>Falhas críticas: {performanceData.failures}</p>
-            <h3 className={styles.criticalTitle}>Problemas Críticos:</h3>
-            <ul className={styles.criticalList}>
-              {performanceData.criticalIssues.map((issue, index) => (
-                <li key={index} className={styles.criticalItem}>{issue}</li>
-              ))}
-            </ul>
-          </div>
-        ) : (
-          <p className={styles.error}>Dados de performance técnica não disponíveis.</p>
+        {selectedReport === 'access' && (
+          <p>Exibindo dados de Acesso ao Site (mock).</p>
         )}
-      </div>
-
-      {/* Botões de exportação */}
-      <div className={styles.exportContainer}>
-        <button className={styles.exportButton} onClick={() => exportReport('csv')}>
-          Exportar como CSV
-        </button>
-        <button className={styles.exportButton} onClick={() => exportReport('pdf')}>
-          Exportar como PDF
-        </button>
+        {selectedReport === 'performance' && (
+          <p>Exibindo dados de Performance Técnica (mock).</p>
+        )}
       </div>
     </div>
   );
