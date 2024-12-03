@@ -63,7 +63,7 @@ function App() {
                         <Route path="/duvidas" element={<Doubt />} />
                         <Route path="/entrar" element={<Login />} />
                         <Route path="/usuario" element={<UserPage />} />
-                        <Route path="/detalhes/:name" element={<DogDetails />} />
+                        <Route path="/detalhes/:id" element={<DogDetails />} />
                         <Route path="/cachorros" element={<DogPage />} />
                         <Route path="/cadastro" element={<Register />} />
                         <Route path="/recuperarSenha" element={<RecoverPassword />} />
