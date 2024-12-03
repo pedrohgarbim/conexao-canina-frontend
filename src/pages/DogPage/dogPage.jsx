@@ -5,6 +5,7 @@ import { auth } from '../../firebase/config';
 import trasition from '../../components/Transition/transition'
 import heartEmpty from '../../assets/heart-empty.png';
 import heartFull from '../../assets/heart-full.png';
+import { useFetchCaes } from '../../hooks/useCao'
 
 // Importando as imagens dos cachorros
 import Rex from '../../assets/dog1.jpg';
@@ -61,6 +62,7 @@ const dogs = [
 
 function DogPage() {
   // Estados para filtros e likes
+  const { data: caes, loading, error } = useFetchCaes();
   const [selectedBreed, setSelectedBreed] = useState('-1');
   const [selectedGender, setSelectedGender] = useState('-1');
   const [selectedState, setSelectedState] = useState('-1');
@@ -254,8 +256,8 @@ function DogPage() {
   
         <div className={styles.dogHighlights}>
         {/* Renderização dos cards dos cachorros ou mensagem de não encontrado */}
-        {currentDogs.length > 0 ? (
-          currentDogs.map((dog, index) => (
+        {caes.length > 0 ? (
+          caes.map((dog, index) => (
             <div key={index} className={styles.dogCard}>
               <NavLink to={`/detalhes/${dog.name}`} className={styles.dogCardLink}>
                 <img src={dog.image} alt={dog.name} className={styles.dogImage} />

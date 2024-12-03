@@ -1,150 +1,207 @@
-import React, { useState } from 'react';
-import styles from './DogProfileForm.module.css'; // Certifique-se de criar este arquivo CSS
-import trasition from '../Transition/transition';
+import React, { useState } from "react";
+import {useAdicionarCao} from "../../hooks/useCao";
+import { useAuthValue } from "../../context/AuthContext";
 
-function DogProfileForm() {
-  const [nome, setNome] = useState('');
-  const [raca, setRaca] = useState('');
-  const [cidade, setCidade] = useState('');
-  const [estado, setEstado] = useState('');
-  const [tamanho, setTamanho] = useState('');
-  const [genero, setGenero] = useState('');
-  const [idade, setIdade] = useState('');
-  const [descricao, setDescricao] = useState('');
-  const [foto, setFoto] = useState('');
-  const [error, setError] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+// Definições dos enums
+export const TamanhoCao = {
+  Pequeno: 0,
+  Medio: 1,
+  Grande: 2,
+};
 
-  const handleSubmit = (e) => {
+export const GeneroCao = {
+  Masculino: 0,
+  Feminino: 1,
+};
+
+const DogProfileForm = () => {
+  const { user, userInfo } = useAuthValue();
+  const { adicionarCao, isLoading, error } = useAdicionarCao();
+  const [formData, setFormData] = useState({
+    nome: "",
+    raca: "",
+    cidade: "",
+    estado: "",
+    descricao: "",
+    tamanho: TamanhoCao.Pequeno, // Valor inicial como número
+    genero: GeneroCao.Masculino, // Valor inicial como número
+    idade: 0,
+    caracteristicasUnicas: "",
+    fotos: [
+      {
+        caminhoArquivo: "string",
+        descricao: "string",
+      },
+    ],
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const newValue = name === "tamanho" || name === "genero" ? parseInt(value, 10) : value;
+    setFormData((prev) => ({ ...prev, [name]: newValue }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    setSuccessMessage('');
+    const result = await adicionarCao(userInfo.usuarioId, formData);
 
-    if (!nome || !raca || !cidade || !estado || !tamanho || !genero || !idade || !descricao || !foto) {
-      setError('Todos os campos são obrigatórios.');
-      return;
+    if (result) {
+      alert("Cão adicionado com sucesso!");
+      setFormData({
+        nome: "",
+        raca: "",
+        cidade: "",
+        estado: "",
+        descricao: "",
+        tamanho: TamanhoCao.Pequeno,
+        genero: GeneroCao.Masculino,
+        idade: 0,
+        caracteristicasUnicas: "",
+        fotos: [
+          {
+            caminhoArquivo: "string",
+            descricao: "string",
+          },
+        ],
+      });
     }
-
-    // Lógica para enviar os dados do formulário aqui...
-
-    setSuccessMessage('Perfil do cachorro criado com sucesso!');
   };
 
   return (
-    <div className={styles.container}>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.header}>
-          <span>Cadastrar Cachorro</span>
+    <div>
+      <h2>Adicionar Cão</h2>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Nome:</label>
+          <input
+            type="text"
+            name="nome"
+            value={formData.nome}
+            onChange={handleChange}
+            required
+          />
         </div>
-        
-        <span>Nome:</span>
-        <label className={styles.inputContainer}>
-          <input 
-            type="text" 
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
-            placeholder='Nome do Cachorro'
-            required
-          />
-        </label>
-
-        <span>Raça:</span>
-        <label className={styles.inputContainer}>
-          <input 
-            type="text" 
-            value={raca}
-            onChange={(e) => setRaca(e.target.value)}
-            placeholder='Raça do Cachorro'
-            required
-          />
-        </label>
-
-        <span>Cidade:</span>
-        <label className={styles.inputContainer}>
-          <input 
-            type="text" 
-            value={cidade}
-            onChange={(e) => setCidade(e.target.value)}
-            placeholder='Cidade'
-            required
-          />
-        </label>
-
-        <span>Estado:</span>
-        <label className={styles.inputContainer}>
-          <input 
-            type="text" 
-            value={estado}
-            onChange={(e) => setEstado(e.target.value)}
-            placeholder='Estado'
-            required
-          />
-        </label>
-
-        <span>Tamanho:</span>
-        <label className={styles.inputContainer}>
-          <select 
-            value={tamanho}
-            onChange={(e) => setTamanho(e.target.value)}
-            required
+        <div>
+          <label>Raca</label>
+          <select
+            name="raca"
+            value={formData.raca}
+            onChange={handleChange}
           >
-            <option value="">Selecione o tamanho</option>
-            <option value="Pequeno">Pequeno</option>
-            <option value="Médio">Médio</option>
-            <option value="Grande">Grande</option>
+            <option value="Golden Retriever">Golden Retriever</option>
+            <option value="Pit Bull">Pit Bull</option>
+            <option value="Labrador Retriever">Labrador Retriever</option>
+            <option value="German Shepherd">Pastor Alemão</option>
+            <option value="Bulldog Francês">Buldogue Francês</option>
+            <option value="Beagle">Beagle</option>
+            <option value="Bulldog">Buldogue Inglês</option>
+            <option value="Poodle">Poodle</option>
+            <option value="Boxer">Boxer</option>
+            <option value="Dachshund">Dachshund (Salsicha)</option>
+            <option value="Yorkshire Terrier">Yorkshire Terrier</option>
+            <option value="Siberian Husky">Husky Siberiano</option>
+            <option value="Chihuahua">Chihuahua</option>
+            <option value="Shih Tzu">Shih Tzu</option>
+            <option value="Rottweiler">Rottweiler</option>
+            <option value="Pastor Alemão">Dogue Alemão</option>
+            <option value="Cocker Spaniel">Cocker Spaniel</option>
+            <option value="Doberman">Doberman</option>
+            <option value="Shiba Inu">Shiba Inu</option>
+            <option value="Border Collie">Border Collie</option>
+            <option value="Pastor Australiano">Pastor Australiano</option>
+            <option value="São Bernardo">São Bernardo</option>
+            <option value="Basset Hound">Basset Hound</option>
+            <option value="Weimaraner">Weimaraner</option>
+            <option value="Maltês">Maltês</option>
+            <option value="Dalmata">Dálmata</option>
+            <option value="Pinscher">Pinscher</option>
           </select>
-        </label>
-
-        <span>Gênero:</span>
-        <label className={styles.inputContainer}>
-          <select 
-            value={genero}
-            onChange={(e) => setGenero(e.target.value)}
+        </div>
+        <div>
+          <label>Cidade:</label>
+          <input
+            type="text"
+            name="cidade"
+            value={formData.cidade}
+            onChange={handleChange}
             required
+          />
+        </div>
+        <div>
+          <label>Estado:</label>
+          <input
+            type="text"
+            name="estado"
+            value={formData.estado}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Descrição:</label>
+          <textarea
+            name="descricao"
+            value={formData.descricao}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>Tamanho:</label>
+          <select
+            name="tamanho"
+            value={formData.tamanho}
+            onChange={handleChange}
           >
-            <option value="">Selecione o gênero</option>
-            <option value="M">Macho</option>
-            <option value="F">Fêmea</option>
+            <option value={TamanhoCao.Pequeno}>Pequeno</option>
+            <option value={TamanhoCao.Medio}>Médio</option>
+            <option value={TamanhoCao.Grande}>Grande</option>
           </select>
-        </label>
-
-        <span>Idade:</span>
-        <label className={styles.inputContainer}>
-          <input 
-            type="number" 
-            value={idade}
-            onChange={(e) => setIdade(e.target.value)}
-            placeholder='Idade'
+        </div>
+        <div>
+          <label>Gênero:</label>
+          <select
+            name="genero"
+            value={formData.genero}
+            onChange={handleChange}
+          >
+            <option value={GeneroCao.Masculino}>Masculino</option>
+            <option value={GeneroCao.Feminino}>Feminino</option>
+          </select>
+        </div>
+        <div>
+          <label>Idade:</label>
+          <input
+            type="number"
+            name="idade"
+            value={formData.idade}
+            onChange={handleChange}
             required
           />
-        </label>
-
-        <span>Descrição:</span>
-        <label className={styles.inputContainer}>
-          <textarea 
-            value={descricao}
-            onChange={(e) => setDescricao(e.target.value)}
-            placeholder='Conte sobre seu cachorro'
-            required
+        </div>
+        <div>
+          <label>Características Únicas:</label>
+          <textarea
+            name="caracteristicasUnicas"
+            value={formData.caracteristicasUnicas}
+            onChange={handleChange}
           />
-        </label>
-
-        <span>Adicione uma foto do seu Pet:</span>
-        <label className={styles.inputContainer_Photo}>
-          <input 
-            type="file" 
-            onChange={(e) => setFoto(e.target.files[0])}
-            required
-          />
-        </label>
-
-        <button type="submit" className={styles.button}>Cadastrar</button>
-        
-        {error && <p className='error'>{error}</p>}
-        {successMessage && <p className='success'>{successMessage}</p>}
+        </div>
+        <div>
+          <ul>
+            {formData.fotos.map((foto, index) => (
+              <li key={index}>
+                {foto.descricao} - {foto.caminhoArquivo}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? "Adicionando..." : "Adicionar Cão"}
+        </button>
       </form>
     </div>
   );
-}
+};
 
-export default trasition(DogProfileForm);
+export default DogProfileForm;

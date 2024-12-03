@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './home.module.css';
 import { NavLink } from 'react-router-dom';
 import { useAuthValue } from '../../context/AuthContext'
+import { useFetchCaes } from '../../hooks/useCao'
 import trasition from '../../components/Transition/transition'
 
 import sampleImage from '../../assets/dog-home.jpg';
@@ -91,6 +92,8 @@ const dogs = [
 
 const Home = () => {
   const { user } = useAuthValue()
+  const { data: caes, loading, error } = useFetchCaes();
+
   return (
     <div className={styles.container}>
       <div className={styles.imageTextContainer}>
@@ -113,8 +116,8 @@ const Home = () => {
       <h1 className={styles.emphasis}>Destaques</h1>
       
       <div className={styles.dogHighlights}>
-        {dogs.map((dog, index) => (
-          <NavLink key={index} to={`/detalhes/${dog.name}`} className={styles.dogCard}>
+        {caes.map((dog, index) => (
+          <NavLink key={index} to={`/detalhes/${dog.dogId}`} className={styles.dogCard}>
             <img src={dog.image} alt={dog.name} className={styles.dogImage} />
             <h2 className={styles.dogName}>
               {dog.name}, <span className={styles.dogBreed}>{dog.breed}</span>
