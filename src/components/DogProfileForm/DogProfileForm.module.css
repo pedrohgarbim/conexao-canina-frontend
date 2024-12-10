@@ -1,68 +1,77 @@
+/* Container principal */
 .container {
     font-family: 'Inter', sans-serif;
     width: 98.9vw;
-    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 8vh 0vh;
+    margin: 8vh 0;
 }
 
-.header  {
+/* Cabeçalho */
+.header {
     font-weight: 900;
     font-size: 24px;
     color: #152540;
     margin-bottom: 40px;
 }
 
+/* Estilo do formulário */
 .form {
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-    width: 600px; /* largura total do formulário */
+    width: 600px;
     border-radius: 5px;
     padding: 20px;
+    background-color: #f9f9f9;
 }
 
+/* Estilo dos contêineres de entrada */
 .inputContainer {
     display: flex;
     flex-direction: column;
-    margin-bottom: 24px; /* Aumente aqui para mais espaço entre as linhas */
+    margin-bottom: 24px;
     width: 100%;
 }
 
-
+/* Estilo dos inputs, selects e textareas */
+.inputContainer input,
 .inputContainer select,
-.inputContainer input, 
 .inputContainer textarea {
     padding: 8px;
     border: 1px solid #152540;
     border-radius: 8px;
     font-size: 15px;
-    width: calc(100% - 16px); /* largura total menos o padding */
-    box-sizing: border-box; /* Para garantir que o padding não afete a largura total */
+    width: calc(100% - 16px);
+    box-sizing: border-box;
 }
 
+/* Campos mais largos */
 .inputContainer input.wide,
-.inputContainer_Select select.wide {
-    width: 100%; /* Definindo a largura dos campos de tamanho e gênero para ocupar 100% */
+.inputContainer select.wide {
+    width: 100%;
 }
 
+/* Textarea maior */
 .inputContainer textarea {
     height: 80px;
+    resize: none;
 }
 
+/* Estilo das fotos */
 .inputContainer_Photo {
     margin-bottom: 10px;
 }
 
 .inputContainer_Photo input[type="file"] {
-    width: calc(100% - 16px); /* largura total menos o padding */
+    width: calc(100% - 16px);
     padding: 8px;
 }
 
+/* Botão */
 .button {
     background-color: #3d61ff;
     color: #fff;
@@ -72,8 +81,38 @@
     font-weight: bold;
     cursor: pointer;
     margin-top: 20px;
+    transition: background-color 0.3s;
 }
 
 .button:hover {
     background-color: #2c4d85;
+}
+
+/* Mensagens de erro */
+.error {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+/* Estilo da lista de fotos */
+.photoList {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+}
+
+.photoList li {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+/* Cabeçalho do formulário */
+.formTitle {
+    font-size: 20px;
+    font-weight: 700;
+    color: #152540;
+    margin-bottom: 20px;
 }

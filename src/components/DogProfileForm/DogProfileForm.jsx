@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import {useAdicionarCao} from "../../hooks/useCao";
+import { useAdicionarCao } from "../../hooks/useCao";
 import { useAuthValue } from "../../context/AuthContext";
+import styles from "./DogProfileForm.module.css";
 
-// Definições dos enums
 export const TamanhoCao = {
   Pequeno: 0,
   Medio: 1,
@@ -15,7 +15,7 @@ export const GeneroCao = {
 };
 
 const DogProfileForm = () => {
-  const { user, userInfo } = useAuthValue();
+  const { userInfo } = useAuthValue();
   const { adicionarCao, isLoading, error } = useAdicionarCao();
   const [formData, setFormData] = useState({
     nome: "",
@@ -23,8 +23,8 @@ const DogProfileForm = () => {
     cidade: "",
     estado: "",
     descricao: "",
-    tamanho: TamanhoCao.Pequeno, // Valor inicial como número
-    genero: GeneroCao.Masculino, // Valor inicial como número
+    tamanho: TamanhoCao.Pequeno,
+    genero: GeneroCao.Masculino,
     idade: 0,
     caracteristicasUnicas: "",
     fotos: [
@@ -68,26 +68,28 @@ const DogProfileForm = () => {
   };
 
   return (
-    <div>
-      <h2>Adicionar Cão</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Adicionar Cão</h2>
+      {error && <p className={styles.error}>{error}</p>}
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.fieldGroup}>
           <label>Nome:</label>
           <input
             type="text"
             name="nome"
             value={formData.nome}
             onChange={handleChange}
+            className={styles.input}
             required
           />
         </div>
-        <div>
-          <label>Raca</label>
+        <div className={styles.fieldGroup}>
+          <label>Raça:</label>
           <select
             name="raca"
             value={formData.raca}
             onChange={handleChange}
+            className={styles.select}
           >
             <option value="Golden Retriever">Golden Retriever</option>
             <option value="Pit Bull">Pit Bull</option>
@@ -118,85 +120,83 @@ const DogProfileForm = () => {
             <option value="Pinscher">Pinscher</option>
           </select>
         </div>
-        <div>
+        <div className={styles.fieldGroup}>
           <label>Cidade:</label>
           <input
             type="text"
             name="cidade"
             value={formData.cidade}
             onChange={handleChange}
+            className={styles.input}
             required
           />
         </div>
-        <div>
+        <div className={styles.fieldGroup}>
           <label>Estado:</label>
           <input
             type="text"
             name="estado"
             value={formData.estado}
             onChange={handleChange}
+            className={styles.input}
             required
           />
         </div>
-        <div>
+        <div className={styles.fieldGroup}>
           <label>Descrição:</label>
           <textarea
             name="descricao"
             value={formData.descricao}
             onChange={handleChange}
+            className={styles.textarea}
           />
         </div>
-        <div>
+        <div className={styles.fieldGroup}>
           <label>Tamanho:</label>
           <select
             name="tamanho"
             value={formData.tamanho}
             onChange={handleChange}
+            className={styles.select}
           >
             <option value={TamanhoCao.Pequeno}>Pequeno</option>
             <option value={TamanhoCao.Medio}>Médio</option>
             <option value={TamanhoCao.Grande}>Grande</option>
           </select>
         </div>
-        <div>
+        <div className={styles.fieldGroup}>
           <label>Gênero:</label>
           <select
             name="genero"
             value={formData.genero}
             onChange={handleChange}
+            className={styles.select}
           >
             <option value={GeneroCao.Masculino}>Masculino</option>
             <option value={GeneroCao.Feminino}>Feminino</option>
           </select>
         </div>
-        <div>
+        <div className={styles.fieldGroup}>
           <label>Idade:</label>
           <input
             type="number"
             name="idade"
             value={formData.idade}
             onChange={handleChange}
+            className={styles.input}
             required
           />
         </div>
-        <div>
+        <div className={styles.fieldGroup}>
           <label>Características Únicas:</label>
           <textarea
             name="caracteristicasUnicas"
             value={formData.caracteristicasUnicas}
             onChange={handleChange}
+            className={styles.textarea}
           />
         </div>
-        <div>
-          <ul>
-            {formData.fotos.map((foto, index) => (
-              <li key={index}>
-                {foto.descricao} - {foto.caminhoArquivo}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <button type="submit" disabled={isLoading}>
+        <button type="submit" className={styles.button} disabled={isLoading}>
           {isLoading ? "Adicionando..." : "Adicionar Cão"}
         </button>
       </form>
