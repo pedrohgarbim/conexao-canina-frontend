@@ -23,7 +23,7 @@ const dogs = [
     state: "SP",
     size: "Medio",
     gender: 'M',
-    image: Rex,
+    caminhoFoto: Rex,
   },
   {
     name: 'Bella',
@@ -32,7 +32,7 @@ const dogs = [
     state: "RJ",
     size: "Pequeno",
     gender: 'F',
-    image: Bella,
+    caminhoFoto: Bella,
   },
   {
     name: 'Thor',
@@ -41,7 +41,7 @@ const dogs = [
     state: "SP",
     size: "Pequeno",
     gender: 'M',
-    image: Thor,
+    caminhoFoto: Thor,
   },
   {
     name: 'Pintado',
@@ -50,7 +50,7 @@ const dogs = [
     state: "BH",
     size: "Grande",
     gender: 'M',
-    image: Pintado,
+    caminhoFoto: Pintado,
   },
   {
     name: 'Cesar',
@@ -59,7 +59,7 @@ const dogs = [
     state: "SP",
     size: "Medio",
     gender: 'M',
-    image: Cesar,
+    caminhoFoto: Cesar,
   },
   {
     name: 'Dorinha',
@@ -68,7 +68,7 @@ const dogs = [
     state: "AM",
     size: "MuitoPequeno",
     gender: 'F',
-    image: Dorinha,
+    caminhoFoto: Dorinha,
   },
   {
     name: 'Chanel',
@@ -77,7 +77,7 @@ const dogs = [
     state: "RJ",
     size: "Pequeno",
     gender: 'F',
-    image: Chanel,
+    caminhoFoto: Chanel,
   },
   {
     name: 'Birulinha',
@@ -86,13 +86,14 @@ const dogs = [
     state: "SP",
     size: "Pequeno",
     gender: 'M',
-    image: Birulinha,
+    caminhoFoto: Birulinha,
   },
 ];
 
 const Home = () => {
   const { user } = useAuthValue()
   const { data: caes, loading, error } = useFetchCaes();
+  
 
   return (
     <div className={styles.container}>
@@ -117,8 +118,9 @@ const Home = () => {
       
       <div className={styles.dogHighlights}>
         {caes.map((dog, index) => (
-          <NavLink key={index} to={`/detalhes/${dog.dogId}`} className={styles.dogCard}>
-            <img src={dog.image} alt={dog.name} className={styles.dogImage} />
+          
+          <NavLink key={index} to={`/detalhes/${dog.dogId}`} className={styles.dogCard}>    
+            <img src={dog.caminhoFoto}  alt={dog.name} className={styles.dogImage} />
             <h2 className={styles.dogName}>
               {dog.name}, <span className={styles.dogBreed}>{dog.breed}</span>
             </h2>

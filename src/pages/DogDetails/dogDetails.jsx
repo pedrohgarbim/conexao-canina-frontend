@@ -4,6 +4,7 @@ import styles from './dogDetails.module.css';
 import trasition from '../../components/Transition/transition'
 import { FaExclamationTriangle, FaPencilAlt, FaClipboard } from 'react-icons/fa';
 import { useFetchCaoById } from '../../hooks/useCao'
+import teste from '../../assets/dog1.jpg'
 
 
 // Importar as imagens dos ícones
@@ -377,7 +378,7 @@ const DogDetails = () => {
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
-        <img src={dog.image} alt={dog.name} className={styles.dogImage}  />
+        <img src={dog.caminhoFoto.replace('../..', '')}  alt={dog.name} className={styles.dogImage}  />
         <h2 className={styles.CreateAlbum} onClick={goToCreateAlbum}>
         Ver álbum de fotos
         </h2>
