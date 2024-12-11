@@ -59,6 +59,10 @@
 .form-row:nth-child(2) input[type="text"] {
     width: 100%;
 }
+
+.form-row:nth-child(2) input[type="email"] {
+    width: 100%;
+}
   
 .form-row textarea {
     width: 100%;

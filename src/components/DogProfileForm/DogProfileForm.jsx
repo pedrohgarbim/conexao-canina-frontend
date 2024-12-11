@@ -15,7 +15,7 @@ export const GeneroCao = {
 };
 
 const DogProfileForm = () => {
-  const { userInfo } = useAuthValue();
+  const { user, userInfo } = useAuthValue();
   const { adicionarCao, isLoading, error } = useAdicionarCao();
   const [formData, setFormData] = useState({
     nome: "",
@@ -196,7 +196,16 @@ const DogProfileForm = () => {
             className={styles.textarea}
           />
         </div>
-        <button type="submit" className={styles.button} disabled={isLoading}>
+        <div>
+          <ul>
+            {formData.fotos.map((foto, index) => (
+              <li key={index}>
+                Recurso "Adicionar Foto" não implementado. {/* {foto.descricao} - {foto.caminhoArquivo} */}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <button className={styles.button} type="submit" disabled={isLoading}>
           {isLoading ? "Adicionando..." : "Adicionar Cão"}
         </button>
       </form>
