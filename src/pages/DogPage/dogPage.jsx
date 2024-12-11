@@ -198,8 +198,8 @@ function DogPage() {
               onChange={handleFilterChange}
             >
               <option className={styles.default_option} value="-1">Gênero</option>
-              <option value="M">Masculino</option>
-              <option value="F">Feminino</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Feminino">Feminino</option>
             </select>
           </label>
           <label className={styles.container_filter_input}>
@@ -265,7 +265,7 @@ function DogPage() {
                   {dog.name}, <span className={styles.dogBreed}>{dog.breed}</span>
                 </h2>
                 <p className={styles.dogDetails}>{dog.city}</p>
-                <p className={styles.dogGender}>{dog.gender === 'M' ? '♂' : '♀'}</p>
+                <p className={styles.dogGender}>{dog.gender === 'Masculino' ? '♂' : '♀'}</p>
               </NavLink>
               {/* Botão de like com alternância de coração vazio e cheio */}
               <button className={styles.likeButton} onClick={() => handleLikeToggle(dog.name)}>

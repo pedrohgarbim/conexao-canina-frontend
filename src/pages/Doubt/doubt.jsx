@@ -74,7 +74,7 @@ function Doubts() {
               required
             />
             <input
-              type="email"
+              type="text"
               id="email"
               name="email"
               placeholder="E-mail"

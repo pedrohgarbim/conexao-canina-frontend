@@ -144,6 +144,8 @@ export const useAdicionarCao = () => {
       setError(err.response?.data || "Erro ao adicionar cão");
       console.error(err);
       return null;
+    } finally {
+      alert('Cachorro criado!')
     }
   };
 
