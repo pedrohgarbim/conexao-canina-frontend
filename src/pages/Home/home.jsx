@@ -117,9 +117,9 @@ const Home = () => {
       <h1 className={styles.emphasis}>Destaques</h1>
       
       <div className={styles.dogHighlights}>
-        {caes.map((dog, index) => (
+        {dogs.map((dog, index) => (
           
-          <NavLink key={index} to={`/detalhes/${dog.dogId}`} className={styles.dogCard}>    
+          <NavLink key={index} /*to={`/detalhes/${dogs.dogId}`}*/ className={styles.dogCard}>    
             <img src={dog.caminhoFoto}  alt={dog.name} className={styles.dogImage} />
             <h2 className={styles.dogName}>
               {dog.name}, <span className={styles.dogBreed}>{dog.breed}</span>

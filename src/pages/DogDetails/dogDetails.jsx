@@ -378,7 +378,7 @@ const DogDetails = () => {
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
-        <img src={dog.caminhoFoto.replace('../..', '')}  alt={dog.name} className={styles.dogImage}  />
+        <img src={Bella}  alt={dog.name} className={styles.dogImage}  />
         <h2 className={styles.CreateAlbum} onClick={goToCreateAlbum}>
         Ver álbum de fotos
         </h2>

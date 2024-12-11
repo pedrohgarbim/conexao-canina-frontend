@@ -256,11 +256,11 @@ function DogPage() {
   
         <div className={styles.dogHighlights}>
         {/* Renderização dos cards dos cachorros ou mensagem de não encontrado */}
-        {caes.length > 0 ? (
-          caes.map((dog, index) => (
+        {filteredDogs.length > 0 ? (
+          filteredDogs.map((dog, index) => (
             <div key={index} className={styles.dogCard}>
-              <NavLink to={`/detalhes/${dog.name}`} className={styles.dogCardLink}>
-                <img src={dog.image} alt={dog.name} className={styles.dogImage} />
+              <NavLink to={`/detalhes/${dog.dogId}`} className={styles.dogCardLink}>
+                <img src={Bella} alt={dog.name} className={styles.dogImage} />
                 <h2 className={styles.dogName}>
                   {dog.name}, <span className={styles.dogBreed}>{dog.breed}</span>
                 </h2>
