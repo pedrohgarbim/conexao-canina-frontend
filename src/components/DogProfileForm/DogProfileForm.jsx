@@ -196,15 +196,6 @@ const DogProfileForm = () => {
             className={styles.textarea}
           />
         </div>
-        <div>
-          <ul>
-            {formData.fotos.map((foto, index) => (
-              <li key={index}>
-                Recurso "Adicionar Foto" não implementado. {/* {foto.descricao} - {foto.caminhoArquivo} */}
-              </li>
-            ))}
-          </ul>
-        </div>
         <button className={styles.button} type="submit" disabled={isLoading}>
           {isLoading ? "Adicionando..." : "Adicionar Cão"}
         </button>

@@ -26,8 +26,26 @@
     width: 600px;
     border-radius: 5px;
     padding: 20px;
-    background-color: #f9f9f9;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
 }
+
+.fieldGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 96%;
+    margin-bottom: 16px;
+  }
+
+  .fieldGroup label {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #152540;
+  }
+  
+  
 
 /* Estilo dos contêineres de entrada */
 .inputContainer {
@@ -38,16 +56,31 @@
 }
 
 /* Estilo dos inputs, selects e textareas */
-.inputContainer input,
-.inputContainer select,
 .inputContainer textarea {
     padding: 8px;
     border: 1px solid #152540;
-    border-radius: 8px;
+    border-radius: 5px;
     font-size: 15px;
     width: calc(100% - 16px);
     box-sizing: border-box;
 }
+
+
+.input {
+    width: 580px;
+    height: 40px;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 15px;
+  }
+
+.select {
+    width: 600px;
+    height: 40px;
+    padding: 8px;
+    font-size: 15px;
+    border-radius: 5px;
+  }
 
 /* Campos mais largos */
 .inputContainer input.wide,
@@ -73,16 +106,19 @@
 
 /* Botão */
 .button {
+    border: none;
     background-color: #3d61ff;
-    color: #fff;
     padding: 10px 20px;
     border-radius: 5px;
-    border: none;
+    color: #fff;
     font-weight: bold;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.3s;
-}
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    margin-top: 10px;
+  }
 
 .button:hover {
     background-color: #2c4d85;

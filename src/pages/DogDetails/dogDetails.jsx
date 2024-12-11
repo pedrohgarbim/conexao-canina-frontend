@@ -389,9 +389,6 @@ const DogDetails = () => {
           <div className={styles.reportIcon} onClick={handleOpenReportModal} title="Denunciar este cão">
             <FaExclamationTriangle className={styles.reportIconStyle} />
           </div>
-          <div className={styles.editIcon} onClick={handleOpenEditModal} title="Editar este cão">
-            <FaPencilAlt className={styles.editIconStyle} />
-          </div>
         </h1>
         <div className={styles.details}>
           <p className={styles.detailItemPaw}>
