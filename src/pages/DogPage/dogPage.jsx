@@ -114,7 +114,7 @@ function DogPage() {
   };
 
   // Filtro dos cachorros com base nos filtros selecionados
-  const filteredDogs = dogs.filter(dog => {
+  const filteredDogs = caes.filter(dog => {
     return (selectedGender === '-1' || dog.gender === selectedGender) &&
            (selectedBreed === '-1' || dog.breed === selectedBreed) &&
            (selectedState === '-1' || dog.state === selectedState) &&
